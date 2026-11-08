@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pubs.fndt.xyz | technical aspects</title>
+    
+    <link rel="icon" type="image/png" href="favicon.png">
+    
+    <link rel="stylesheet" href="global.css">
+</head>
+<body class="antialiased">
+
+    <div id="navbar-placeholder"></div>
+
+    <main class="view-container">
+        <div class="grid-two-one">
+            
+            <div class="left-col">
+                <section class="view-card">
+				<h1 class="view-title">technical aspects</h1>
+				<hr class="title-sep">
+
+					<nav class="breadcrumb">
+                        <div class="crumb-line">
+                             &gt; <a href="/index.html">pubs</a> &gt; 
+							<a href="/all-pages.html">all-pages</a> &gt; 
+							<span class="current">technical aspects</span>
+                        </div>
+                    </nav>
+
+					<div class="view-content">
+                    <p>
+                        This website is a repository of writing. Its job is to hold articles that speed up technical tasks: guides, specifications, process notes, checklists and short papers. A task that is written down well once can be done again by following the page, instead of being explained again every time.
+                    </p>
+
+                    <h4>1. Plain pages, nothing to build</h4>
+                    <p>
+                        Every article is one plain html file. There is no framework, no database and no build step: the files in the repository are exactly what the reader gets. The site is served by GitHub Pages straight from the repository, so publishing an article means committing the file and pushing it. Every change to the writing is kept in the git history.
+                    </p>
+
+                    <h4>2. Writing apart from code</h4>
+                    <p>
+                        The look of every page lives in one stylesheet, <code>global.css</code>. The parts every page shares, the menu, the footer and the side box, are separate files that each page loads when it opens. An article file holds only its own words. This is the point of the repository as a writing technique: the writer works on text without touching code, and a change of look never touches the articles.
+                    </p>
+
+                    <h4>3. Written once, shown anywhere</h4>
+                    <p>
+                        The articles carry no brand, so the same writing can serve many websites and many identities. Another website can show an article in three ways: link to it, copy its text block into its own page, or embed the whole page with an iframe:
+                    </p>
+<pre>&lt;iframe src="https://pubs.fndt.xyz/contents/page-00-00-example.html"
+        width="100%" height="800" style="border:0"&gt;&lt;/iframe&gt;</pre>
+                    <p>
+                        At the bottom of each article sits a second breadcrumb, switched off by default. It records where the article lives on the website that shows it, in the form <em>site &gt; category &gt; page</em>, so a reader can find the way back.
+                    </p>
+
+                    <h4>4. Finding an article</h4>
+                    <p>
+                        The top breadcrumb shows where an article sits here: <em>pubs &gt; category &gt; page</em>. Articles have no categories yet, so all of them are listed under <a href="/all-pages.html">all pages</a>. The menu keeps the three links (home, pages, about), each ready to take a dropdown once categories exist, and the round button in the footer opens the same links for a reader who got lost.
+                    </p>
+
+                    <h4>5. Adding an article</h4>
+                    <ul class="list-flush">
+                        <li>copy <code>contents/page-00-00-example.html</code> and give it a new name,</li>
+                        <li>write the title, the breadcrumb and the text,</li>
+                        <li>add a link to it on <code>all-pages.html</code>,</li>
+                        <li>commit and push. The page is live within a minute or two.</li>
+                    </ul>
+
+                    <h4>6. License</h4>
+                    <p>
+                        Code is under GPL-3.0 and the writing under CC BY-SA 4.0: anyone may share, adapt and republish both, with credit and under the same terms. See the <a href="/LICENSE.html" target="_blank">license page</a>.
+                    </p>
+                </div>
+
+                    <!-- second breadcrumb: where this article sits on the website that shows it.
+                         fill in the real links and names, then remove the two comment lines around it.
+                    <nav class="breadcrumb breadcrumb-ext">
+                        <div class="crumb-line external-link">
+                            &gt; <a href="https://website/" target="_blank" rel="noopener noreferrer">fndt</a> &gt;
+                            <a href="https://website/category" target="_blank" rel="noopener noreferrer">category</a> &gt;
+                            <a href="https://website/category/page" target="_blank" rel="noopener noreferrer">page</a>
+                        </div>
+                    </nav>
+                    -->
+			</section>
+            </div>
+
+            <div class="right-col">
+                <div id="sidebar-placeholder">
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script>
+        async function loadComponent(id, file) {
+            const element = document.getElementById(id);
+            if (!element) return;
+            
+            if (element.innerHTML.trim() === "") {
+                try {
+                    const response = await fetch(file);
+                    if (response.ok) {
+                        const data = await response.text();
+                        element.innerHTML = data;
+                    }
+                } catch (error) {
+                    console.error("Error loading component:", file, error);
+                }
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            loadComponent('navbar-placeholder', 'navbar.html');
+            loadComponent('footer-placeholder', 'footer.html');
+            loadComponent('sidebar-placeholder', 'rght-clmn.html');
+        });
+    </script>
+</body>
+</html>

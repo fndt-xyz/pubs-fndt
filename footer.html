@@ -1,0 +1,50 @@
+<footer class="nav-ft-container" style="border-top: 1px solid var(--line); padding-top: 2rem; padding-bottom: 2rem;">
+    <div class="inner-wrap footer-inner">
+        
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+            <a href="/index.html" class="nav-link" style="font-size: 11px; font-weight: 700; color: #475569; text-decoration: none;">pubs.fndt.xyz</a>
+            
+            <p style="margin: 0; font-size: 10px; color: #94a3b8; text-transform: lowercase;">
+                © 2026
+            </p>
+            
+            <p style="margin: 0; font-size: 10px; color: #cbd5e1; text-transform: lowercase;">
+				code: <a href="/LICENSE.html" target="_blank" class="plain-link" style="color: inherit;">GPL-3.0</a> | 
+				content: <a href="/LICENSE.html" target="_blank" class="plain-link" style="color: inherit;">CC BY-SA 4.0</a>
+			</p>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 1.5rem;">
+            
+            <a href="#" style="color: #94a3b8; transition: color 0.3s; line-height: 0;" onmouseover="this.style.color='#000'" onmouseout="this.style.color='#94a3b8'">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m18 15-6-6-6 6"/>
+                </svg>
+            </a>
+
+            <!-- dropup menu, for readers who got lost: tap the round button to open or close it, tap anywhere else or press Esc to close (styles: global.css section 13) -->
+            <div class="dropup">
+                <button type="button" class="dropup-trigger" aria-label="menu" onclick="var d=this.parentNode;document.querySelectorAll('.nav-dd.open,.dropup.open').forEach(function(o){if(o!==d)o.classList.remove('open')});d.classList.toggle('open');if(!window.pubsMenus){window.pubsMenus=1;var c=function(){document.querySelectorAll('.nav-dd.open,.dropup.open').forEach(function(o){o.classList.remove('open')})};document.addEventListener('click',function(e){if(!e.target.closest('.nav-dd,.dropup'))c()});document.addEventListener('keydown',function(e){if(e.key==='Escape')c()})}">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/>
+                    </svg>
+                </button>
+                <div class="dropup-menu">
+                    <a href="/index.html">home</a>
+                    <a href="/all-pages.html">pages</a>
+                    <a href="/about.html">about</a>
+                    <a href="/page-00-technical-aspects.html">technical aspects</a>
+                </div>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <a href="/index.html" class="logo-text">pubs.</a>
+                
+                <a href="/index.html" style="line-height: 0;">
+                    <img src="/logo_fndt.png" alt="pubs" style="height: 20px; width: auto; opacity: 0.6; transition: opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.6'">
+                </a>
+            </div>
+
+        </div>
+    </div>
+</footer>

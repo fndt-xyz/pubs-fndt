@@ -1,0 +1,27 @@
+<nav class="nav-ft-container">
+    <div class="inner-wrap nav-inner">
+        <div class="logo-group">
+            <a href="/index.html" class="logo-text">pubs.</a>
+            <a href="/index.html" target="_self">
+                <img src="/logo_fndt.png" alt="pubs" class="logo-img">
+            </a>
+        </div>
+
+        <div class="nav-links-wrap">
+            <a href="/index.html" class="nav-link">home</a>
+
+            <!-- dropdown: parent link + triangle. desktop: hover. phone: tap the triangle (the word still opens the parent page).
+                 to add a child: put an <a class="nav-link"> inside nav-dd-menu; the triangle shows by itself once the menu has a link.
+                 one menu open at a time; tap anywhere else or press Esc to close it (no js file needed) -->
+            <div class="nav-dd">
+                <a href="/all-pages.html" class="nav-link nav-dd-parent">pages</a><button type="button" class="nav-dd-toggle" aria-label="open submenu" onclick="var d=this.closest('.nav-dd');document.querySelectorAll('.nav-dd.open,.dropup.open').forEach(function(o){if(o!==d)o.classList.remove('open')});d.classList.toggle('open');if(!window.pubsMenus){window.pubsMenus=1;var c=function(){document.querySelectorAll('.nav-dd.open,.dropup.open').forEach(function(o){o.classList.remove('open')})};document.addEventListener('click',function(e){if(!e.target.closest('.nav-dd,.dropup'))c()});document.addEventListener('keydown',function(e){if(e.key==='Escape')c()})}"><span class="nav-dd-caret" aria-hidden="true"></span></button>
+                <div class="nav-dd-menu"><!-- children go here, e.g. <a href="/contents/page-xx.html" class="nav-link">name</a>. while empty, the triangle stays hidden --></div>
+            </div>
+
+            <div class="nav-dd">
+                <a href="/about.html" class="nav-link nav-dd-parent">about</a><button type="button" class="nav-dd-toggle" aria-label="open submenu" onclick="var d=this.closest('.nav-dd');document.querySelectorAll('.nav-dd.open,.dropup.open').forEach(function(o){if(o!==d)o.classList.remove('open')});d.classList.toggle('open');if(!window.pubsMenus){window.pubsMenus=1;var c=function(){document.querySelectorAll('.nav-dd.open,.dropup.open').forEach(function(o){o.classList.remove('open')})};document.addEventListener('click',function(e){if(!e.target.closest('.nav-dd,.dropup'))c()});document.addEventListener('keydown',function(e){if(e.key==='Escape')c()})}"><span class="nav-dd-caret" aria-hidden="true"></span></button>
+                <div class="nav-dd-menu"><!-- children go here, e.g. <a href="/contents/page-xx.html" class="nav-link">name</a>. while empty, the triangle stays hidden --></div>
+            </div>
+        </div>
+    </div>
+</nav>

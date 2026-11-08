@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pubs.fndt.xyz | about</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="global.css">
+    <style>
+        /* Specific styles for the About page social icons */
+        .social-wrap {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem; /* gap-8 */
+            padding: 1.5rem 0; /* py-6 */
+        }
+
+        .icon-link {
+            display: inline-block;
+            transition: transform 0.2s ease;
+        }
+
+        .icon-img {
+            width: 32px;
+            height: 32px;
+            filter: grayscale(100%);
+            opacity: 0.8;
+            transition: all 0.2s ease;
+        }
+
+        @media (min-width: 768px) {
+            .icon-img { width: 40px; height: 40px; }
+        }
+
+        .icon-link:hover { transform: scale(1.1); }
+        .icon-link:hover .icon-img {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div id="navbar-placeholder"></div>
+
+    <main class="view-container">
+        <div class="grid-two-one">
+            
+            <div class="left-col">
+                <section class="view-card">
+                    <h1 class="view-title">about</h1>
+                    <hr class="title-sep">
+                    <nav class="breadcrumb">
+                        <div class="crumb-line">
+                            &gt; <a href="/index.html">pubs</a> &gt; 
+                            <span class="current">about</span>
+                        </div>
+                    </nav>
+                    <div class="view-content">
+                        <p>
+                            this website is a repository of writing for technical tasks. the articles here are written once and shown on other websites, by link, copy or iframe.
+                        </p>
+
+                        <div class="social-wrap">
+                            <a href="https://mastodon.social/@fndt_xyz" target="_blank" rel="noopener noreferrer" class="icon-link" title="Mastodon">
+                                <img src="https://cdn.simpleicons.org/mastodon/2C90D9" alt="Mastodon" class="icon-img" />
+                            </a>
+
+                            <a href="https://www.youtube.com/@fndtxyz" target="_blank" rel="noopener noreferrer" class="icon-link" title="YouTube">
+                                <img src="https://cdn.simpleicons.org/youtube/FF0000" alt="YouTube" class="icon-img" />
+                            </a>
+
+                            <a href="mailto:fndt.exct@proton.me" class="icon-link" title="Email">
+                                <img src="https://cdn.simpleicons.org/minutemailer/gray" alt="Email" class="icon-img" />
+                            </a>
+
+                            <a href="https://patreon.com/projexct" target="_blank" rel="noopener noreferrer" class="icon-link" title="Patreon">
+                                <img src="https://cdn.simpleicons.org/patreon/FF424D" alt="Patreon" class="icon-img" />
+                            </a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="right-col">
+                <div id="sidebar-placeholder"></div>
+            </div>
+
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script>
+        async function loadComponent(id, file) {
+            const element = document.getElementById(id);
+            if (!element) return;
+            if (element.innerHTML.trim() === "") {
+                try {
+                    const response = await fetch(file);
+                    if (response.ok) {
+                        const data = await response.text();
+                        element.innerHTML = data;
+                    }
+                } catch (error) {
+                    console.error("Error loading component:", file, error);
+                }
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            loadComponent('navbar-placeholder', 'navbar.html');
+            loadComponent('footer-placeholder', 'footer.html');
+            loadComponent('sidebar-placeholder', 'rght-clmn.html');
+        });
+    </script>
+</body>
+</html>

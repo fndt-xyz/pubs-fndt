@@ -1,0 +1,30 @@
+/*
+ * cards/card.css: the look of a card when it is opened on its own or inside an iframe.
+ * Kept small on purpose: no navbar, footer or grid. Inside a pubs page the card's text is
+ * shown in the page's .view-content and styled by global.css instead, so this file is not used there.
+ */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background: transparent;   /* blends into whatever site shows the card */
+}
+
+.card-body {
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    line-height: 1.625;
+    color: #334155;
+    text-align: justify;
+    padding: 0.25rem 0;
+    -webkit-font-smoothing: antialiased;
+}
+
+.card-body p { margin: 0 0 1em; }
+.card-body p:last-child { margin-bottom: 0; }
+.card-body h4 { font-weight: 700; color: #1e293b; margin: 1.25em 0 0.5em; }
+.card-body a { color: inherit; font-weight: 700; text-decoration: none; }
+.card-body a:hover { color: #64748b; }
+.card-body img { max-width: 100%; height: auto; }
+.card-body pre { max-width: 100%; overflow-x: auto; }

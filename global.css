@@ -1,0 +1,527 @@
+/*
+ * global.css: the whole look of pubs, loaded first by every page.
+ * Sharp corners (--radius), 1px lines instead of shadows (--line), one accent colour on hover / active (--accent),
+ * mono labels, Lato for article text, Inter for menus and labels. Articles hold only their writing; every style lives here
+ * (a page may add a small local file, e.g. code/elements.css for image rows).
+ */
+
+/* 1. IMPORTS & FONT ROLES
+   Fonts are named by role. To change a font, change it here only; every other css file uses these roles,
+   never a family name. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Lato:wght@400;700&family=Open+Sans:wght@700;800&display=swap');
+
+:root {
+    --font-head: 'Open Sans', sans-serif;      /* logo, menu, titles, headings */
+    --font-text: 'Inter', sans-serif;          /* body, buttons, labels, sidebar */
+    --font-body: 'Lato', 'Inter', sans-serif;  /* article text (.view-content) */
+    --font-mono: monospace;                    /* breadcrumb, code */
+    --radius: 2px;                             /* sharp corners on every box */
+    --accent: #4d5dba;                         /* logo blue, only on hover / active */
+    --line: #dbe1e8;                           /* crisp 1px borders instead of shadows */
+    --logo-h: 40px;                            /* navbar logo height, also used by the sticky navbar (section 3b) */
+}
+
+/* 2. BASE RESET */
+body {
+    margin: 0;
+    background-color: #ffffff;
+    color: #171717;
+    font-family: var(--font-text);
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Global Image Reset */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* 3. NAVIGATION BAR */
+.nav-ft-container {
+    width: 100%;
+    background-color: #ffffff;
+    border-bottom: 1px solid #f8fafc;
+    padding: 1rem 1.5rem;
+    box-sizing: border-box;
+}
+
+.inner-wrap {
+    max-width: 1152px;
+    margin: 0 auto;
+    display: flex;
+}
+
+.nav-inner {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+@media (min-width: 640px) {
+    .nav-inner {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+/* 3b. STICKY NAVBAR
+   The navbar stays at the top while the page scrolls. On phones the navbar is two rows
+   (logo on top, menu under it): there the logo row scrolls away and only the menu row stays,
+   so the bar takes less of the screen. The negative top = navbar top padding + logo row
+   + half the gap above the menu. If you change those sizes, the calc follows --logo-h. */
+#navbar-placeholder {
+    position: sticky;
+    top: 0;
+    z-index: 100;   /* above the hero arrows and dots (z-index 50), so an open dropdown is never covered */
+}
+@media (max-width: 639px) {
+    #navbar-placeholder { top: calc(-1 * (1rem + var(--logo-h) + 0.5rem)); }
+}
+
+/* 4. LOGO & BRANDING */
+.logo-group {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+a.logo-text {
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: 1.25rem;
+    letter-spacing: -0.05em;
+    color: #0f172a;
+    text-transform: lowercase;
+    display: inline-block;
+}
+
+.logo-img {
+    height: var(--logo-h);
+    width: auto;
+}
+
+/* 5. NAV LINKS */
+.nav-links-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;   /* home and the dropdown parents on one line */
+    gap: 2rem;
+    margin-top: 1rem;
+    font-family: var(--font-head);
+    font-size: 14px;
+    text-transform: lowercase;
+}
+
+@media (min-width: 640px) { 
+    .nav-links-wrap { margin-top: 0; } 
+}
+
+.nav-link {
+    color: #1e293b;
+    transition: color 0.2s;
+}
+
+.nav-link:hover { color: var(--accent); }
+
+/* 6. CONTENT AREA & GRID */
+.view-container {
+    max-width: 1152px;
+    margin: 0 auto;
+    padding: 1.5rem 1.5rem;
+}
+
+.grid-two-one {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);  /* minmax(0, ...) stops wide rows (carousel) from stretching the page on phones */
+    gap: 1rem;
+    align-items: start;
+}
+
+@media (min-width: 768px) {
+    /* minmax(0, 1fr) allows horizontal components to scroll without breaking grid */
+    .grid-two-one { grid-template-columns: minmax(0, 7fr) 2fr; }
+}
+
+/* 7. CARDS & TYPOGRAPHY */
+.view-card {
+    padding: 1.5rem 1.1rem 1.1rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: white;
+    margin-bottom: 1rem;
+}
+
+/* Flush Variant for full-width components (Hero/Carousel) */
+.view-card.flush {
+    padding-left: 0;
+    padding-right: 0;
+    overflow: hidden;
+}
+
+.view-card.flush .view-title,
+.view-card.flush .view-content,
+.view-card.flush .title-sep {
+    margin-left: 1.1rem;
+    margin-right: 1.1rem;
+}
+
+.view-title {
+    font-family: var(--font-head);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    color: #1e293b;
+    margin-bottom: 1px;
+    padding-bottom: 0;
+}
+
+hr.title-sep {
+    border: 0;
+    border-top: 1px solid #eee;
+    margin-top: 0;        
+    margin-bottom: 6px;
+    display: block;
+}
+
+.view-content {
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.625;
+    color: #334155;
+    text-align: justify;
+}
+
+/* 8. LINKS
+   A link with no class looks like normal text: same colour, no underline; the pointer shows it is a link.
+   Opt in to a visible style with a class on the link (or on a block around links):
+     class="lnk-bold"  bold, same colour as the text
+     class="lnk-line"  underlined, same colour as the text */
+a { color: inherit; text-decoration: none; }
+a.lnk-bold, .lnk-bold a { font-weight: 700; }
+a.lnk-line, .lnk-line a, .view-content a.lnk-line, .view-content .lnk-line a { text-decoration: underline !important; text-underline-offset: 3px; }
+
+/* 8b. LINKS INSIDE BODY TEXT */
+.view-content a {
+    color: inherit !important;
+    text-decoration: none !important;
+    transition: color 0.2s ease;
+}
+
+.view-content a:hover {
+    color: #64748b !important;
+}
+
+/* 9. SIDEBAR */
+.right-col-links {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: white;
+    overflow: hidden;
+}
+
+.right-col-link-h2 {
+    font-family: var(--font-mono);
+    letter-spacing: 0.08em;
+    font-size: 11px;
+    font-weight: bold;
+    color: #94a3b8;
+    text-transform: lowercase;
+    padding: 1.5rem 1rem 0.5rem;
+}
+
+.right-col-links a {
+    padding: 1rem;
+    font-family: var(--font-text);
+    font-size: 14px;
+    color: #475569 !important;
+    border-bottom: 1px solid #f8fafc;
+    text-transform: lowercase;
+}
+
+.right-col-links a:hover {
+    background-color: #f8fafc;
+    box-shadow: inset 2px 0 0 var(--accent);   /* square accent bar on the left */
+    color: #64748b !important;
+}
+
+/* 10. MOBILE ALIGNMENT FIXES */
+@media (max-width: 767px) {
+    .view-card {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+    }
+
+    /* Increase hit area for mobile navigation */
+    .nav-link, .right-col-links a {
+        padding-top: 0.85rem;
+        padding-bottom: 0.85rem;
+    }
+
+    .right-col-links a {
+        padding-left: 1.25rem !important;
+        padding-right: 1.25rem !important;
+    }
+
+    .right-col-link-h2 {
+        padding-left: 1.25rem;
+    }
+
+    .view-container {
+        padding: 1rem;
+    }
+}
+
+/* 11. FOOTER & BREADCRUMBS */
+.footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.breadcrumb {
+    font-size: 10px;
+    color: #666;
+    margin-top: 0;
+    margin-bottom: 24px;
+    font-family: var(--font-mono);
+    display: block;
+}
+
+.crumb-line::before { content: "["; margin-right: 0px; }
+.crumb-line::after { content: "]"; margin-left: 0px; }
+
+.breadcrumb a {
+    color: #2563eb;
+}
+
+.breadcrumb .current {
+    color: #999;
+    font-weight: normal;
+}
+
+.list-flush {
+    padding-left: 1.25rem;
+    margin-left: 0;
+    list-style-position: outside;
+}
+
+@media (max-width: 767px) {
+    .list-flush {
+        padding-left: 1rem; 
+    }
+}
+
+footer .logo-text {
+    font-size: 14px !important;
+}
+
+/* 12. NAV DROPDOWN (parent link + triangle, plain css)
+   The child menu always floats below its parent (desktop and phone), so opening it
+   never pushes the other menu items around. Desktop opens on hover, touch screens
+   open by tapping the triangle. A menu opened by a tap or click closes when you tap
+   anywhere else or press Esc (the small onclick in navbar.html and footer.html). */
+:root { --nav-dd-gap: 12px; }   /* space between a parent link and its child menu */
+
+.nav-dd {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+.nav-dd-toggle {
+    background: none;
+    border: none;
+    padding: 6px 4px;
+    margin-left: 2px;
+    cursor: pointer;
+    color: #1e293b;
+    display: inline-flex;
+    align-items: center;
+    align-self: stretch;
+}
+.nav-dd-toggle:hover { color: var(--accent); }
+/* the open or hovered menu gets a square accent line under its word */
+.nav-dd.open > .nav-dd-parent { box-shadow: inset 0 -2px 0 var(--accent); }
+@media (hover: hover) { .nav-dd:hover > .nav-dd-parent { box-shadow: inset 0 -2px 0 var(--accent); } }
+.nav-dd-caret {
+    display: block;
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid currentColor;
+    transition: transform 0.2s;
+}
+.nav-dd-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + var(--nav-dd-gap));
+    left: -1rem;
+    flex-direction: column;
+    min-width: 160px;
+    max-width: calc(100vw - 2rem);
+    box-sizing: border-box;
+    padding: 0.5rem 0;
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    z-index: 60;
+}
+.nav-dd-menu .nav-link {
+    padding: 0.5rem 1rem;
+    white-space: nowrap;
+}
+/* last dropdown in the bar opens toward the left, so it never spills past the right edge */
+.nav-dd:last-child .nav-dd-menu {
+    left: auto;
+    right: -0.5rem;
+}
+.nav-dd.open .nav-dd-menu { display: flex; }
+.nav-dd.open .nav-dd-caret { transform: rotate(180deg); }
+@media (hover: hover) {
+    .nav-dd:hover .nav-dd-menu,
+    .nav-dd:has(:focus-visible) .nav-dd-menu { display: flex; }   /* keyboard only: a mouse click does not keep it open */
+    .nav-dd:hover .nav-dd-caret { transform: rotate(180deg); }
+
+    /* hover wins: while one dropdown is hovered, a menu opened earlier by click stays hidden,
+       so two menus never show at once */
+    .nav-links-wrap:has(.nav-dd:hover) .nav-dd.open:not(:hover) .nav-dd-menu { display: none; }
+    .nav-links-wrap:has(.nav-dd:hover) .nav-dd.open:not(:hover) .nav-dd-caret { transform: none; }
+
+    /* invisible bridges over the gap, so the menu stays open while the mouse moves down:
+       one under the parent, one along the full top edge of the open menu */
+    .nav-dd::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        height: calc(var(--nav-dd-gap) + 2px);
+    }
+    .nav-dd-menu::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: calc(-1 * var(--nav-dd-gap) - 2px);
+        height: calc(var(--nav-dd-gap) + 2px);
+    }
+}
+
+@media (max-width: 639px) {
+    /* phones: keep home / all-pages / about on one line */
+    .nav-links-wrap {
+        flex-wrap: nowrap;
+        gap: 1.25rem;
+    }
+    .nav-dd-toggle { padding: 10px 8px; }   /* bigger tap target for the triangle */
+    .nav-dd-menu {
+        left: -0.5rem;
+        top: calc(100% - 8px);   /* the bigger triangle tap target already adds space under the word */
+        min-width: 150px;
+    }
+    .nav-dd-menu .nav-link {
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
+    }
+}
+
+/* 13. FOOTER DROPUP (round button that opens a small menu upward, plain css)
+   Tap or click the button to open or close it; tap anywhere else or press Esc to close.
+   Opening it closes any open navbar dropdown, and the other way round. */
+.dropup {
+    position: relative;
+    display: inline-block;
+    line-height: 0;
+}
+.dropup-trigger {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius);
+    border: 1px solid #e2e8f0;
+    background: transparent;
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+    box-sizing: border-box;
+    transition: color 0.2s, border-color 0.2s;
+}
+.dropup-trigger:hover,
+.dropup.open .dropup-trigger {
+    color: #1e293b;
+    border-color: #cbd5e1;
+}
+.dropup-menu {
+    display: none;
+    position: absolute;
+    bottom: calc(100% + 12px);
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 120px;
+    padding: 4px 0;
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    line-height: normal;
+    z-index: 60;
+}
+.dropup.open .dropup-menu { display: block; }
+/* small arrow under the menu, pointing at the button */
+.dropup-menu::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: #ffffff;
+}
+.dropup-menu a {
+    display: block;
+    padding: 10px 16px;
+    font-family: var(--font-text);
+    font-size: 12px;
+    font-weight: 700;
+    color: #475569;
+    text-align: center;
+    text-transform: lowercase;
+    transition: background 0.2s;
+}
+.dropup-menu a:hover {
+    background-color: #f8fafc;
+    color: #1e293b;
+}
+/* phones: the footer sits near the right edge, so open toward the left */
+@media (max-width: 639px) {
+    .dropup-menu {
+        left: auto;
+        right: 0;
+        transform: none;
+    }
+    .dropup-menu::after {
+        left: auto;
+        right: 10px;
+        transform: none;
+    }
+}
+
+/* 14. EMPTY DROPDOWN
+   A dropdown with no child links shows as a plain menu word: no triangle, no empty box.
+   Put a link inside its nav-dd-menu (navbar.html) and the triangle comes back by itself. */
+.nav-dd-menu:empty { display: none !important; }
+.nav-dd:has(> .nav-dd-menu:empty) .nav-dd-toggle { display: none; }
+
+/* 15. WIDE TEXT BLOCKS
+   ascii diagrams and code in <pre> scroll inside their card on phones, instead of spilling out of it */
+.view-content pre { max-width: 100%; overflow-x: auto; }
+
+/* 16. SECOND BREADCRUMB (bottom of an article, commented out until used)
+   where the article sits on the website that shows it: fndt > category > page */
+.breadcrumb-ext { margin-top: 24px; margin-bottom: 0; }

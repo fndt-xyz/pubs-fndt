@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pubs.fndt.xyz | target</title>
+    
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <link rel="stylesheet" href="../global.css">
+    <link rel="stylesheet" href="../code/elements.css">
+
+</head>
+<body class="antialiased">
+
+    <div id="navbar-placeholder"></div>
+
+    <main class="view-container">
+        <div class="grid-two-one">
+            
+            <div class="left-col">
+                <section class="view-card">
+                    <h1 class="view-title">target</h1>
+                    <hr class="title-sep">
+
+                    <nav class="breadcrumb">
+                        <div class="crumb-line">
+                            &gt; <a href="/index.html">pubs</a> &gt; 
+                            <a href="/all-pages.html">all-pages</a> &gt; 
+                            <a href="/contents/page-06-00-2nd-hand.html">2nd</a> &gt; 
+                            <span class="current">dem</span>
+                        </div>
+                    </nav>
+
+                    <div class="view-content">
+                        <p>
+                            We don't just sell laptops. We sell a service that extends the life of your IT devices, and the know-how to get every bit of computing power out of them.
+                        </p>
+
+                        <p>
+                            To us, it's the same either way. A high-end 2nd hand laptop or a mediocre brand-new one on the same budget: we know how to push both to their full potential. Even if you go for a cheaper, mediocre 2nd hand device, we know exactly how to get the most out of it, limits and all.
+                        </p>
+
+                        <p><strong>That is what we sell.</strong></p>
+
+                        <p>
+                            Break the flow and change the habit: switch to open-source operating systems and software. If the old way of working isn't taking your business anywhere, you need a new way to get things done. 2nd hand hardware gives your business a genuine refresh. Give a device a second chance, and the "business fatigue" of bloated, standard systems clears out with it. Shake up the software with a complete open-source stack, and the weight of the old workflow goes too. That is what refreshing with old hardware really means.
+                        </p>
+
+                        <p>
+                            If your business is going through a transformation, or training staff for a new chapter, low-risk 2nd hand hardware paired with open-source systems is a smart bet. It is the smartest way to bring open source into your business processes, from productivity suites to ERPs. 2nd hand laptops and mini-PCs let you build self-contained workflows, or give a specific task its own dedicated machine, without the high cost of new equipment. A low-cost entry into a high-performance way of working.
+                        </p>
+
+                        <div class="img-row-triple">
+                            <div class="img-col">
+                                <img src="https://docs.google.com/drawings/d/e/2PACX-1vQYthvmTY0z_nQG_k4sGVfHN7QHp44NZoed5nddVNrg0Xsvap8SF6iXznf501ZZCvicp9IVGB9hOm4e/pub?w=240&h=180" 
+                                    alt="Potential" draggable="false">
+                            </div>
+                            
+                            <div class="img-col">
+                                <img src="https://docs.google.com/drawings/d/e/2PACX-1vSdhs11RYhpRO7qF_g8ignlPu4-NfasRdlXRrMTkqtCiNUgHsnu5H0LmW7G35Rh0KVuEI9MeqvuEXCt/pub?w=240&h=180" 
+                                    alt="Dire" draggable="false">
+                            </div>
+                            
+                            <div class="img-col">
+                                <img src="https://docs.google.com/drawings/d/e/2PACX-1vQXA-NUSEUDLj456SyNVP8amQtLDT8ef_7J4he6u1D4CqJJWwhpLpGChR3qxJ2G88HXhxcW9FCphknc/pub?w=240&h=180" 
+                                    alt="Deal" draggable="false">
+                            </div>
+                        </div>
+
+                        <h4>So, who is the buyer of 2nd hand hardware?</h4>
+                        <ul class="list-flush">
+                            <li>
+                                <strong>The Power User:</strong> knows exactly what these machines can do, and wants an open-source environment that pushes the hardware to its absolute limit.
+                            </li>
+                            <li>
+                                <strong>The Urgent Need:</strong> is in a dire situation and needs working tech right now. We get the device running, without the "brand-new" price tag.
+                            </li>
+                            <li>
+                                <strong>The Deal Seeker:</strong> wants the best value. We are the conduit to hardware sold "as-is" at a fair price. We take no cut and make no profit on the hardware; we only charge upfront processing costs, to ensure quality and delivery.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- second breadcrumb: where this article sits on the website that shows it.
+                         fill in the real links and names, then remove the two comment lines around it.
+                    <nav class="breadcrumb breadcrumb-ext">
+                        <div class="crumb-line external-link">
+                            &gt; <a href="https://website/" target="_blank" rel="noopener noreferrer">fndt</a> &gt;
+                            <a href="https://website/category" target="_blank" rel="noopener noreferrer">category</a> &gt;
+                            <a href="https://website/category/page" target="_blank" rel="noopener noreferrer">page</a>
+                        </div>
+                    </nav>
+                    -->
+			</section>
+            </div>
+
+            <div class="right-col">
+                <div id="sidebar-placeholder"></div>
+
+                <div class="right-col-links" style="margin-top: 20px;">
+                    <h2 class="right-col-link-h2">parent</h2>
+                    <a href="/contents/page-06-00-2nd-hand.html" class="plain-link">&gt; 2nd hand, 2nd chance</a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script>
+        async function loadComponent(id, file) {
+            const element = document.getElementById(id);
+            if (!element) return;
+            
+            if (element.innerHTML.trim() === "") {
+                try {
+                    // Added ../ to fetch from the parent directory
+                    const response = await fetch(`../${file}`);
+                    if (response.ok) {
+                        const data = await response.text();
+                        element.innerHTML = data;
+                    }
+                } catch (error) {
+                    console.error("Error loading component:", file, error);
+                }
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            loadComponent('navbar-placeholder', 'navbar.html');
+            loadComponent('footer-placeholder', 'footer.html');
+            loadComponent('sidebar-placeholder', 'rght-clmn.html');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>example card</title>
+    <!--
+      CARD: only the writing, no navbar, footer or side box.
+      Used two ways:
+        1. a pubs page loads it (contents/page-00-00-cards-calling.html) and shows only the <article class="card-body"> part.
+        2. any other website shows it in an iframe:
+             <iframe src="https://pubs.fndt.xyz/cards/cards-00-00-example.html" class="pubs-card"
+                     title="example" loading="lazy" style="width:100%; border:0; height:300px"></iframe>
+             <script src="https://pubs.fndt.xyz/cards/embed.js"></script>   (optional: the iframe then fits its text, no scrollbar)
+      Write only inside <article class="card-body">. Keep links absolute (https://pubs.fndt.xyz/...) so they work on any site.
+    -->
+
+    <!-- search engines: the pubs page is the real address of this text, the card is a copy for embedding -->
+    <link rel="canonical" href="https://pubs.fndt.xyz/contents/page-00-00-cards-calling.html">
+
+    <!-- inside an iframe, a click on a link opens a new tab instead of loading inside the small box -->
+    <base target="_blank">
+
+    <link rel="stylesheet" href="/cards/card.css">
+</head>
+<body>
+    <article class="card-body">
+        <p>
+            lorem ipsum dolor sit amet, consectetur adipiscing elit. sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+        <p>
+            ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </p>
+        <p>
+            duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        </p>
+    </article>
+
+    <!-- inside an iframe: tell the host page how tall this card is, so cards/embed.js can size the iframe.
+         does nothing when the card is opened on its own, or when a pubs page shows it (scripts don't run there). -->
+    <script>
+        (function () {
+            if (window.parent === window) return;
+            var send = function () {
+                window.parent.postMessage({ type: 'pubs-card-height', height: document.body.offsetHeight }, '*');
+            };
+            window.addEventListener('load', send);
+            if (window.ResizeObserver) new ResizeObserver(send).observe(document.body);
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pubs.fndt.xyz | authentic websites - get to go</title>
+    
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <link rel="stylesheet" href="../global.css">
+</head>
+<body class="antialiased">
+
+    <div id="navbar-placeholder"></div>
+
+    <main class="view-container">
+        <div class="grid-two-one">
+            
+            <div class="left-col">
+            <section class="view-card">
+				<h1 class="view-title">authentic websites - get to go</h1>
+				<hr class="title-sep">
+
+                    <nav class="breadcrumb">
+                        <div class="crumb-line">
+                            &gt; <a href="/index.html">pubs</a> &gt; 
+                            <a href="/all-pages.html">all-pages</a> &gt; 
+                            <a href="/contents/page-04-00-authentic-webs.html">webs</a> &gt; 
+                            <span class="current">go</span>
+                        </div>
+                    </nav>
+
+                <div class="view-content">
+                    <p>
+                        For modern businesses and rapid prototyping, "ready-to-deploy" lightweight open-source stacks offer the most efficient path from concept to production. These platforms prioritize speed and minimal resource consumption, allowing for near-instant deployment without the overhead of complex database configurations or massive server requirements.
+                    </p>
+
+                    <img 
+                        src="https://docs.google.com/drawings/d/e/2PACX-1vS0h9SU2_GChZdcPnPBb39z-O0sMAPSJnW6dXCxwzAirQGDSp7dYwkEmO72YSRQ4y7DJdOB9ULTCAgR/pub?w=200&h=200"
+                        alt="lightweight CMS deployment workflow"
+                        style="width: 200px; height: 200px; display: block; margin: 24px auto; object-fit: contain;"
+                        draggable="false"
+                    />
+
+                    <h4>The get-to-go stack</h4>
+                    <ul class="list-flush">
+                        <li><strong>Astro:</strong> A modern web framework (Node.js/TypeScript) designed for speed, delivering zero-client-side JS by default.</li>
+                        <li><strong>WonderCMS:</strong> An incredibly small (55kb) flat-file PHP CMS that requires no database and deploys in seconds.</li>
+                        <li><strong>Pico CMS:</strong> A simple, fast, and flat-file PHP system that makes creating websites as easy as editing text files.</li>
+                        <li><strong>Grav CMS:</strong> A powerful, modern open-source flat-file CMS with a focus on performance and flexibility.</li>
+                        <li><strong>Static Site Generators:</strong> High-performance tools like <strong>Hugo</strong> (Go), <strong>Eleventy/11ty</strong> (Node.js), and <strong>Jekyll</strong> (Ruby).</li>
+                        <li><strong>Bludit:</strong> A fast PHP flat-file CMS that supports Markdown and provides a simple way to create blogs or portfolios.</li>
+                    </ul>
+
+                    <p>
+                        The primary advantage of these get-to-go solutions is their flat-file architecture. By eliminating the SQL database layer, security vulnerabilities are reduced, and the portability of the website increases significantly. You can move the entire site by simply copying a single folder, making it the ideal choice for documentation, landing pages, and internal knowledge bases.
+                    </p>
+                    <p>
+                        Furthermore, these lightweight systems are highly compatible with the "Secondary Deployment" hardware strategy. Because they require minimal CPU and RAM, they can run at peak performance on older enterprise laptops or low-power Mini-PCs, effectively turning reclaimed hardware into high-speed web servers.
+                    </p>
+
+                    <p>
+                        However, as organizational needs grow toward complex e-commerce or massive community portals, the transition to heavyweight open-source CMS platforms like <strong>WordPress</strong>, <strong>Drupal</strong>, or <strong>Joomla</strong> becomes necessary. These systems provide robust plugin ecosystems and multi-user management features, though they demand higher server resources and consistent database maintenance. For specialized retail, platforms like <strong>Magento</strong> or <strong>PrestaShop</strong> offer the depth required for global logistics and secure payment processing.
+                    </p>
+                    <p>
+                        Beyond standard CMS structures, some projects may require the absolute flexibility of full-stack frameworks like <strong>React.js</strong> or <strong>Next.js</strong>. These tools allow for highly interactive user interfaces and custom application logic that goes beyond simple content delivery. When combined with headless CMS backends, they provide a premium, modern web experience tailored to specific business workflows.
+                    </p>
+                    <p>
+                        Ultimately, the peak of this infrastructure is running your own dedicated server in the cloud. By moving away from restricted shared hosting and into self-managed Virtual Private Servers (VPS), a business gains total control over its environment. This "sovereign cloud" approach allows for the deployment of any technology stack—from lightweight flat-file sites to heavy e-commerce engines—ensuring that the hardware truly serves the unique requirements of the software.
+                    </p>
+                </div>
+
+                    <!-- second breadcrumb: where this article sits on the website that shows it.
+                         fill in the real links and names, then remove the two comment lines around it.
+                    <nav class="breadcrumb breadcrumb-ext">
+                        <div class="crumb-line external-link">
+                            &gt; <a href="https://website/" target="_blank" rel="noopener noreferrer">fndt</a> &gt;
+                            <a href="https://website/category" target="_blank" rel="noopener noreferrer">category</a> &gt;
+                            <a href="https://website/category/page" target="_blank" rel="noopener noreferrer">page</a>
+                        </div>
+                    </nav>
+                    -->
+			</section>
+            </div>
+
+            <div class="right-col">
+                <div id="sidebar-placeholder"></div>
+
+                <div class="right-col-links" style="margin-top: 20px;">
+                    <h2 class="right-col-link-h2">parent</h2>
+                    <a href="/contents/page-04-00-authentic-webs.html" class="plain-link">&gt; authentic website</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script>
+        async function loadComponent(id, file) {
+            const element = document.getElementById(id);
+            if (!element) return;
+            
+            if (element.innerHTML.trim() === "") {
+                try {
+                    // FIX 2: Added ../ to fetch components from the root folder
+                    const response = await fetch(`../${file}`);
+                    if (response.ok) {
+                        const data = await response.text();
+                        element.innerHTML = data;
+                    }
+                } catch (error) {
+                    console.error("Error loading component:", file, error);
+                }
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            loadComponent('navbar-placeholder', 'navbar.html');
+            loadComponent('footer-placeholder', 'footer.html');
+            loadComponent('sidebar-placeholder', 'rght-clmn.html');
+        });
+    </script>
+</body>
+</html>

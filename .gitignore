@@ -1,0 +1,40 @@
+# everything not listed here gets published: pubs-fndt is a public repo.
+# check before each commit:  git add -A --dry-run
+
+# --- keys & secrets: never commit ---
+*.key
+*.pem
+.env
+.env.*
+
+# --- drafts & scratch kept out of the public repo ---
+_drafts/
+*.bak
+*.tmp
+*~
+
+# --- archives: a copy of the site (and its .git) inside the site ---
+*.tar
+*.tar.gz
+*.tar.bz2
+*.tgz
+*.zip
+*.7z
+
+# --- command output saved while checking ---
+git_*.txt
+tree.txt
+*.log
+
+# --- design source files: edit history and metadata, not site content ---
+*.xcf
+*.psd
+*.drawio
+*.drawio.*
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/

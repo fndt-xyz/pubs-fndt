@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pubs.fndt.xyz | on-premise flow</title>
+    
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <link rel="stylesheet" href="../global.css">
+</head>
+<body class="antialiased">
+
+    <div id="navbar-placeholder"></div>
+
+    <main class="view-container">
+        <div class="grid-two-one">
+            
+            <div class="left-col">
+                <section class="view-card">
+                    <h1 class="view-title">on-premise flow</h1>
+                    <hr class="title-sep">
+
+                    <nav class="breadcrumb">
+                        <div class="crumb-line">
+                            &gt; <a href="/index.html">pubs</a> &gt; 
+                            <a href="/all-pages.html">all-pages</a> &gt; 
+                            <span class="current">on-premise flow</span>
+                        </div>
+                    </nav>
+
+                    <div class="view-content">
+                        <p>
+                            this diagram explains the secure tunneling architecture between the client-side ERP and the fndt-xyz office hub.
+                        </p>
+<pre style="line-height: 1.2; font-size: 0.85rem; color: var(--text-color, #333); white-space: pre;">
+            [ REMOTE USER ]
+                   |
+                   v (public static ip)
+ .----------------------------------------------------.
+ | fndt-xyz office                                    |
+ |   ________________        ________________         |
+ |  | [dev]          |      | [TS]           |        |
+ |  | admin PC       | <--> | tunnel server  |        |
+ |  |________________|      |________________|        |
+ '---------------------------^----------|-------------'
+                             |          |
+              [REVERSE TUNNEL]  [SECURE BRIDGE]
+                             |          |
+ .---------------------------|----------v-------------.
+ | client_site               |          |             |
+ |   ________________        |  ________________      |
+ |  | [router]       |       | | [ERP]          |     |
+ |  | no port fwd    |-------' | mini-PC (16GB) |     |
+ |  |________________|         | (docker stack) |     |
+ |        |                    |________________|     |
+ |        |                            ^              |
+ |        |      [local lan access]    |              |
+ |        '----------------------------'              |
+ |                                                    |
+ | [user] employee devices                            |
+ '----------------------------------------------------'
+</pre>
+                    </div>
+                    
+                    <div class="view-content">
+						<p style="margin-top: 40px;">mermaid source code (for diagrams.net):</p>
+    
+    <pre style="background: #2d2d2d; color: #ccc; padding: 15px; border-radius: var(--radius); overflow-x: auto; font-family: monospace; white-space: pre-wrap;">
+		<code>
+graph TD
+    subgraph Office_HQ ["fndt-xyz office"]
+        TS["[TS] tunnel server"]
+        Dev["[dev] admin PC"]
+    end
+
+    subgraph client_site ["client_site"]
+        Router["[router] no port fwd"]
+        ERP["[ERP] mini-PC (16GB)"]
+        User["[user] employee devices"]
+    end
+
+    RemoteUser["[ REMOTE USER ]"]
+
+    %% Flow logic
+    RemoteUser -- "public static ip" --> TS
+    Dev <--> TS
+
+    %% The Tunnel Logic
+    ERP -. "REVERSE TUNNEL" .-> TS
+    TS == "SECURE BRIDGE" ==> ERP
+    
+    Router --- ERP
+    User -- "local lan access" --> ERP
+		</code>
+	</pre>
+				</div>
+
+                    <!-- second breadcrumb: where this article sits on the website that shows it.
+                         fill in the real links and names, then remove the two comment lines around it.
+                    <nav class="breadcrumb breadcrumb-ext">
+                        <div class="crumb-line external-link">
+                            &gt; <a href="https://website/" target="_blank" rel="noopener noreferrer">fndt</a> &gt;
+                            <a href="https://website/category" target="_blank" rel="noopener noreferrer">category</a> &gt;
+                            <a href="https://website/category/page" target="_blank" rel="noopener noreferrer">page</a>
+                        </div>
+                    </nav>
+                    -->
+			</section>
+            </div>
+
+            <div class="right-col">
+                <div id="sidebar-placeholder">
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script>
+        async function loadComponent(id, file) {
+            const element = document.getElementById(id);
+            if (!element) return;
+            
+            if (element.innerHTML.trim() === "") {
+                try {
+                    // Added ../ to fetch from the parent directory
+                    const response = await fetch(`../${file}`);
+                    if (response.ok) {
+                        const data = await response.text();
+                        element.innerHTML = data;
+                    }
+                } catch (error) {
+                    console.error("Error loading component:", file, error);
+                }
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            loadComponent('navbar-placeholder', 'navbar.html');
+            loadComponent('footer-placeholder', 'footer.html');
+            loadComponent('sidebar-placeholder', 'rght-clmn.html');
+        });
+    </script>
+</body>
+</html>

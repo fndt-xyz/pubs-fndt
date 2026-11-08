@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pubs.fndt.xyz | authentic websites</title>
+    
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <link rel="stylesheet" href="../global.css">
+</head>
+<body class="antialiased">
+
+    <div id="navbar-placeholder"></div>
+
+    <main class="view-container">
+        <div class="grid-two-one">
+            
+            <div class="left-col">
+                <section class="view-card">
+				<h1 class="view-title">authentic websites</h1>
+				<hr class="title-sep">
+				
+                    <nav class="breadcrumb">
+                        <div class="crumb-line">
+                            &gt; <a href="/index.html">pubs</a> &gt; 
+                            <a href="/all-pages.html">all-pages</a> &gt; 
+                            <span class="current">webs</span>
+                        </div>
+                    </nav>
+
+				<div class="view-content">
+					<p>
+						In the age of social media, what is the function of a website? This technical paper will answer that briefly.
+					</p>
+
+					<h4>1. Credentials, branding, and the online business card</h4>
+					<p>
+						A website is the de facto way to determine how serious a business is. It creates an unmovable presence—not just through legal ownership of a domain, but through how the website presents itself. Any perceived lack of "official" status can be overcome by authentic content and transparency, such as publishing the owner’s identity. It can serve as a standard digital business card—publishing contact info and products—but it can also go further by genuinely speaking to the potential customer.
+					</p>
+					<p>
+						How a website is presented reflects what the business is. This stands in contrast to social media, which—at least for now—is mostly for publishing media (it's in the name), unless platforms return to allowing users to customize pages the way they used to.
+					</p>
+
+					<h4>2. Increasing sell</h4>
+					<p>
+						Let’s cut to the chase: if a business spends resources on a website, they want an immediate uptick in sales. But it’s not quite that simple. A website is a pitch, and there are two ways to do it:
+					</p>
+					<ul class="list-flush">
+						<li><strong>The quick pitch:</strong> Catchy and fast, like an advertisement meant for a wide audience.</li>
+						<li><strong>The custom pitch:</strong> A tailor-made, slow persuasion for loyal customers that focuses on "messaging the message."</li>
+					</ul>
+					<p>
+						As an ad, it needs to be quick and widespread. As a slow message, it takes time to soften the client. Both have the same criteria: it’s not about the messenger, but the package—the product itself. If the product is good, it will sell. A website acts like an advertisement that controls how long you stay with the potential buyer. Thus, its function isn’t just about increasing sales, but increasing the ways you can sell.
+					</p>
+
+					<h4>3. An Integral Part of Business Logic</h4>
+					<p>
+						The third function of a website is how it integrates with how the owner thinks and runs the business. In this sense, a website in its simplest form is an online word-processing tool that helps the owner organize their thinking and business flow. At its best, it becomes part of an ERP (Enterprise Resource Planning) system, where it isn’t just a static anymore, but a comprehensive online business tool.
+					</p>
+					<p>
+						So, take your pick. It’s not just a website anymore; it’s technology. These tools have existed as free and open-source options for a long time. <a href="/contents/page-04-01-authentic-get-go.html">This paper</a> is about how to implement them.
+					</p>
+				</div>
+
+                    <nav class="breadcrumb">
+                        <div class="crumb-line">
+                            &gt; <a href="/index.html">pubs</a> &gt; 
+                            <a href="/all-pages.html">all-pages</a> &gt; 
+                            <span class="current">webs</span> &gt;
+                            <a href="/contents/page-04-01-authentic-get-go.html">go</a>
+                        </div>
+                    </nav>
+
+                    <!-- second breadcrumb: where this article sits on the website that shows it.
+                         fill in the real links and names, then remove the two comment lines around it.
+                    <nav class="breadcrumb breadcrumb-ext">
+                        <div class="crumb-line external-link">
+                            &gt; <a href="https://website/" target="_blank" rel="noopener noreferrer">fndt</a> &gt;
+                            <a href="https://website/category" target="_blank" rel="noopener noreferrer">category</a> &gt;
+                            <a href="https://website/category/page" target="_blank" rel="noopener noreferrer">page</a>
+                        </div>
+                    </nav>
+                    -->
+			</section>
+            </div>
+
+            <div class="right-col">
+                <div id="sidebar-placeholder"></div>
+                    <div class="right-col-links" style="margin-top: 20px;">
+                    <h2 class="right-col-link-h2">sub-pages</h2>
+                    <a href="/contents/page-04-01-authentic-get-go.html" class="plain-link">&gt; get to go</a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script>
+        async function loadComponent(id, file) {
+            const element = document.getElementById(id);
+            if (!element) return;
+            
+            if (element.innerHTML.trim() === "") {
+                try {
+                    // FIX 2: Added ../ to fetch components from the root folder
+                    const response = await fetch(`../${file}`);
+                    if (response.ok) {
+                        const data = await response.text();
+                        element.innerHTML = data;
+                    }
+                } catch (error) {
+                    console.error("Error loading component:", file, error);
+                }
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            loadComponent('navbar-placeholder', 'navbar.html');
+            loadComponent('footer-placeholder', 'footer.html');
+            loadComponent('sidebar-placeholder', 'rght-clmn.html');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pubs.fndt.xyz | 2nd hand, 2nd chance</title>
+    
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <link rel="stylesheet" href="../global.css">
+</head>
+<body class="antialiased">
+
+    <div id="navbar-placeholder"></div>
+
+    <main class="view-container">
+        <div class="grid-two-one">
+            
+            <div class="left-col">
+                <section class="view-card">
+                    <h1 class="view-title">2nd hand, 2nd chance</h1>
+                    <hr class="title-sep">
+
+                    <nav class="breadcrumb">
+                        <div class="crumb-line">
+                            &gt; <a href="/index.html">pubs</a> &gt; 
+                            <a href="/all-pages.html">all-pages</a> &gt; 
+                            <span class="current">2nd</span> &gt;
+                            <a href="/contents/page-06-01-reuse.html">re-use</a>
+                        </div>
+                    </nav>
+                    
+                    <div class="view-content">
+                        <p>
+                            In large-scale operations where hundreds of devices are deployed per premise, IT vendors typically follow a linear procurement-to-disposal pipeline driven by uniformity and depreciation logic. These vendors deploy standardized hardware batches to simplify image management, but once the accounting value "depreciates to zero"—usually over a three-to-five-year cycle—the hardware is deemed no longer worth the maintenance cost.
+                        </p>
+
+                        <img 
+                            src="https://docs.google.com/drawings/d/e/2PACX-1vS--O7o-SFWF72QLIXE8dov8QrBu6GVGdJFKE13YOXILb85NyX5xeTu5XFMKAWYFQEqdc0mjkA-8eb_/pub?w=240&h=180"
+                            alt="reduce reuse repair workflow"
+                            style="width: 240px; height: 180px; display: block; margin: 20px auto; object-fit: contain;"
+                            draggable="false"
+                        />
+
+                        <p>
+                            Despite the meticulous energy and pollution required to build these devices, they frequently end up in landfills or are sent to disposal vendors to be melted down for raw metals. This cycle ignores the statistical reality that much of this hardware deserves a second chance to perform its computing functions, especially when the true cost of new devices includes a heavy environmental debt.
+                        </p>
+                        <p>
+                            For small and medium enterprises or startups deploying at a scale of 10+ devices, a strategy of secondary deployment offers a viable, budget-flexible alternative. At this scale, the primary need is simple computing power, and because the market is currently flooded with second-hand IT devices, businesses can procure reliable tech when the price is right.
+                        </p>
+                        <p>
+                            To ensure success, these organizations follow the 9+1 Rule: for every nine active devices, one is held as a hot-swap backup. If a device fails, the backup immediately enters service to minimize downtime for the user, while the faulty unit is set aside for repair.
+                        </p>
+                        <p>
+                            This maintenance is handled through parts cannibalization, a process made easier because these specific, standardized models are often easier to open and service in-house compared to modern, glued-shut hardware. Since these are second-hand devices, there is no longer a requirement to avoid leaving traces of opening the case, and because they are no longer covered by a manufacturer warranty, in-house teams have the freedom to harvest screens, keyboards, or batteries from donor units.
+                        </p>
+                        <p>
+                            Interestingly, this older hardware often performs faster and stays free of viruses when paired with Open Source software and operating systems. As the current prices for graphic card, RAM and SSD fluctuate, businesses must decide if it is truly worth buying brand-new laptops for standard office work or if it is better to embrace the efficiency of secondary deployment.
+                        </p>
+                        <p>
+                            Ultimately, this approach proves that by choosing models that are easy to service and utilizing the 9+1 rule, smaller firms can achieve high-performance computing that is both fiscally responsible and environmentally sustainable.
+                        </p>
+                    </div>
+
+                    <!-- second breadcrumb: where this article sits on the website that shows it.
+                         fill in the real links and names, then remove the two comment lines around it.
+                    <nav class="breadcrumb breadcrumb-ext">
+                        <div class="crumb-line external-link">
+                            &gt; <a href="https://website/" target="_blank" rel="noopener noreferrer">fndt</a> &gt;
+                            <a href="https://website/category" target="_blank" rel="noopener noreferrer">category</a> &gt;
+                            <a href="https://website/category/page" target="_blank" rel="noopener noreferrer">page</a>
+                        </div>
+                    </nav>
+                    -->
+			</section>
+            </div>
+
+            <div class="right-col">
+                <div id="sidebar-placeholder"></div>
+
+                <div class="right-col-links" style="margin-top: 20px;">
+                    <h2 class="right-col-link-h2">sub-pages</h2>
+                    <a href="/contents/page-06-01-reuse.html">&gt; re-use</a>
+                    <a href="/contents/page-06-02-demography.html">&gt; dem</a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script>
+        async function loadComponent(id, file) {
+            const element = document.getElementById(id);
+            if (!element) return;
+            
+            if (element.innerHTML.trim() === "") {
+                try {
+                    // Added ../ to fetch from the parent directory
+                    const response = await fetch(`../${file}`);
+                    if (response.ok) {
+                        const data = await response.text();
+                        element.innerHTML = data;
+                    }
+                } catch (error) {
+                    console.error("Error loading component:", file, error);
+                }
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            loadComponent('navbar-placeholder', 'navbar.html');
+            loadComponent('footer-placeholder', 'footer.html');
+            loadComponent('sidebar-placeholder', 'rght-clmn.html');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+/* Image Grid Container */
+.img-row-triple {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin: 32px 0;
+}
+
+/* Individual Image Wrapper */
+.img-col {
+    flex: 0 1 180px; /* Base width is 180px */
+    text-align: center;
+}
+
+.img-col img {
+    width: 180px;
+    height: 135px;
+    display: block;
+    object-fit: contain;
+    border: 1px solid #ddd;
+    padding: 4px;
+    background-color: #fff;
+    box-sizing: border-box;
+    border-radius: var(--radius);
+}
+
+/* Mobile: ensures they take up more space if needed, or stay centered */
+@media (max-width: 300px) {
+    .img-col {
+        flex: 0 1 100%;
+        display: flex;
+        justify-content: center;
+    }
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pubs.fndt.xyz | home</title>
+    
+    <link rel="icon" type="image/png" href="favicon.png">
+    
+    <link rel="stylesheet" href="global.css">
+</head>
+<body class="antialiased">
+
+    <div id="navbar-placeholder"></div>
+
+    <main class="view-container">
+        <div class="grid-two-one">
+            
+            <div class="left-col">
+                <section class="view-card">
+                    <h1 class="view-title">publications</h1>
+                    <div class="view-content">
+						<p>
+							a repository of writing that speeds up technical tasks: guides, specifications, process notes and checklists. every article is a plain html page, ready to be linked, copied or embedded into any website. see <a href="/all-pages.html">all pages</a> for the list, or <a href="/page-00-technical-aspects.html">technical aspects</a> for how it works.
+						</p>
+                      
+                    </div>
+                </section>
+            </div>
+
+            <div class="right-col">
+                <div id="sidebar-placeholder">
+                    </div>
+            </div>
+
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script>
+        async function loadComponent(id, file) {
+            const element = document.getElementById(id);
+            if (!element) return;
+            
+            // Only load if the element is empty (allows for manual overrides)
+            if (element.innerHTML.trim() === "") {
+                try {
+                    const response = await fetch(file);
+                    if (response.ok) {
+                        const data = await response.text();
+                        element.innerHTML = data;
+                    }
+                } catch (error) {
+                    console.error("Error loading component:", file, error);
+                }
+            }
+        }
+
+        // Initialize components
+        document.addEventListener("DOMContentLoaded", () => {
+            loadComponent('navbar-placeholder', 'navbar.html');
+            loadComponent('footer-placeholder', 'footer.html');
+            loadComponent('sidebar-placeholder', 'rght-clmn.html');
+        });
+    </script>
+</body>
+</html>
