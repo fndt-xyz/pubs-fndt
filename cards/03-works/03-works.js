@@ -9,7 +9,13 @@
     2. puts an EN | ID button in the opening box. ID loads the sibling card with the same name plus "-id"
        (cards-03-01-workspace.html -> cards-03-01-workspace-id.html) and shows its article instead.
        A card with no "-id" file gets no button.
-    3. remembers the choice in this browser (localStorage "wk-lang"), so a reload keeps the language.
+    3. first language: inside an iframe, the card asks the host page which language it is on ("wk-lang-ask");
+       mgmt.srvcs answers with its navbar language ("wk-lang-set"). No answer within 0.8 s (another site, or the card
+       opened on its own): the last choice saved in this browser (localStorage "wk-lang"), otherwise the file's own language.
+       After that first load the card follows only its own buttons, not the host's navbar.
+    4. the host page can switch the card later (mgmt.srvcs floating EN | ID button sends "wk-lang-set"), and the card
+       reports every change back ("wk-lang-now") so the host's button shows the same language as the card's top button.
+  Messages are only taken from the window that holds this card (window.parent).
   The page stays hidden until the boxes and 03-works.css are ready, so the plain text never flashes.
 */
 (function () {
@@ -29,6 +35,10 @@
 
     var source = {};          // lang -> the article's original nodes, kept untouched and cloned on every render
     var hasId = false;        // set once we know the "-id" file exists
+    var current = null;       // language on screen now
+    var inFrame = window.parent !== window;
+
+    function tellHost(message) { if (inFrame) window.parent.postMessage(message, '*'); }
 
     function saved() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
     function save(lang) { try { localStorage.setItem(KEY, lang); } catch (e) {} }
@@ -101,6 +111,8 @@
         if (hasId && sections.length) sections[0].insertBefore(switcher(lang), sections[0].firstChild);
         article.replaceChildren.apply(article, sections);
         root.lang = lang;
+        current = lang;
+        if (hasId) tellHost({ type: 'wk-lang-now', lang: lang });
     }
 
     function show(lang, remember) {
@@ -121,18 +133,49 @@
         link.addEventListener('error', done);
     }
 
+    // ask the host page for its language once; resolves with 'en', 'id' or null (no answer)
+    function askHost() {
+        if (!inFrame) return Promise.resolve(null);
+        return new Promise(function (resolve) {
+            var done = false;
+            function finish(lang) {
+                if (done) return;
+                done = true;
+                window.removeEventListener('message', onAnswer);
+                resolve(lang);
+            }
+            function onAnswer(e) {
+                if (e.source === window.parent && e.data && e.data.type === 'wk-lang-set') finish(e.data.lang);
+            }
+            window.addEventListener('message', onAnswer);
+            tellHost({ type: 'wk-lang-ask' });
+            setTimeout(function () { finish(null); }, 800);
+        });
+    }
+
+    // later switches from the host page (mgmt.srvcs floating button)
+    window.addEventListener('message', function (e) {
+        if (e.source !== window.parent || !e.data || e.data.type !== 'wk-lang-set') return;
+        if (!hasId || !current || !WORDS[e.data.lang] || e.data.lang === current) return;
+        show(e.data.lang, true);
+    });
+
     function start() {
         var article = document.querySelector('.card-body');
         if (!article) { root.classList.add('wk-ready'); return; }
         source[pageLang] = grab(article);
-
         var other = pageLang === 'en' ? 'id' : 'en';
-        var wanted = saved() === other ? other : pageLang;
 
-        // the button appears only when the sibling file exists
-        fetchArticle(other).then(function () { hasId = true; }, function () { hasId = false; })
-            .then(function () { return show(hasId ? wanted : pageLang, false); })
-            .then(function () { whenCss(function () { root.classList.add('wk-ready'); }); });
+        // the button appears only when the sibling file exists; the first language comes from the host, else the saved choice
+        Promise.all([
+            fetchArticle(other).then(function () { return true; }, function () { return false; }),
+            askHost()
+        ]).then(function (r) {
+            hasId = r[0];
+            var fromHost = WORDS[r[1]] ? r[1] : null;
+            var wanted = fromHost || (saved() === other ? other : pageLang);
+            return show(hasId ? wanted : pageLang, false);
+        }).then(function () { whenCss(function () { root.classList.add('wk-ready'); }); });
     }
 
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
