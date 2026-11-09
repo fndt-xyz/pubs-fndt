@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pubs.fndt.xyz | workspace</title>
+    <!-- this page sits one folder deeper (contents/03-works/), so every path starts with "/" -->
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="stylesheet" href="/global.css">
+</head>
+<body class="antialiased">
+
+    <div id="navbar-placeholder"></div>
+
+    <main class="view-container">
+        <div class="grid-two-one">
+
+            <div class="left-col">
+                <section class="view-card">
+                    <h1 class="view-title">workspace</h1>
+                    <hr class="title-sep">
+
+                    <nav class="breadcrumb">
+                        <div class="crumb-line">
+                            &gt; <a href="/index.html">pubs</a> &gt;
+                            <a href="/contents/03-works/">works</a> &gt;
+                            <span class="current">workspace</span>
+                        </div>
+                    </nav>
+
+                    <!-- the writing of this page lives in a card: data-card names the file. the card's text is shown here,
+                         and other websites can iframe the same card (see the comment inside the card file). -->
+                    <div class="view-content" data-card="/cards/03-works/cards-03-01-workspace.html">
+                        <p>loading...</p>
+                    </div>
+
+                    <!-- second breadcrumb: where this article sits on the website that shows it.
+                         fill in the real links and names, then remove the two comment lines around it.
+                    <nav class="breadcrumb breadcrumb-ext">
+                        <div class="crumb-line external-link">
+                            &gt; <a href="https://website/" target="_blank" rel="noopener noreferrer">fndt</a> &gt;
+                            <a href="https://website/category" target="_blank" rel="noopener noreferrer">category</a> &gt;
+                            <a href="https://website/category/page" target="_blank" rel="noopener noreferrer">page</a>
+                        </div>
+                    </nav>
+                    -->
+                </section>
+            </div>
+
+            <div class="right-col">
+                <div id="sidebar-placeholder"></div>
+            </div>
+
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script>
+        async function loadComponent(id, file) {
+            const element = document.getElementById(id);
+            if (!element) return;
+            try {
+                const response = await fetch(`/${file}`);   // absolute: works from any folder depth
+                if (response.ok) element.innerHTML = await response.text();
+            } catch (error) {
+                console.error("Error loading component:", file, error);
+            }
+        }
+
+        // CARD LOADER: fills every element that has data-card with the <article class="card-body"> of that card file.
+        // only the article is taken, so the card's own head, css and script are left out.
+        async function loadCards() {
+            for (const slot of document.querySelectorAll('[data-card]')) {
+                const file = slot.dataset.card;
+                try {
+                    const response = await fetch(file);
+                    if (!response.ok) throw new Error(response.status);
+                    const doc = new DOMParser().parseFromString(await response.text(), 'text/html');
+                    const body = doc.querySelector('.card-body');
+                    if (!body) throw new Error('no .card-body');
+                    slot.replaceChildren(body);
+                } catch (error) {
+                    console.error("Error loading card:", file, error);
+                    slot.innerHTML = `<p><a href="${file}">open this text</a></p>`;
+                }
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            loadCards();
+            loadComponent('navbar-placeholder', 'navbar.html');
+            loadComponent('footer-placeholder', 'footer.html');
+            loadComponent('sidebar-placeholder', 'rght-clmn.html');
+        });
+    </script>
+</body>
+</html>

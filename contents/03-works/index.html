@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pubs.fndt.xyz | directory</title>
+    <!--
+      FOLDER INDEX: one file for every folder, at any depth (contents/, posts/, contents/03-works/ ...).
+      copy it into a folder unchanged; it reads the folder name from the address. all paths start with "/" so depth doesn't matter.
+    -->
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="stylesheet" href="/global.css">
+</head>
+<body class="antialiased">
+
+    <div id="navbar-placeholder"></div>
+
+    <main class="view-container">
+        <div class="grid-two-one">
+
+            <div class="left-col">
+                <section class="view-card">
+                    <h1 class="view-title">directory index</h1>
+                    <hr class="title-sep">
+
+                    <nav class="breadcrumb">
+                        <div class="crumb-line">
+                            &gt; <a href="/index.html">pubs</a> &gt;
+                            <span class="current" id="folder-name">folder</span>
+                        </div>
+                    </nav>
+
+                    <div class="view-content">
+                        <p>every page in this folder:</p>
+
+                        <ul id="file-list" class="list-flush" style="line-height: 2;">
+                            <li>Loading files...</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+
+            <div class="right-col">
+                <div id="sidebar-placeholder"></div>
+            </div>
+
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script>
+        async function loadComponent(id, file) {
+            const element = document.getElementById(id);
+            if (!element) return;
+            try {
+                const response = await fetch(`/${file}`);   // absolute: works from any folder depth
+                if (response.ok) element.innerHTML = await response.text();
+            } catch (error) { console.error("Error:", file, error); }
+        }
+
+        // FOLDER SCANNER: lists the .html pages in the folder this index.html sits in. nothing else is shown:
+        // no sub-folders, no images, no .txt/.css/.js, not this index.html, not names starting with "_" or ".".
+        // live site: asks the GitHub API for the folder's files (60 requests per hour per visitor).
+        // localhost (./start.sh): reads the folder listing from the "?list" address start.sh adds, so you can test before pushing.
+        const owner = "fndt-xyz";
+        const repo = "pubs-fndt";
+        const folder = location.pathname.replace(/[^/]*$/, '').replace(/^\/|\/$/g, '');   // e.g. "contents/03-works"
+
+        const isPage = name => /\.html?$/i.test(name)
+            && !/^index\.html?$/i.test(name)
+            && !/^[_.]/.test(name)
+            && !name.includes('/');
+
+        async function listNames() {
+            const local = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+            if (local) {
+                const html = await (await fetch('./?list')).text();
+                return [...new DOMParser().parseFromString(html, 'text/html').querySelectorAll('a')]
+                    .map(a => decodeURIComponent(a.getAttribute('href')));
+            }
+            const response = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${folder}`);
+            if (!response.ok) throw new Error(response.status === 403 ? 'GitHub limit reached, try again in an hour.' : 'HTTP ' + response.status);
+            return (await response.json()).filter(f => f.type === 'file').map(f => f.name);
+        }
+
+        async function loadFiles() {
+            const listElement = document.getElementById('file-list');
+            const shortName = folder.split('/').pop() || 'pubs';   // "contents/03-works" -> "03-works"
+            document.getElementById('folder-name').textContent = shortName;
+            document.title = 'pubs.fndt.xyz | ' + shortName;
+            try {
+                const names = (await listNames()).filter(isPage).sort();
+                listElement.innerHTML = '';
+                if (!names.length) listElement.innerText = 'No pages in this folder yet.';
+                names.forEach(name => {
+                    const li = document.createElement('li');
+                    const a = document.createElement('a');
+                    a.href = name;
+                    a.textContent = name.replace(/\.html?$/i, '').replace(/-/g, ' ');   // page-06-01-reuse.html -> page 06 01 reuse
+                    li.innerHTML = '<strong>&gt;</strong> ';
+                    li.appendChild(a);
+                    listElement.appendChild(li);
+                });
+            } catch (e) {
+                listElement.innerText = 'Error loading directory. ' + (e.message || '');
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            loadComponent('navbar-placeholder', 'navbar.html');
+            loadComponent('footer-placeholder', 'footer.html');
+            loadComponent('sidebar-placeholder', 'rght-clmn.html');
+            loadFiles();
+        });
+    </script>
+</body>
+</html>

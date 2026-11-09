@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>one paid address in front, free google behind it</title>
+    <!--
+      CARD: only the writing, no navbar, footer or side box.
+      Used two ways:
+        1. a pubs page loads it (contents/03-works/page-03-01-workspace.html) and shows only the <article class="card-body"> part.
+        2. any other website shows it in an iframe:
+             <iframe src="https://pubs.fndt.xyz/cards/03-works/cards-03-01-workspace.html" class="pubs-card"
+                     title="works: one paid address, free google behind it" loading="lazy" style="width:100%; border:0; height:600px"></iframe>
+             <script src="https://pubs.fndt.xyz/cards/embed.js"></script>   (optional: the iframe then fits its text, no scrollbar)
+           add ?look=ms to the src (cards-03-01-workspace.html?look=ms) for the mgmt.srvcs look: see 03-works.css.
+      Write only inside <article class="card-body">. Keep links absolute (https://...) so they work on any site.
+      prices and limits below were checked in November 2026; update "the cost" and "what you give up" when Google changes them.
+    -->
+
+    <!-- search engines: the pubs page is the real address of this text, the card is a copy for embedding -->
+    <link rel="canonical" href="https://pubs.fndt.xyz/contents/03-works/page-03-01-workspace.html">
+
+    <!-- inside an iframe, a click on a link opens a new tab instead of loading inside the small box -->
+    <base target="_blank">
+
+    <link rel="stylesheet" href="/cards/card.css">
+
+    <!-- LOOK SWITCH: plain by default. Opened with ?look=ms (mgmt.srvcs iframes it that way), the card
+         adds class "look-ms" to <html>, loads the fonts and 03-works.css (every rule there starts with html.look-ms),
+         and splits the article into one box per <h4>. A pubs page never runs this: it takes only the <article>. -->
+    <script>
+        (function () {
+            if (!/[?&]look=ms(&|$)/.test(location.search)) return;
+            var root = document.documentElement;
+            root.classList.add('look-ms');
+            [
+                'https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Open+Sans:wght@700;800&display=swap',
+                '03-works.css'                                  // same folder as this card
+            ].forEach(function (href) {
+                var link = document.createElement('link');
+                link.rel = 'stylesheet';
+                link.href = href;
+                document.head.appendChild(link);
+            });
+
+            // one <section> per <h4>: "9. forms that do the work" becomes eyebrow "step 09" + heading "Forms that do the work".
+            // text before the first <h4> becomes the opening box; the last section becomes the dark closing band.
+            document.addEventListener('DOMContentLoaded', function () {
+                var article = document.querySelector('.card-body');
+                if (!article) return;
+                var nodes = Array.prototype.slice.call(article.childNodes);
+                var sections = [], current = null, seenStep = false;
+                var start = function (cls) {
+                    current = document.createElement('section');
+                    current.className = 'wk-sec ' + cls;
+                    sections.push(current);
+                };
+                start('wk-intro');
+                nodes.forEach(function (node) {
+                    if (node.nodeName === 'H4') {
+                        var text = node.textContent.trim();
+                        var m = /^(\d+)\.\s*(.*)$/.exec(text);
+                        start(m ? 'wk-step' : 'wk-note');
+                        var eyebrow = document.createElement('span');
+                        eyebrow.className = 'wk-eyebrow';
+                        if (m) { seenStep = true; eyebrow.textContent = 'step ' + (m[1].length < 2 ? '0' : '') + m[1]; }
+                        else eyebrow.textContent = seenStep ? 'in practice' : 'overview';
+                        var title = m ? m[2] : text;
+                        var h2 = document.createElement('h2');
+                        h2.textContent = title.charAt(0).toUpperCase() + title.slice(1);
+                        current.appendChild(eyebrow);
+                        current.appendChild(h2);
+                    } else {
+                        current.appendChild(node);
+                    }
+                });
+                if (sections.length > 1) sections[sections.length - 1].classList.add('wk-band');
+                article.replaceChildren.apply(article, sections.filter(function (s) { return s.textContent.trim(); }));
+            });
+        })();
+    </script>
+</head>
+<body>
+    <article class="card-body">
+        <p>
+            Most small businesses don't need a paid account for every person. Clients only ever see one address. Staff only need a working inbox, a calendar and access to the right files.
+            So pay for the one address clients see, and run everything behind it on free Google accounts and free Google tools.
+            The business looks established from the outside, and the monthly bill stays at a single seat.
+        </p>
+        <p>
+            This works the same for a clinic, a salon, a workshop, a consultancy or a shop with a few branches.
+            It starts with one subdomain and one paid address. Everything else (files, bookings, forms, scripts, data, the website, marketing and AI) is added on top, one piece at a time, mostly on free tiers.
+        </p>
+
+        <h4>the cost</h4>
+        <p>
+            One Google Workspace Business Starter seat. Google's list price is $7 per user per month on an annual plan,
+            and new customers in Indonesia are often offered an introductory price around half that, about $3.50, for the first year.
+            Local resellers sell the same seat in rupiah with a tax invoice. Because there is only one seat, that is the whole fixed bill.
+            Everything else here starts free. The few paid extras (more storage, ads, heavy API use) are switched on only when the business needs them.
+        </p>
+
+        <h4>the layout</h4>
+        <ul class="list-flush">
+            <li><strong>info@mail.example.com</strong>: the one paid Workspace user. The address clients see. It owns nothing that matters.</li>
+            <li><strong>admin.work@gmail.com</strong>: free. The owner's account. It owns every file, form, sheet, script and Google Cloud project, receives every client email, and answers as info@.</li>
+            <li><strong>branch1.work@gmail.com, branch2.work@gmail.com</strong>: free. One per branch, for that branch's bookings and schedule.</li>
+            <li><strong>seat or staff accounts</strong>: free, added only where a booking page or a personal inbox is needed.</li>
+        </ul>
+
+        <figure class="wk-figure" style="margin:1.5rem 0">
+            <svg class="wk-diagram" viewBox="0 0 600 300" width="100%" role="img" aria-label="One paid address in front, free accounts behind it" xmlns="http://www.w3.org/2000/svg" style="display:block;max-width:640px;height:auto;margin:0 auto"><defs><marker id="wk-a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="currentColor" fill-opacity=".6"/></marker></defs><rect x="15" y="110" width="110" height="70" rx="10" fill="currentColor" fill-opacity="0.04" stroke="currentColor" stroke-opacity="0.45" stroke-width="1"/><text x="70.0" y="134.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">clients</text><text x="70.0" y="149.0" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">see one address</text><text x="70.0" y="164.0" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">and booking links</text><rect x="165" y="100" width="175" height="90" rx="10" fill="currentColor" fill-opacity="0.1" stroke="currentColor" stroke-opacity="0.9" stroke-width="2"/><text x="252.5" y="134.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">info@mail.example.com</text><text x="252.5" y="149.0" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">1 paid Workspace seat</text><text x="252.5" y="164.0" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">the face, owns nothing</text><rect x="385" y="15" width="200" height="115" rx="10" fill="currentColor" fill-opacity="0.1" stroke="currentColor" stroke-opacity="0.9" stroke-width="2"/><text x="485.0" y="54.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">admin.work@gmail.com</text><text x="485.0" y="69.0" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">free · the owner</text><text x="485.0" y="84.0" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">Drive · Forms · Sheets</text><text x="485.0" y="99.0" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">Apps Script · Cloud project</text><rect x="385" y="190" width="200" height="100" rx="10" fill="currentColor" fill-opacity="0.04" stroke="currentColor" stroke-opacity="0.45" stroke-width="1"/><text x="485.0" y="221.5" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">branch & seat accounts</text><text x="485.0" y="236.5" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">free · one per branch or seat</text><text x="485.0" y="251.5" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">booking pages, calendars</text><text x="485.0" y="266.5" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">shared files only</text><path d="M125 145 L163 145" fill="none" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" marker-end="url(#wk-a1)"/><path d="M165 155 L127 155" fill="none" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" marker-end="url(#wk-a1)"/><path d="M340 125 C360 110 365 95 383 85" fill="none" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" marker-end="url(#wk-a1)"/><text x="352" y="90" text-anchor="middle" font-size="10.5" font-style="italic" fill="currentColor" fill-opacity=".7">forwards</text><path d="M385 105 C365 130 360 145 342 160" fill="none" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#wk-a1)"/><text x="350" y="182" text-anchor="start" font-size="10.5" font-style="italic" fill="currentColor" fill-opacity=".7">replies as info@</text><path d="M485 130 L485 188" fill="none" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" marker-end="url(#wk-a1)"/><text x="492" y="155" text-anchor="start" font-size="10.5" font-style="italic" fill="currentColor" fill-opacity=".7">shares calendars</text><text x="492" y="168" text-anchor="start" font-size="10.5" font-style="italic" fill="currentColor" fill-opacity=".7">and folders</text><path d="M70 180 L70 255 L383 255" fill="none" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" marker-end="url(#wk-a1)"/><text x="220" y="249" text-anchor="middle" font-size="10.5" font-style="italic" fill="currentColor" fill-opacity=".7">books a seat on its own page</text></svg>
+            <figcaption style="font-size:.85em;opacity:.75;text-align:center;margin-top:.5rem">One paid seat is the face. The free admin account owns everything; branch and seat accounts get only what they need.</figcaption>
+        </figure>
+
+        <h4>1. put workspace on a subdomain</h4>
+        <p>
+            Sign up for Workspace with <strong>mail.example.com</strong>, not example.com.
+            The mail records (MX) go on the subdomain only, with "mail" as the host, so the main domain's website and any email already running on it are left untouched.
+            Add the SPF and DKIM records Google gives you for the subdomain too, so replies from info@ don't land in spam.
+        </p>
+
+        <h4>2. answer every email, then forward it</h4>
+        <p>
+            In info@'s Gmail, go to Settings, then Forwarding and POP/IMAP, add admin.work@gmail.com and confirm it. Keep Gmail's copy in the inbox as the record.
+        </p>
+        <p>
+            For the automatic reply, skip the vacation responder: it answers each sender only once every four days.
+            Instead, turn on templates (Settings, then Advanced), save the reply as a template, and create a filter that matches all incoming mail with the action "send template".
+            Now every message gets an answer. Keep it short: message received, opening hours, the booking link, a WhatsApp number.
+            In the filter's "doesn't have" box, add words like noreply, no-reply and mailer-daemon, so it doesn't answer robots and mailing lists.
+        </p>
+
+        <h4>3. reply as info@ from the free inbox</h4>
+        <p>
+            Turn on 2-step verification for info@ and create an app password.
+            In admin.work@gmail.com, go to Settings, then Accounts and Import, then "Send mail as", and add info@mail.example.com
+            with server smtp.gmail.com, port 587, and that app password. Then choose "reply from the same address the message was sent to".
+            Every reply to a client now leaves as info@, while the work happens in a free inbox.
+        </p>
+
+        <h4>4. keep every file in the admin account</h4>
+        <p>
+            The paid account is the front door, not the storeroom. If the Workspace subscription ever stops, that account and everything it owns are deleted after a grace period.
+            So nothing important is created there. Files, folders, forms, sheets, scripts and Google Cloud projects are all created and owned by admin.work@gmail.com,
+            then shared to info@ and to staff accounts with the access each one needs.
+        </p>
+        <p>
+            A free account holds 15 GB across Drive, Gmail and Photos. When that fills up, add Google One storage to the admin account, not a second Workspace seat.
+            Keep one top folder per area (clients, finance, operations, marketing), and share folders, not single files, so new files inherit the right access.
+            When a staff member leaves, remove their access. The files stay where they are, because they were never theirs.
+        </p>
+
+        <h4>5. lock the doors</h4>
+        <ul class="list-flush">
+            <li>Turn on 2-step verification for every account, using Google Authenticator or a passkey on a phone, not SMS alone.</li>
+            <li>Set the admin account's recovery email and phone to ones only the owner controls, and print its backup codes.</li>
+            <li>Create every staff and seat account with the owner's recovery details, so the owner can always take it back.</li>
+            <li>Keep the passwords in one password manager, shared only with whoever runs the accounts.</li>
+        </ul>
+
+        <h4>6. one calendar per branch</h4>
+        <p>
+            In admin.work@gmail.com, create a calendar for each branch: Branch 1, Branch 2. Share each one with its branch account with "make changes to events".
+            That is where shifts, staff leave and internal appointments live.
+        </p>
+        <p>
+            Client bookings run the other way. A free Google account gets one booking page (in Calendar: Create, then Appointment schedule), and bookings land on that account's own calendar.
+            So each branch account makes its own booking page and shares its calendar back to admin.work@gmail.com.
+            The owner sees every branch in one place; each branch only sees its own.
+        </p>
+
+        <h4>7. several seats in the same hour</h4>
+        <p>
+            A Google booking page holds one booking per time slot. It has no setting for "three chairs at 10:00".
+            The way around it: one free account per bookable seat, each with its own booking page.
+            A seat can be a chair, a stylist, a treatment room, a service bay or a consultant: three seats at Branch 1 are three accounts and three links.
+            Put the links side by side on the website or in the WhatsApp reply. When seat 1 is taken at 10:00, the client picks seat 2.
+            Set "maximum bookings per day" on each page to match that seat's real capacity.
+        </p>
+
+        <h4>8. down payments</h4>
+        <p>
+            Google Calendar can take payment at booking, but only through Stripe and only on Business Standard or higher, and Stripe's support for Indonesian businesses is limited.
+            The free route works with what's already there. Put the bank account or QRIS details in the booking page description,
+            and add a required question to the booking form: "transfer reference".
+            Staff check the transfer, add "DP OK" to the event title, and cancel unpaid bookings after a set time, for example 2 hours.
+            The booking page already sends the client a confirmation email, so nothing else is needed.
+        </p>
+
+        <h4>9. forms that do the work</h4>
+        <p>
+            Google Forms is the front desk for everything a booking page can't hold: reservations with extra questions, enquiries, intake and registration, orders, complaints, staff reports, stock counts.
+            Every form writes its answers into a Google Sheet, owned by the admin account, so the record keeps itself.
+        </p>
+        <p>
+            Add a small script to the form and one submission does three jobs at once.
+            It puts the reservation on the branch calendar, sends the client a confirmation, and marks the row in the sheet as done.
+            The confirmation leaves as info@, because info@ is already set up as a "send mail as" address in the admin account (step 3), so the script can send from it while running in the free account.
+            The email carries the form's edit link, so the client can change the date or their details without calling.
+            None of this costs anything.
+        </p>
+        <p>
+            For needs that don't call for a script, add-ons from the Google Workspace Marketplace close a form when it's full, fill dropdowns from a sheet, or pass answers on.
+            The accountant still gets an Excel file: any sheet downloads as .xlsx.
+        </p>
+
+        <h4>10. apps script, the free engine</h4>
+        <p>
+            Apps Script is the part of Google that turns these apps into a working system. It is JavaScript that lives inside a sheet, a form or a doc,
+            runs on Google's servers, and costs nothing. A script starts when something happens: a form is sent, a sheet is edited, a set time arrives, or a web page calls it.
+            It then does what a staff member would otherwise do by hand, every time, in the same way.
+        </p>
+        <p>
+            The work it takes on is mostly the dull, exact kind. Totalling the day's takings per branch, working out staff commission from completed bookings,
+            adding tax to quotes, preparing the month-end summary. Matching a bank statement export against the payments sheet.
+            Renaming scanned receipts and moving them into a folder per month. Sending reminders the day before. Building a weekly report as a PDF and emailing it to the owner.
+            It can also add new formulas to Sheets for calculations the built-in ones don't cover.
+            Write each script once, keep it in the admin account, and the routine runs semi-automatically or fully on its own.
+            Each run has time and daily limits, which a small business rarely reaches.
+        </p>
+
+        <figure class="wk-figure" style="margin:1.5rem 0">
+            <svg class="wk-diagram" viewBox="0 0 600 310" width="100%" role="img" aria-label="Apps Script: a trigger starts a script that runs as the admin and does the work" xmlns="http://www.w3.org/2000/svg" style="display:block;max-width:640px;height:auto;margin:0 auto"><defs><marker id="wk-a4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="currentColor" fill-opacity=".6"/></marker></defs><text x="95" y="22" text-anchor="middle" font-size="11" font-weight="700" letter-spacing=".08em" fill="currentColor" fill-opacity=".6">WHEN</text><text x="505" y="22" text-anchor="middle" font-size="11" font-weight="700" letter-spacing=".08em" fill="currentColor" fill-opacity=".6">IT DOES</text><rect x="15" y="38" width="160" height="48" rx="10" fill="currentColor" fill-opacity="0.04" stroke="currentColor" stroke-opacity="0.45" stroke-width="1"/><text x="95.0" y="66.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">a form is sent</text><path d="M175 62 C200 62 205 170 228 170" fill="none" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" marker-end="url(#wk-a4)"/><rect x="15" y="100" width="160" height="48" rx="10" fill="currentColor" fill-opacity="0.04" stroke="currentColor" stroke-opacity="0.45" stroke-width="1"/><text x="95.0" y="120.5" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">a set time</text><text x="95.0" y="135.5" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">every day, every month</text><path d="M175 124 C200 124 205 170 228 170" fill="none" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" marker-end="url(#wk-a4)"/><rect x="15" y="162" width="160" height="48" rx="10" fill="currentColor" fill-opacity="0.04" stroke="currentColor" stroke-opacity="0.45" stroke-width="1"/><text x="95.0" y="190.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">a sheet is edited</text><path d="M175 186 C200 186 205 170 228 170" fill="none" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" marker-end="url(#wk-a4)"/><rect x="15" y="224" width="160" height="48" rx="10" fill="currentColor" fill-opacity="0.04" stroke="currentColor" stroke-opacity="0.45" stroke-width="1"/><text x="95.0" y="252.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">a web page calls it</text><path d="M175 248 C200 248 205 170 228 170" fill="none" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" marker-end="url(#wk-a4)"/><rect x="230" y="115" width="140" height="110" rx="10" fill="currentColor" fill-opacity="0.1" stroke="currentColor" stroke-opacity="0.9" stroke-width="2"/><text x="300.0" y="151.5" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">Apps Script</text><text x="300.0" y="166.5" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">free, on Google's servers</text><text x="300.0" y="181.5" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">runs as the admin</text><text x="300.0" y="196.5" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">no server to rent</text><rect x="425" y="33" width="160" height="44" rx="10" fill="currentColor" fill-opacity="0.04" stroke="currentColor" stroke-opacity="0.45" stroke-width="1"/><text x="505.0" y="51.5" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">calculate</text><text x="505.0" y="66.5" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">totals, tax, commission</text><path d="M370 170 C395 170 400 55 423 55" fill="none" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" marker-end="url(#wk-a4)"/><rect x="425" y="88" width="160" height="44" rx="10" fill="currentColor" fill-opacity="0.04" stroke="currentColor" stroke-opacity="0.45" stroke-width="1"/><text x="505.0" y="106.5" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">sort and rename</text><text x="505.0" y="121.5" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">files into folders</text><path d="M370 170 C395 170 400 110 423 110" fill="none" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" marker-end="url(#wk-a4)"/><rect x="425" y="143" width="160" height="44" rx="10" fill="currentColor" fill-opacity="0.04" stroke="currentColor" stroke-opacity="0.45" stroke-width="1"/><text x="505.0" y="161.5" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">send as info@</text><text x="505.0" y="176.5" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">confirmations, reports</text><path d="M370 170 C395 170 400 165 423 165" fill="none" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" marker-end="url(#wk-a4)"/><rect x="425" y="198" width="160" height="44" rx="10" fill="currentColor" fill-opacity="0.04" stroke="currentColor" stroke-opacity="0.45" stroke-width="1"/><text x="505.0" y="216.5" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">make documents</text><text x="505.0" y="231.5" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">Docs template → PDF</text><path d="M370 170 C395 170 400 220 423 220" fill="none" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" marker-end="url(#wk-a4)"/><rect x="425" y="253" width="160" height="44" rx="10" fill="currentColor" fill-opacity="0.04" stroke="currentColor" stroke-opacity="0.45" stroke-width="1"/><text x="505.0" y="271.5" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">call other APIs</text><text x="505.0" y="286.5" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">Gemini, maps, payments</text><path d="M370 170 C395 170 400 275 423 275" fill="none" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" marker-end="url(#wk-a4)"/></svg>
+            <figcaption style="font-size:.85em;opacity:.75;text-align:center;margin-top:.5rem">Something happens, a script owned by the admin account runs, and the routine work is done without anyone opening a file.</figcaption>
+        </figure>
+
+        <h4>11. sheets as the database</h4>
+        <p>
+            For a small business, a well-kept Google Sheet is a perfectly good database. Give each kind of record its own tab (clients, bookings, payments, stock),
+            one row per record, an ID in the first column, and never merge cells.
+            Looker Studio, which is free, reads those sheets and turns them into dashboards: new clients per month, revenue per branch, the busiest hours.
+            AppSheet builds simple phone apps on top of the same sheets, for stock counts or field visits, without code.
+            It is free to build and to test with up to 10 people; an app the team uses every day needs a paid AppSheet licence.
+        </p>
+        <p>
+            When the business outgrows a spreadsheet (many tables linking to each other, staff who should only see some rows, data other systems need to read),
+            move the data to <a href="https://nocodb.com/">NocoDB</a> or <a href="https://www.getgrist.com/">Grist</a>.
+            Both are open source, look like a spreadsheet to staff, and work like a real database underneath, with links between tables, access rules and an API.
+            Both can be self-hosted on a small server or used as a hosted service. Forms and scripts keep feeding them, so the front desk doesn't change.
+        </p>
+
+        <figure class="wk-figure" style="margin:1.5rem 0">
+            <svg class="wk-diagram" viewBox="0 0 600 340" width="100%" role="img" aria-label="Bookings, forms and uploads flow into the admin account and out as messages, documents and dashboards" xmlns="http://www.w3.org/2000/svg" style="display:block;max-width:640px;height:auto;margin:0 auto"><defs><marker id="wk-a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="currentColor" fill-opacity=".6"/></marker></defs><text x="100" y="22" text-anchor="middle" font-size="11" font-weight="700" letter-spacing=".08em" fill="currentColor" fill-opacity=".6">COMES IN</text><text x="300" y="22" text-anchor="middle" font-size="11" font-weight="700" letter-spacing=".08em" fill="currentColor" fill-opacity=".6">KEPT IN THE ADMIN ACCOUNT</text><text x="500" y="22" text-anchor="middle" font-size="11" font-weight="700" letter-spacing=".08em" fill="currentColor" fill-opacity=".6">GOES OUT</text><rect x="20" y="40" width="160" height="58" rx="10" fill="currentColor" fill-opacity="0.04" stroke="currentColor" stroke-opacity="0.45" stroke-width="1"/><text x="100.0" y="65.5" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">booking pages</text><text x="100.0" y="80.5" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">one per seat</text><rect x="220" y="40" width="160" height="58" rx="10" fill="currentColor" fill-opacity="0.1" stroke="currentColor" stroke-opacity="0.9" stroke-width="2"/><text x="300.0" y="65.5" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">Calendar</text><text x="300.0" y="80.5" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">per branch, per seat</text><rect x="420" y="40" width="160" height="58" rx="10" fill="currentColor" fill-opacity="0.04" stroke="currentColor" stroke-opacity="0.45" stroke-width="1"/><text x="500.0" y="65.5" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">confirmations</text><text x="500.0" y="80.5" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">and reminders</text><path d="M180 69 L218 69" fill="none" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" marker-end="url(#wk-a2)"/><path d="M380 69 L418 69" fill="none" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" marker-end="url(#wk-a2)"/><rect x="20" y="115" width="160" height="58" rx="10" fill="currentColor" fill-opacity="0.04" stroke="currentColor" stroke-opacity="0.45" stroke-width="1"/><text x="100.0" y="140.5" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">Google Forms</text><text x="100.0" y="155.5" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">enquiries, orders, intake</text><rect x="220" y="115" width="160" height="58" rx="10" fill="currentColor" fill-opacity="0.1" stroke="currentColor" stroke-opacity="0.9" stroke-width="2"/><text x="300.0" y="140.5" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">Sheets</text><text x="300.0" y="155.5" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">the database</text><rect x="420" y="115" width="160" height="58" rx="10" fill="currentColor" fill-opacity="0.04" stroke="currentColor" stroke-opacity="0.45" stroke-width="1"/><text x="500.0" y="140.5" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">quotes, receipts</text><text x="500.0" y="155.5" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">Docs template → PDF</text><path d="M180 144 L218 144" fill="none" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" marker-end="url(#wk-a2)"/><path d="M380 144 L418 144" fill="none" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" marker-end="url(#wk-a2)"/><rect x="20" y="190" width="160" height="58" rx="10" fill="currentColor" fill-opacity="0.04" stroke="currentColor" stroke-opacity="0.45" stroke-width="1"/><text x="100.0" y="215.5" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">sign-in upload page</text><text x="100.0" y="230.5" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">photos, documents</text><rect x="220" y="190" width="160" height="58" rx="10" fill="currentColor" fill-opacity="0.1" stroke="currentColor" stroke-opacity="0.9" stroke-width="2"/><text x="300.0" y="215.5" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">Drive folders</text><text x="300.0" y="230.5" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">named, sorted files</text><rect x="420" y="190" width="160" height="58" rx="10" fill="currentColor" fill-opacity="0.04" stroke="currentColor" stroke-opacity="0.45" stroke-width="1"/><text x="500.0" y="215.5" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">dashboards</text><text x="500.0" y="230.5" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">Looker Studio</text><path d="M180 219 L218 219" fill="none" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" marker-end="url(#wk-a2)"/><path d="M380 219 L418 219" fill="none" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" marker-end="url(#wk-a2)"/><text x="400" y="272" text-anchor="middle" font-size="10.5" font-style="italic" fill="currentColor" fill-opacity=".7">Apps Script joins the pieces</text><rect x="220" y="285" width="360" height="46" rx="10" fill="currentColor" fill-opacity="0.04" stroke="currentColor" stroke-opacity="0.45" stroke-width="1" stroke-dasharray="5 4"/><text x="400.0" y="304.5" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">outgrown the sheet? NocoDB or Grist</text><text x="400.0" y="319.5" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">same forms in front, real database behind</text><path d="M300 238 L300 283" fill="none" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#wk-a2)"/></svg>
+            <figcaption style="font-size:.85em;opacity:.75;text-align:center;margin-top:.5rem">Everything enters through a link or a form, is kept in the admin account, and leaves as a message, a document or a dashboard.</figcaption>
+        </figure>
+
+        <h4>12. drive to collect files</h4>
+        <p>
+            Drive is where files come in: ID scans, photos of a job, signed documents, receipts.
+            A Google Form with a file-upload question saves every upload into a Drive folder. The catch: the person uploading must sign in with a Google account, and files keep whatever name they arrived with.
+            For staff, a shared folder per branch or per client is enough.
+        </p>
+        <p>
+            For regular contributors (field staff, partners, branch teams, even loyal clients who send photos), a small upload page on the website does it better.
+            The page shows a Sign in with Google button. An Apps Script web app, deployed to run as the admin account, checks the signed-in address against a list in a Sheet,
+            then saves each file into the right Drive folder with a standard name, such as branch-name-description-date.jpg, and keeps the caption as the file's description.
+            Photos are shrunk in the browser before upload, so a phone on a slow connection still gets through.
+            Anyone not on the list sees a registration Form on the same page; once the owner adds their address, they can upload.
+            Nobody gets a new password, and every file lands in the admin account's Drive.
+        </p>
+
+        <figure class="wk-figure" style="margin:1.5rem 0">
+            <svg class="wk-diagram" viewBox="0 0 600 250" width="100%" role="img" aria-label="Upload page: sign in with Google, the script checks a list, files land in the admin Drive" xmlns="http://www.w3.org/2000/svg" style="display:block;max-width:640px;height:auto;margin:0 auto"><defs><marker id="wk-a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="currentColor" fill-opacity=".6"/></marker></defs><rect x="10" y="30" width="125" height="80" rx="10" fill="currentColor" fill-opacity="0.04" stroke="currentColor" stroke-opacity="0.45" stroke-width="1"/><text x="72.5" y="59.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">visitor</text><text x="72.5" y="74.0" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">on the website's</text><text x="72.5" y="89.0" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">upload page</text><rect x="160" y="30" width="125" height="80" rx="10" fill="currentColor" fill-opacity="0.04" stroke="currentColor" stroke-opacity="0.45" stroke-width="1"/><text x="222.5" y="59.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">Sign in with Google</text><text x="222.5" y="74.0" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">no new password</text><text x="222.5" y="89.0" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">for anyone</text><rect x="310" y="30" width="135" height="80" rx="10" fill="currentColor" fill-opacity="0.1" stroke="currentColor" stroke-opacity="0.9" stroke-width="2"/><text x="377.5" y="59.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">Apps Script web app</text><text x="377.5" y="74.0" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">runs as the admin</text><text x="377.5" y="89.0" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">checks the list in a Sheet</text><rect x="470" y="30" width="120" height="80" rx="10" fill="currentColor" fill-opacity="0.1" stroke="currentColor" stroke-opacity="0.9" stroke-width="2"/><text x="530.0" y="59.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">Drive folder</text><text x="530.0" y="74.0" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">branch-name-</text><text x="530.0" y="89.0" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">description-date.jpg</text><path d="M135 70 L158 70" fill="none" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" marker-end="url(#wk-a3)"/><path d="M285 70 L308 70" fill="none" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" marker-end="url(#wk-a3)"/><path d="M445 70 L468 70" fill="none" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" marker-end="url(#wk-a3)"/><text x="590" y="128" text-anchor="end" font-size="10.5" font-style="italic" fill="currentColor" fill-opacity=".7">caption saved as</text><text x="590" y="141" text-anchor="end" font-size="10.5" font-style="italic" fill="currentColor" fill-opacity=".7">the file description</text><rect x="150" y="175" width="145" height="62" rx="10" fill="currentColor" fill-opacity="0.04" stroke="currentColor" stroke-opacity="0.45" stroke-width="1" stroke-dasharray="5 4"/><text x="222.5" y="202.5" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">registration Form</text><text x="222.5" y="217.5" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">on the same page</text><rect x="320" y="175" width="125" height="62" rx="10" fill="currentColor" fill-opacity="0.04" stroke="currentColor" stroke-opacity="0.45" stroke-width="1" stroke-dasharray="5 4"/><text x="382.5" y="202.5" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">owner adds</text><text x="382.5" y="217.5" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">the address to the list</text><path d="M340 110 L340 140 L222 140 L222 173" fill="none" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#wk-a3)"/><text x="281" y="134" text-anchor="middle" font-size="10.5" font-style="italic" fill="currentColor" fill-opacity=".7">not on the list</text><path d="M295 206 L318 206" fill="none" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#wk-a3)"/><path d="M410 175 L410 112" fill="none" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#wk-a3)"/><text x="416" y="150" text-anchor="start" font-size="10.5" font-style="italic" fill="currentColor" fill-opacity=".7">can upload now</text></svg>
+            <figcaption style="font-size:.85em;opacity:.75;text-align:center;margin-top:.5rem">Regular contributors sign in with their own Google account; the script decides, and every file lands in the admin account's Drive.</figcaption>
+        </figure>
+
+        <h4>13. drive to publish files</h4>
+        <p>
+            Drive is also where files go out. Heavy content (diagrams, price lists, menus, catalogues, slides, schedules) lives in Google apps and is embedded in the website instead of being uploaded to it.
+            Docs, Sheets, Slides and Drawings can all be published to the web and embedded with an iframe. So can Forms, a public Calendar, a Looker Studio report, a My Maps map and a YouTube video.
+            Change the Google file and the website changes with it, with no new upload or redeploy, and the website stays light and fast.
+            Anything published this way is public, so publish only what clients are meant to see.
+        </p>
+
+        <h4>14. a website and a place to publish</h4>
+        <p>
+            The business needs a website and somewhere to publish articles, news and price updates. Two free routes work well with everything above.
+        </p>
+        <ul class="list-flush">
+            <li><strong>Blogger</strong>: Google's own publishing platform. Free, runs on the business's domain, owned by the admin account, and simple enough for staff to post from a phone. Its pages accept embedded Google content and small scripts, so a booking form or an upload page can sit on a Blogger page.</li>
+            <li><strong>GitHub</strong>: the website as plain files kept in a GitHub repository, published free with GitHub Pages or a host like Vercel. More work to set up, but full control: every change is versioned, nothing is locked into a platform, and the same articles can be shown on more than one website.</li>
+        </ul>
+        <p>
+            Either way, heavy content stays in Drive and is embedded (step 13), so the site itself stays small and changes when the Google file changes.
+            Google Sites is a third option for a simple one-page site with no code at all.
+        </p>
+
+        <h4>15. be found</h4>
+        <ul class="list-flush">
+            <li><strong>Google Business Profile</strong>, free: the listing on Google Search and Maps with opening hours, photos and reviews. Make the admin account the owner and add info@ as a manager.</li>
+            <li><strong>Reviews</strong>: put the profile's review link in the after-visit message or confirmation email. A steady stream of good reviews lifts the listing in local search.</li>
+            <li><strong>Search Console and Analytics</strong>, free: what people search to find the website, and what they do once they land on it.</li>
+            <li><strong>Google Ads</strong>, paid: switch it on for a launch or a slow season, with a daily cap, and switch it off when it isn't paying back.</li>
+        </ul>
+
+        <h4>16. a chat assistant on the website</h4>
+        <p>
+            The Gemini API can power a chat box on the website that talks only about the business.
+            A written guideline, the system instruction, sets its job, its tone, the facts and prices it may quote, and what to refuse: anything off topic is politely steered back.
+            It can guide a visitor toward a decision, for example showing that a service costs less than they assumed,
+            and when the conversation gets there, it shows the booking button.
+        </p>
+        <p>
+            The API key never goes into the web page, where anyone could copy it. The page sends messages to a small server function (a serverless function on Vercel or a similar host),
+            which holds the key in an environment variable, adds the guideline and passes the conversation to Gemini.
+            The model can be changed from the host's settings without touching the code.
+        </p>
+
+        <h4>17. google cloud and the apis</h4>
+        <p>
+            Everything above runs inside the Google apps. The Google Cloud console is where the website and other systems connect to Google directly.
+            Create one Cloud project, owned by the admin account, for the whole business. A billing account is needed for some services, so set a budget alert from day one.
+        </p>
+        <ul class="list-flush">
+            <li><strong>Maps</strong>: the simple embedded map is free. Interactive maps, address search and store locators have a monthly free allowance before charges start.</li>
+            <li><strong>Sign in with Google</strong>: lets visitors log in to an upload page, a booking portal or a members' page with the Google account they already have. It needs an OAuth client ID from the Cloud project, and the business never stores a password. The upload page in step 12 works this way.</li>
+            <li><strong>Calendar, Sheets and Drive APIs</strong>: let the website, NocoDB, Grist or another system read and write the same calendars, sheets and folders, using a service account instead of a person's password.</li>
+            <li><strong>Gemini API</strong>: the chat assistant in step 16, plus routine work such as drafting replies to enquiries, summarising form answers or sorting incoming files. The free tier is fine for testing, but Google may use free-tier inputs to improve its products. Before real client data goes in, turn on billing for the project: Google then treats all its use as paid and doesn't use the data that way.</li>
+        </ul>
+
+        <h4>18. smaller tools worth knowing</h4>
+        <ul class="list-flush">
+            <li><strong>Google Meet</strong>: video calls for consultations and remote training. Free one-to-one calls run long; group calls on a free account stop at 60 minutes.</li>
+            <li><strong>Google Contacts</strong>: one shared client list in the admin account, synced to the office phone, so every number a client calls or messages from is recognised.</li>
+            <li><strong>Keep and Tasks</strong>: checklists and to-dos per branch, shared with the branch account, for opening and closing routines.</li>
+            <li><strong>YouTube</strong>: how-to and before-and-after videos, embedded on the website and linked from the Business Profile.</li>
+            <li><strong>Merchant Center</strong>: free product listings on Google for a business that sells goods.</li>
+            <li><strong>NotebookLM</strong>: load the SOPs, price lists and policies, and staff can ask it questions and get answers drawn from the business's own documents.</li>
+            <li><strong>GOOGLETRANSLATE in Sheets</strong>: a formula that translates a whole column, useful for menus, price lists and messages in two languages.</li>
+        </ul>
+
+        <h4>what you give up</h4>
+        <ul class="list-flush">
+            <li>Free accounts have no admin console. When staff leave, change the account password and recovery details yourself.</li>
+            <li>Free booking pages don't send reminder emails. Send reminders by WhatsApp the day before, or by a script from the sheet.</li>
+            <li>Apps Script on a free account sends to about 100 recipients a day, enough for most small businesses' confirmations. For more, run that one script from info@, which allows about 1,500, and keep a copy of the code in the admin account.</li>
+            <li>Each free account needs its own phone verification when you create it.</li>
+            <li>Clients only ever see info@, the booking links and the website, so swapping a staff account or moving data to NocoDB or Grist never changes anything on their side.</li>
+        </ul>
+
+        <h4>where to start</h4>
+        <p>
+            Do it in stages. First the address, the admin account and the files (steps 1 to 5), so the base is safe.
+            Then bookings, forms and Apps Script (6 to 10), which take the most work off staff.
+            Then data, files, the website, marketing, the chat assistant and the APIs (11 to 18), added as the business grows.
+            At every stage the rule is the same: one paid address in front, and everything that matters owned by the admin account behind it.
+        </p>
+    </article>
+
+    <!-- inside an iframe: tell the host page how tall this card is, so cards/embed.js can size the iframe.
+         does nothing when the card is opened on its own, or when a pubs page shows it (scripts don't run there). -->
+    <script>
+        (function () {
+            if (window.parent === window) return;
+            var send = function () {
+                window.parent.postMessage({ type: 'pubs-card-height', height: document.body.offsetHeight }, '*');
+            };
+            window.addEventListener('load', send);
+            if (window.ResizeObserver) new ResizeObserver(send).observe(document.body);
+        })();
+    </script>
+</body>
+</html>

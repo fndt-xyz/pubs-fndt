@@ -1,0 +1,128 @@
+/*
+  03-works.css: the professional look for the 03-works cards, matching mgmt.srvcs.
+  Every rule starts with html.look-ms, so this file changes nothing unless the card was opened with ?look=ms.
+    - pubs pages never get it: their card loader takes only <article class="card-body">, not the card's <head> or scripts.
+    - another site that iframes the card without ?look=ms gets the plain card.
+    - mgmt.srvcs iframes the card with ?look=ms, the card's script adds class "look-ms" to <html>, loads this file,
+      and splits the article into one box per <h4> section.
+  Colours and sizes copy mgmt.srvcs code/site.css. Change them there first, then here.
+*/
+
+html.look-ms {
+    --ms-navy: #0b1b34;
+    --ms-navy-2: #12284a;
+    --ms-teal: #0d9488;
+    --ms-teal-2: #14b8a6;
+    --ms-teal-soft: #e6f6f4;
+    --ms-ink: #0f172a;
+    --ms-text: #334155;
+    --ms-muted: #64748b;
+    --ms-line: #e2e8f0;
+    --ms-radius: 14px;
+    --ms-shadow: 0 1px 2px rgb(15 23 42 / 0.04), 0 8px 24px rgb(15 23 42 / 0.05);
+    --font-head: 'Open Sans', sans-serif;
+    --font-text: 'Inter', sans-serif;
+    color-scheme: light;
+    background: transparent;
+}
+
+/* the iframe shows the host page behind the boxes */
+html.look-ms body {
+    max-width: none;
+    margin: 0;
+    padding: 2px 2px 6px;              /* room for the box shadows; bottom padding keeps the height message exact */
+    background: transparent;
+    color: var(--ms-ink);
+    font-family: var(--font-text);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+html.look-ms .card-body { margin: 0; padding: 0; max-width: none; }
+
+/* ---------- one box per section (built by the card's script) ---------- */
+html.look-ms .wk-sec {
+    background: #fff;
+    border: 1px solid var(--ms-line);
+    border-radius: var(--ms-radius);
+    box-shadow: var(--ms-shadow);
+    padding: 1.75rem 1.5rem 1.5rem;
+    margin: 0 0 1rem;
+    text-align: left;
+}
+html.look-ms .wk-sec > :last-child { margin-bottom: 0; }
+
+html.look-ms .wk-eyebrow {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ms-teal);
+    margin-bottom: 0.6rem;
+}
+
+html.look-ms .wk-sec h2 {
+    font-family: var(--font-head);
+    font-size: clamp(1.3rem, 2.4vw, 1.65rem);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+    color: var(--ms-ink);
+    margin: 0 0 0.75rem;
+}
+
+html.look-ms .wk-sec p { margin: 0 0 0.9rem; color: var(--ms-text); max-width: 70ch; }
+html.look-ms .wk-sec strong { color: var(--ms-ink); }
+html.look-ms .wk-sec a { color: var(--ms-teal); text-decoration: none; font-weight: 700; }
+html.look-ms .wk-sec a:hover { text-decoration: underline; }
+
+/* opening text: larger, like .ms-lead */
+html.look-ms .wk-intro p { font-size: 1.05rem; line-height: 1.65; }
+html.look-ms .wk-intro p:first-child { font-size: 1.15rem; color: var(--ms-ink); }
+
+/* lists: teal check bullets, like .ms-checks */
+html.look-ms .wk-sec ul { list-style: none; padding: 0; margin: 1rem 0; display: grid; gap: 0.7rem; }
+html.look-ms .wk-sec li { position: relative; padding-left: 1.9rem; line-height: 1.55; color: var(--ms-text); }
+html.look-ms .wk-sec li::before {
+    content: ""; position: absolute; left: 0; top: 0.2rem; width: 1.2rem; height: 1.2rem; border-radius: 50%;
+    background: var(--ms-teal) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'><path d='M20 6 9 17l-5-5'/></svg>") center / 0.72rem no-repeat;
+}
+
+/* ---------- diagrams: navy lines on a soft teal panel, key boxes in teal ---------- */
+html.look-ms .wk-figure {
+    margin: 1.25rem 0 0.5rem !important;     /* the figure carries an inline margin for the plain look */
+    padding: 1.25rem 1rem 1rem;
+    border-radius: 12px;
+    background: linear-gradient(160deg, var(--ms-teal-soft), #f1f5f9);
+}
+html.look-ms .wk-diagram { color: var(--ms-navy); }
+html.look-ms .wk-diagram rect { fill: #fff; fill-opacity: 1; stroke: #cbd5e1; stroke-opacity: 1; }
+html.look-ms .wk-diagram rect[stroke-width="2"] { fill: var(--ms-teal-soft); stroke: var(--ms-teal); }
+html.look-ms .wk-diagram path[marker-end] { stroke: var(--ms-teal); stroke-opacity: 0.8; }
+html.look-ms .wk-diagram marker path { fill: var(--ms-teal); fill-opacity: 0.9; }
+html.look-ms .wk-figure figcaption { color: var(--ms-muted); opacity: 1 !important; }
+
+/* ---------- closing section: the dark band, like .ms-band ---------- */
+html.look-ms .wk-band {
+    position: relative; overflow: hidden;
+    background: radial-gradient(120% 140% at 85% 10%, #134e5e 0%, var(--ms-navy-2) 38%, var(--ms-navy) 75%);
+    border: none;
+}
+html.look-ms .wk-band h2 { color: #fff; }
+html.look-ms .wk-band p { color: #cbd5e1; }
+html.look-ms .wk-band .wk-eyebrow { color: var(--ms-teal-2); }
+html.look-ms .wk-band::after {
+    content: ""; position: absolute; right: -90px; top: -90px; width: 280px; height: 280px; border-radius: 50%;
+    border: 1px solid rgb(45 212 191 / 0.18); box-shadow: 0 0 0 40px rgb(45 212 191 / 0.04), 0 0 0 80px rgb(45 212 191 / 0.03);
+    pointer-events: none;
+}
+
+@media (max-width: 600px) {
+    html.look-ms .wk-sec { padding: 1.4rem 1.1rem 1.2rem; }
+    html.look-ms .wk-figure { padding: 0.9rem 0.4rem 0.8rem; margin-left: -0.4rem !important; margin-right: -0.4rem !important; overflow-x: auto; }
+    /* on a phone the diagram keeps a readable size and scrolls sideways instead of shrinking */
+    html.look-ms .wk-diagram { min-width: 540px; }
+    html.look-ms .wk-figure figcaption { position: sticky; left: 0; max-width: calc(100vw - 4.5rem); }
+}

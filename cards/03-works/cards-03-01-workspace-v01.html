@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>one paid workspace seat, free gmail for the rest</title>
+    <!--
+      CARD: only the writing, no navbar, footer or side box.
+      Used two ways:
+        1. a pubs page loads it (contents/03-works/page-03-01-hybrid-workspace.html) and shows only the <article class="card-body"> part.
+        2. any other website shows it in an iframe:
+             <iframe src="https://pubs.fndt.xyz/cards/03-works/cards-03-01-workspace.html" class="pubs-card"
+                     title="workspace" loading="lazy" style="width:100%; border:0; height:600px"></iframe>
+             <script src="https://pubs.fndt.xyz/cards/embed.js"></script>   (optional: the iframe then fits its text, no scrollbar)
+      Write only inside <article class="card-body">. Keep links absolute (https://...) so they work on any site.
+      prices below were checked in November 2026; update the "the cost" paragraph when Google changes them.
+    -->
+
+    <!-- search engines: the pubs page is the real address of this text, the card is a copy for embedding -->
+    <link rel="canonical" href="https://pubs.fndt.xyz/contents/03-works/page-03-01-hybrid-workspace.html">
+
+    <!-- inside an iframe, a click on a link opens a new tab instead of loading inside the small box -->
+    <base target="_blank">
+
+    <link rel="stylesheet" href="/cards/card.css">
+</head>
+<body>
+    <article class="card-body">
+        <p>
+            Most small businesses don't need a paid email seat for every person. Clients only ever see one address. Staff only need a working inbox and a calendar.
+            So pay for the one address clients see, and run everything behind it on free Gmail accounts.
+            Half snake, half eel: one paid Google Workspace seat in front, free accounts doing the work behind it.
+        </p>
+
+        <h4>the cost</h4>
+        <p>
+            One Google Workspace Business Starter seat. Google's list price is $7 per user per month on an annual plan,
+            and new customers in Indonesia are often offered an introductory price around half that, about $3.50, for the first year.
+            Local resellers sell the same seat in rupiah with a tax invoice. Because there is only one seat, that is the whole monthly bill.
+            Everything else here runs on free Gmail.
+        </p>
+
+        <h4>the layout</h4>
+        <ul class="list-flush">
+            <li><strong>info@mail.example.com</strong>: the one paid Workspace user. The only address clients ever see.</li>
+            <li><strong>admin.work@gmail.com</strong>: free. The owner's working inbox. Receives every client email and answers as info@.</li>
+            <li><strong>branch1.work@gmail.com, branch2.work@gmail.com</strong>: free. One per branch, for that branch's bookings and schedule.</li>
+        </ul>
+
+        <h4>1. put workspace on a subdomain</h4>
+        <p>
+            Sign up for Workspace with <strong>mail.example.com</strong>, not example.com.
+            The mail records (MX) go on the subdomain only, with "mail" as the host, so the main domain's website and any email already running on it are left untouched.
+            Add the SPF and DKIM records Google gives you for the subdomain too, so replies from info@ don't land in spam.
+        </p>
+
+        <h4>2. answer every email, then forward it</h4>
+        <p>
+            In info@'s Gmail, go to Settings, then Forwarding and POP/IMAP, add admin.work@gmail.com and confirm it. Keep Gmail's copy in the inbox as the record.
+        </p>
+        <p>
+            For the automatic reply, skip the vacation responder: it answers each sender only once every four days.
+            Instead, turn on templates (Settings, then Advanced), save the reply as a template, and create a filter that matches all incoming mail with the action "send template".
+            Now every message gets an answer. Keep it short: message received, opening hours, the booking link, a WhatsApp number.
+            In the filter's "doesn't have" box, add words like noreply, no-reply and mailer-daemon, so it doesn't answer robots and mailing lists.
+        </p>
+
+        <h4>3. reply as info@ from the free inbox</h4>
+        <p>
+            Turn on 2-step verification for info@ and create an app password.
+            In admin.work@gmail.com, go to Settings, then Accounts and Import, then "Send mail as", and add info@mail.example.com
+            with server smtp.gmail.com, port 587, and that app password. Then choose "reply from the same address the message was sent to".
+            Every reply to a client now leaves as info@, while the work happens in a free inbox.
+        </p>
+
+        <h4>4. one calendar per branch</h4>
+        <p>
+            In admin.work@gmail.com, create a calendar for each branch: Branch 1, Branch 2. Share each one with its branch account with "make changes to events".
+            That is where shifts, staff leave and internal appointments live.
+        </p>
+        <p>
+            Client bookings run the other way. A free Gmail account gets one booking page (in Calendar: Create, then Appointment schedule), and bookings land on that account's own calendar.
+            So each branch account makes its own booking page and shares its calendar back to admin.work@gmail.com.
+            The owner sees every branch in one place; each branch only sees its own.
+        </p>
+
+        <h4>5. several seats in the same hour</h4>
+        <p>
+            A Google booking page holds one booking per time slot. It has no setting for "three chairs at 10:00".
+            The way around it: one free Gmail account per seat, each with its own booking page. Chair 1, chair 2 and chair 3 at Branch 1 are three accounts and three links.
+            Put the links side by side on the website or in the WhatsApp reply. When chair 1 is taken at 10:00, the client picks chair 2.
+            Set "maximum bookings per day" on each page to match that seat's real capacity.
+        </p>
+
+        <h4>6. down payments</h4>
+        <p>
+            Google Calendar can take payment at booking, but only through Stripe and only on Business Standard or higher, and Stripe's support for Indonesian businesses is limited.
+            The free route works with what's already there. Put the bank account or QRIS details in the booking page description,
+            and add a required question to the booking form: "transfer reference".
+            Staff check the transfer, add "DP OK" to the event title, and cancel unpaid bookings after a set time, for example 2 hours.
+            The booking page already sends the client a confirmation email, so nothing else is needed.
+        </p>
+
+        <h4>what you give up</h4>
+        <ul class="list-flush">
+            <li>Free accounts have no admin console. When staff leave, change the account password and recovery number yourself.</li>
+            <li>Free booking pages don't send reminder emails. Send reminders by WhatsApp the day before.</li>
+            <li>Each free account needs its own phone verification when you create it.</li>
+            <li>Clients only ever see info@ and the booking links, so swapping a staff account never changes anything on their side.</li>
+        </ul>
+    </article>
+
+    <!-- inside an iframe: tell the host page how tall this card is, so cards/embed.js can size the iframe.
+         does nothing when the card is opened on its own, or when a pubs page shows it (scripts don't run there). -->
+    <script>
+        (function () {
+            if (window.parent === window) return;
+            var send = function () {
+                window.parent.postMessage({ type: 'pubs-card-height', height: document.body.offsetHeight }, '*');
+            };
+            window.addEventListener('load', send);
+            if (window.ResizeObserver) new ResizeObserver(send).observe(document.body);
+        })();
+    </script>
+</body>
+</html>
