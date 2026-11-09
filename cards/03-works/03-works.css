@@ -3,8 +3,8 @@
   Every rule starts with html.look-ms, so this file changes nothing unless the card was opened with ?look=ms.
     - pubs pages never get it: their card loader takes only <article class="card-body">, not the card's <head> or scripts.
     - another site that iframes the card without ?look=ms gets the plain card.
-    - mgmt.srvcs iframes the card with ?look=ms, the card's script adds class "look-ms" to <html>, loads this file,
-      and splits the article into one box per <h4> section.
+    - mgmt.srvcs iframes the card with ?look=ms, the card's script adds class "look-ms" to <html> and loads this file
+      and 03-works.js, which splits the article into one box per <h4> section and adds the EN | ID button.
   Colours and sizes copy mgmt.srvcs code/site.css. Change them there first, then here.
 */
 
@@ -126,3 +126,17 @@ html.look-ms .wk-band::after {
     html.look-ms .wk-diagram { min-width: 540px; }
     html.look-ms .wk-figure figcaption { position: sticky; left: 0; max-width: calc(100vw - 4.5rem); }
 }
+
+/* ---------- EN | ID button in the opening box (built by 03-works.js), same look as the mgmt.srvcs navbar button ---------- */
+html.look-ms .wk-lang {
+    display: inline-flex; gap: 2px; padding: 3px; margin: 0 0 1rem;
+    border: 1px solid var(--ms-line); border-radius: 999px; background: #fff;
+}
+html.look-ms .wk-lang button {
+    font: 700 12px/1 var(--font-text); letter-spacing: 0.04em;
+    padding: 6px 10px; border: 0; border-radius: 999px; cursor: pointer;
+    background: transparent; color: var(--ms-muted); transition: background 0.2s, color 0.2s;
+}
+html.look-ms .wk-lang button:hover { color: var(--ms-teal); }
+html.look-ms .wk-lang button[aria-pressed="true"] { background: #1e293b; color: #fff; cursor: default; }
+html.look-ms .wk-lang button:focus-visible { outline: 2px solid var(--ms-teal); outline-offset: 2px; }

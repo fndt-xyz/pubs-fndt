@@ -25,58 +25,26 @@
 
     <link rel="stylesheet" href="/cards/card.css">
 
-    <!-- LOOK SWITCH: plain by default. Opened with ?look=ms (mgmt.srvcs iframes it that way), the card
-         adds class "look-ms" to <html>, loads the fonts and 03-works.css (every rule there starts with html.look-ms),
-         and splits the article into one box per <h4>. A pubs page never runs this: it takes only the <article>. -->
+    <!-- LOOK SWITCH: plain by default. Opened with ?look=ms (mgmt.srvcs iframes it that way), the card adds class "look-ms"
+         to <html> and loads the fonts, 03-works.css and 03-works.js from this folder. 03-works.js builds the boxes and the
+         EN / ID button (ID text: the same file name plus "-id"). A pubs page never runs this: it takes only the <article>. -->
+    <style>html.look-ms:not(.wk-ready) body { visibility: hidden; }</style>
     <script>
         (function () {
             if (!/[?&]look=ms(&|$)/.test(location.search)) return;
             var root = document.documentElement;
             root.classList.add('look-ms');
-            [
-                'https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Open+Sans:wght@700;800&display=swap',
-                '03-works.css'                                  // same folder as this card
-            ].forEach(function (href) {
-                var link = document.createElement('link');
-                link.rel = 'stylesheet';
-                link.href = href;
-                document.head.appendChild(link);
-            });
-
-            // one <section> per <h4>: "9. forms that do the work" becomes eyebrow "step 09" + heading "Forms that do the work".
-            // text before the first <h4> becomes the opening box; the last section becomes the dark closing band.
-            document.addEventListener('DOMContentLoaded', function () {
-                var article = document.querySelector('.card-body');
-                if (!article) return;
-                var nodes = Array.prototype.slice.call(article.childNodes);
-                var sections = [], current = null, seenStep = false;
-                var start = function (cls) {
-                    current = document.createElement('section');
-                    current.className = 'wk-sec ' + cls;
-                    sections.push(current);
-                };
-                start('wk-intro');
-                nodes.forEach(function (node) {
-                    if (node.nodeName === 'H4') {
-                        var text = node.textContent.trim();
-                        var m = /^(\d+)\.\s*(.*)$/.exec(text);
-                        start(m ? 'wk-step' : 'wk-note');
-                        var eyebrow = document.createElement('span');
-                        eyebrow.className = 'wk-eyebrow';
-                        if (m) { seenStep = true; eyebrow.textContent = 'step ' + (m[1].length < 2 ? '0' : '') + m[1]; }
-                        else eyebrow.textContent = seenStep ? 'in practice' : 'overview';
-                        var title = m ? m[2] : text;
-                        var h2 = document.createElement('h2');
-                        h2.textContent = title.charAt(0).toUpperCase() + title.slice(1);
-                        current.appendChild(eyebrow);
-                        current.appendChild(h2);
-                    } else {
-                        current.appendChild(node);
-                    }
+            setTimeout(function () { root.classList.add('wk-ready'); }, 4000);   // never stay hidden if a file fails to load
+            ['https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Open+Sans:wght@700;800&display=swap', '03-works.css']
+                .forEach(function (href) {
+                    var link = document.createElement('link');
+                    link.rel = 'stylesheet';
+                    link.href = href;
+                    document.head.appendChild(link);
                 });
-                if (sections.length > 1) sections[sections.length - 1].classList.add('wk-band');
-                article.replaceChildren.apply(article, sections.filter(function (s) { return s.textContent.trim(); }));
-            });
+            var script = document.createElement('script');
+            script.src = '03-works.js';
+            document.head.appendChild(script);
         })();
     </script>
 </head>
