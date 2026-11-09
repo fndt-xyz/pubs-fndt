@@ -63,7 +63,7 @@ html.look-ms .wk-eyebrow {
     margin-bottom: 0.6rem;
 }
 
-html.look-ms .wk-sec h2 {
+html.look-ms .card-body .wk-sec h2 {
     font-family: var(--font-head);
     font-size: clamp(1.3rem, 2.4vw, 1.65rem);
     font-weight: 800;
@@ -73,18 +73,27 @@ html.look-ms .wk-sec h2 {
     margin: 0 0 0.75rem;
 }
 
-html.look-ms .wk-sec p { margin: 0 0 0.9rem; color: var(--ms-text); max-width: 70ch; }
+/* text fills the box; size and font set here so pubs card.css can't leak in */
+html.look-ms .card-body .wk-sec p,
+html.look-ms .card-body .wk-sec li {
+    max-width: none;
+    font-family: var(--font-text);
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--ms-text);
+}
+html.look-ms .card-body .wk-sec p { margin: 0 0 0.9rem; }
 html.look-ms .wk-sec strong { color: var(--ms-ink); }
 html.look-ms .wk-sec a { color: var(--ms-teal); text-decoration: none; font-weight: 700; }
 html.look-ms .wk-sec a:hover { text-decoration: underline; }
 
 /* opening text: larger, like .ms-lead */
-html.look-ms .wk-intro p { font-size: 1.05rem; line-height: 1.65; }
-html.look-ms .wk-intro p:first-child { font-size: 1.15rem; color: var(--ms-ink); }
+html.look-ms .card-body .wk-intro p { font-size: 1.05rem; }
+html.look-ms .card-body .wk-intro p:first-child { font-size: 1.15rem; color: var(--ms-ink); }
 
 /* lists: teal check bullets, like .ms-checks */
 html.look-ms .wk-sec ul { list-style: none; padding: 0; margin: 1rem 0; display: grid; gap: 0.7rem; }
-html.look-ms .wk-sec li { position: relative; padding-left: 1.9rem; line-height: 1.55; color: var(--ms-text); }
+html.look-ms .card-body .wk-sec li { position: relative; padding-left: 1.9rem; margin: 0; }
 html.look-ms .wk-sec li::before {
     content: ""; position: absolute; left: 0; top: 0.2rem; width: 1.2rem; height: 1.2rem; border-radius: 50%;
     background: var(--ms-teal) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'><path d='M20 6 9 17l-5-5'/></svg>") center / 0.72rem no-repeat;
@@ -110,8 +119,8 @@ html.look-ms .wk-band {
     background: radial-gradient(120% 140% at 85% 10%, #134e5e 0%, var(--ms-navy-2) 38%, var(--ms-navy) 75%);
     border: none;
 }
-html.look-ms .wk-band h2 { color: #fff; }
-html.look-ms .wk-band p { color: #cbd5e1; }
+html.look-ms .card-body .wk-band h2 { color: #fff; }
+html.look-ms .card-body .wk-band p { color: #cbd5e1; }
 html.look-ms .wk-band .wk-eyebrow { color: var(--ms-teal-2); }
 html.look-ms .wk-band::after {
     content: ""; position: absolute; right: -90px; top: -90px; width: 280px; height: 280px; border-radius: 50%;
