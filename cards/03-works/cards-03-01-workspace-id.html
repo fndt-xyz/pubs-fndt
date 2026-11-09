@@ -6,8 +6,8 @@
     <title>satu alamat berbayar di depan, google gratis di belakangnya</title>
     <!--
       CARD, INDONESIAN: the Indonesian text of cards-03-01-workspace.html. Same layout, same diagrams, translated.
-      Not shown on pubs pages (pubs shows English only). mgmt.srvcs loads it through the EN / ID button inside the
-      English card (03-works.js), or it can be iframed directly: cards-03-01-workspace-id.html?look=ms
+      Not shown on pubs pages (pubs shows English only). a website that iframes the English card loads it through the EN / ID button
+      inside that card (03-works.js), or it can be iframed directly: cards-03-01-workspace-id.html?look=pro
       When the English card changes, change this file the same way. Write only inside <article class="card-body">.
     -->
 
@@ -19,15 +19,15 @@
 
     <link rel="stylesheet" href="/cards/card.css">
 
-    <!-- LOOK SWITCH: plain by default. Opened with ?look=ms (mgmt.srvcs iframes it that way), the card adds class "look-ms"
+    <!-- LOOK SWITCH: plain by default. Opened with ?look=pro (another website iframes it that way), the card adds class "look-pro"
          to <html> and loads the fonts, 03-works.css and 03-works.js from this folder. 03-works.js builds the boxes and the
          EN / ID button (ID text: the same file name plus "-id"). A pubs page never runs this: it takes only the <article>. -->
-    <style>html.look-ms:not(.wk-ready) body { visibility: hidden; }</style>
+    <style>html.look-pro:not(.wk-ready) body { visibility: hidden; }</style>
     <script>
         (function () {
-            if (!/[?&]look=ms(&|$)/.test(location.search)) return;
+            if (!/[?&]look=pro(&|$)/.test(location.search)) return;
             var root = document.documentElement;
-            root.classList.add('look-ms');
+            root.classList.add('look-pro');
             setTimeout(function () { root.classList.add('wk-ready'); }, 4000);   // never stay hidden if a file fails to load
             ['https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Open+Sans:wght@700;800&display=swap', '03-works.css']
                 .forEach(function (href) {

@@ -1,6 +1,6 @@
 /*
-  03-works.js: the mgmt.srvcs look and the EN / ID switch for every card in cards/03-works/.
-  Loaded by a card only when it is opened with ?look=ms (mgmt.srvcs iframes it that way). Never runs on pubs pages:
+  03-works.js: the boxed look and the EN / ID switch for every card in cards/03-works/.
+  Loaded by a card only when it is opened with ?look=pro (another website iframes it that way). Never runs on pubs pages:
   they take only the card's <article>, not its <head>.
 
   What it does:
@@ -10,10 +10,10 @@
        (cards-03-01-workspace.html -> cards-03-01-workspace-id.html) and shows its article instead.
        A card with no "-id" file gets no button.
     3. first language: inside an iframe, the card asks the host page which language it is on ("wk-lang-ask");
-       mgmt.srvcs answers with its navbar language ("wk-lang-set"). No answer within 0.8 s (another site, or the card
+       a host page that supports it answers with its own language ("wk-lang-set"). No answer within 0.8 s (another site, or the card
        opened on its own): the last choice saved in this browser (localStorage "wk-lang"), otherwise the file's own language.
        After that first load the card follows only its own buttons, not the host's navbar.
-    4. the host page can switch the card later (mgmt.srvcs floating EN | ID button sends "wk-lang-set"), and the card
+    4. the host page can switch the card later (for example its own EN | ID button sends "wk-lang-set"), and the card
        reports every change back ("wk-lang-now") so the host's button shows the same language as the card's top button.
   Messages are only taken from the window that holds this card (window.parent).
   The page stays hidden until the boxes and 03-works.css are ready, so the plain text never flashes.
@@ -153,7 +153,7 @@
         });
     }
 
-    // later switches from the host page (mgmt.srvcs floating button)
+    // later switches from the host page
     window.addEventListener('message', function (e) {
         if (e.source !== window.parent || !e.data || e.data.type !== 'wk-lang-set') return;
         if (!hasId || !current || !WORDS[e.data.lang] || e.data.lang === current) return;

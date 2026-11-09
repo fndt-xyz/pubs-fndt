@@ -1,25 +1,25 @@
 /*
-  03-works.css: the professional look for the 03-works cards, matching mgmt.srvcs.
-  Every rule starts with html.look-ms, so this file changes nothing unless the card was opened with ?look=ms.
+  03-works.css: the boxed, professional look for the 03-works cards.
+  Every rule starts with html.look-pro, so this file changes nothing unless the card was opened with ?look=pro.
     - pubs pages never get it: their card loader takes only <article class="card-body">, not the card's <head> or scripts.
-    - another site that iframes the card without ?look=ms gets the plain card.
-    - mgmt.srvcs iframes the card with ?look=ms, the card's script adds class "look-ms" to <html> and loads this file
+    - a site that iframes the card without ?look=pro gets the plain card.
+    - a site that iframes the card with ?look=pro: the card's script adds class "look-pro" to <html> and loads this file
       and 03-works.js, which splits the article into one box per <h4> section and adds the EN | ID button.
-  Colours and sizes copy mgmt.srvcs code/site.css. Change them there first, then here.
+  Colours and sizes are the variables at the top.
 */
 
-html.look-ms {
-    --ms-navy: #0b1b34;
-    --ms-navy-2: #12284a;
-    --ms-teal: #0d9488;
-    --ms-teal-2: #14b8a6;
-    --ms-teal-soft: #e6f6f4;
-    --ms-ink: #0f172a;
-    --ms-text: #334155;
-    --ms-muted: #64748b;
-    --ms-line: #e2e8f0;
-    --ms-radius: 14px;
-    --ms-shadow: 0 1px 2px rgb(15 23 42 / 0.04), 0 8px 24px rgb(15 23 42 / 0.05);
+html.look-pro {
+    --pro-navy: #0b1b34;
+    --pro-navy-2: #12284a;
+    --pro-teal: #0d9488;
+    --pro-teal-2: #14b8a6;
+    --pro-teal-soft: #e6f6f4;
+    --pro-ink: #0f172a;
+    --pro-text: #334155;
+    --pro-muted: #64748b;
+    --pro-line: #e2e8f0;
+    --pro-radius: 14px;
+    --pro-shadow: 0 1px 2px rgb(15 23 42 / 0.04), 0 8px 24px rgb(15 23 42 / 0.05);
     --font-head: 'Open Sans', sans-serif;
     --font-text: 'Inter', sans-serif;
     color-scheme: light;
@@ -27,125 +27,125 @@ html.look-ms {
 }
 
 /* the iframe shows the host page behind the boxes */
-html.look-ms body {
+html.look-pro body {
     max-width: none;
     margin: 0;
     padding: 2px 2px 6px;              /* room for the box shadows; bottom padding keeps the height message exact */
     background: transparent;
-    color: var(--ms-ink);
+    color: var(--pro-ink);
     font-family: var(--font-text);
     font-size: 16px;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
 }
 
-html.look-ms .card-body { margin: 0; padding: 0; max-width: none; }
+html.look-pro .card-body { margin: 0; padding: 0; max-width: none; }
 
 /* ---------- one box per section (built by the card's script) ---------- */
-html.look-ms .wk-sec {
+html.look-pro .wk-sec {
     background: #fff;
-    border: 1px solid var(--ms-line);
-    border-radius: var(--ms-radius);
-    box-shadow: var(--ms-shadow);
+    border: 1px solid var(--pro-line);
+    border-radius: var(--pro-radius);
+    box-shadow: var(--pro-shadow);
     padding: 1.75rem 1.5rem 1.5rem;
     margin: 0 0 1rem;
     text-align: left;
 }
-html.look-ms .wk-sec > :last-child { margin-bottom: 0; }
+html.look-pro .wk-sec > :last-child { margin-bottom: 0; }
 
-html.look-ms .wk-eyebrow {
+html.look-pro .wk-eyebrow {
     display: inline-block;
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--ms-teal);
+    color: var(--pro-teal);
     margin-bottom: 0.6rem;
 }
 
-html.look-ms .card-body .wk-sec h2 {
+html.look-pro .card-body .wk-sec h2 {
     font-family: var(--font-head);
     font-size: clamp(1.3rem, 2.4vw, 1.65rem);
     font-weight: 800;
     line-height: 1.2;
     letter-spacing: -0.03em;
-    color: var(--ms-ink);
+    color: var(--pro-ink);
     margin: 0 0 0.75rem;
 }
 
 /* text fills the box; size and font set here so pubs card.css can't leak in */
-html.look-ms .card-body .wk-sec p,
-html.look-ms .card-body .wk-sec li {
+html.look-pro .card-body .wk-sec p,
+html.look-pro .card-body .wk-sec li {
     max-width: none;
     font-family: var(--font-text);
     font-size: 1rem;
     line-height: 1.65;
-    color: var(--ms-text);
+    color: var(--pro-text);
 }
-html.look-ms .card-body .wk-sec p { margin: 0 0 0.9rem; }
-html.look-ms .wk-sec strong { color: var(--ms-ink); }
-html.look-ms .wk-sec a { color: var(--ms-teal); text-decoration: none; font-weight: 700; }
-html.look-ms .wk-sec a:hover { text-decoration: underline; }
+html.look-pro .card-body .wk-sec p { margin: 0 0 0.9rem; }
+html.look-pro .wk-sec strong { color: var(--pro-ink); }
+html.look-pro .wk-sec a { color: var(--pro-teal); text-decoration: none; font-weight: 700; }
+html.look-pro .wk-sec a:hover { text-decoration: underline; }
 
-/* opening text: larger, like .ms-lead */
-html.look-ms .card-body .wk-intro p { font-size: 1.05rem; }
-html.look-ms .card-body .wk-intro p:first-child { font-size: 1.15rem; color: var(--ms-ink); }
+/* opening text: larger, as a lead */
+html.look-pro .card-body .wk-intro p { font-size: 1.05rem; }
+html.look-pro .card-body .wk-intro p:first-child { font-size: 1.15rem; color: var(--pro-ink); }
 
-/* lists: teal check bullets, like .ms-checks */
-html.look-ms .wk-sec ul { list-style: none; padding: 0; margin: 1rem 0; display: grid; gap: 0.7rem; }
-html.look-ms .card-body .wk-sec li { position: relative; padding-left: 1.9rem; margin: 0; }
-html.look-ms .wk-sec li::before {
+/* lists: teal check bullets */
+html.look-pro .wk-sec ul { list-style: none; padding: 0; margin: 1rem 0; display: grid; gap: 0.7rem; }
+html.look-pro .card-body .wk-sec li { position: relative; padding-left: 1.9rem; margin: 0; }
+html.look-pro .wk-sec li::before {
     content: ""; position: absolute; left: 0; top: 0.2rem; width: 1.2rem; height: 1.2rem; border-radius: 50%;
-    background: var(--ms-teal) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'><path d='M20 6 9 17l-5-5'/></svg>") center / 0.72rem no-repeat;
+    background: var(--pro-teal) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'><path d='M20 6 9 17l-5-5'/></svg>") center / 0.72rem no-repeat;
 }
 
 /* ---------- diagrams: navy lines on a soft teal panel, key boxes in teal ---------- */
-html.look-ms .wk-figure {
+html.look-pro .wk-figure {
     margin: 1.25rem 0 0.5rem !important;     /* the figure carries an inline margin for the plain look */
     padding: 1.25rem 1rem 1rem;
     border-radius: 12px;
-    background: linear-gradient(160deg, var(--ms-teal-soft), #f1f5f9);
+    background: linear-gradient(160deg, var(--pro-teal-soft), #f1f5f9);
 }
-html.look-ms .wk-diagram { color: var(--ms-navy); }
-html.look-ms .wk-diagram rect { fill: #fff; fill-opacity: 1; stroke: #cbd5e1; stroke-opacity: 1; }
-html.look-ms .wk-diagram rect[stroke-width="2"] { fill: var(--ms-teal-soft); stroke: var(--ms-teal); }
-html.look-ms .wk-diagram path[marker-end] { stroke: var(--ms-teal); stroke-opacity: 0.8; }
-html.look-ms .wk-diagram marker path { fill: var(--ms-teal); fill-opacity: 0.9; }
-html.look-ms .wk-figure figcaption { color: var(--ms-muted); opacity: 1 !important; }
+html.look-pro .wk-diagram { color: var(--pro-navy); }
+html.look-pro .wk-diagram rect { fill: #fff; fill-opacity: 1; stroke: #cbd5e1; stroke-opacity: 1; }
+html.look-pro .wk-diagram rect[stroke-width="2"] { fill: var(--pro-teal-soft); stroke: var(--pro-teal); }
+html.look-pro .wk-diagram path[marker-end] { stroke: var(--pro-teal); stroke-opacity: 0.8; }
+html.look-pro .wk-diagram marker path { fill: var(--pro-teal); fill-opacity: 0.9; }
+html.look-pro .wk-figure figcaption { color: var(--pro-muted); opacity: 1 !important; }
 
-/* ---------- closing section: the dark band, like .ms-band ---------- */
-html.look-ms .wk-band {
+/* ---------- closing section: the dark band ---------- */
+html.look-pro .wk-band {
     position: relative; overflow: hidden;
-    background: radial-gradient(120% 140% at 85% 10%, #134e5e 0%, var(--ms-navy-2) 38%, var(--ms-navy) 75%);
+    background: radial-gradient(120% 140% at 85% 10%, #134e5e 0%, var(--pro-navy-2) 38%, var(--pro-navy) 75%);
     border: none;
 }
-html.look-ms .card-body .wk-band h2 { color: #fff; }
-html.look-ms .card-body .wk-band p { color: #cbd5e1; }
-html.look-ms .wk-band .wk-eyebrow { color: var(--ms-teal-2); }
-html.look-ms .wk-band::after {
+html.look-pro .card-body .wk-band h2 { color: #fff; }
+html.look-pro .card-body .wk-band p { color: #cbd5e1; }
+html.look-pro .wk-band .wk-eyebrow { color: var(--pro-teal-2); }
+html.look-pro .wk-band::after {
     content: ""; position: absolute; right: -90px; top: -90px; width: 280px; height: 280px; border-radius: 50%;
     border: 1px solid rgb(45 212 191 / 0.18); box-shadow: 0 0 0 40px rgb(45 212 191 / 0.04), 0 0 0 80px rgb(45 212 191 / 0.03);
     pointer-events: none;
 }
 
 @media (max-width: 600px) {
-    html.look-ms .wk-sec { padding: 1.4rem 1.1rem 1.2rem; }
-    html.look-ms .wk-figure { padding: 0.9rem 0.4rem 0.8rem; margin-left: -0.4rem !important; margin-right: -0.4rem !important; overflow-x: auto; }
+    html.look-pro .wk-sec { padding: 1.4rem 1.1rem 1.2rem; }
+    html.look-pro .wk-figure { padding: 0.9rem 0.4rem 0.8rem; margin-left: -0.4rem !important; margin-right: -0.4rem !important; overflow-x: auto; }
     /* on a phone the diagram keeps a readable size and scrolls sideways instead of shrinking */
-    html.look-ms .wk-diagram { min-width: 540px; }
-    html.look-ms .wk-figure figcaption { position: sticky; left: 0; max-width: calc(100vw - 4.5rem); }
+    html.look-pro .wk-diagram { min-width: 540px; }
+    html.look-pro .wk-figure figcaption { position: sticky; left: 0; max-width: calc(100vw - 4.5rem); }
 }
 
-/* ---------- EN | ID button in the opening box (built by 03-works.js), same look as the mgmt.srvcs navbar button ---------- */
-html.look-ms .wk-lang {
+/* ---------- EN | ID button in the opening box (built by 03-works.js) ---------- */
+html.look-pro .wk-lang {
     display: inline-flex; gap: 2px; padding: 3px; margin: 0 0 1rem;
-    border: 1px solid var(--ms-line); border-radius: 999px; background: #fff;
+    border: 1px solid var(--pro-line); border-radius: 999px; background: #fff;
 }
-html.look-ms .wk-lang button {
+html.look-pro .wk-lang button {
     font: 700 12px/1 var(--font-text); letter-spacing: 0.04em;
     padding: 6px 10px; border: 0; border-radius: 999px; cursor: pointer;
-    background: transparent; color: var(--ms-muted); transition: background 0.2s, color 0.2s;
+    background: transparent; color: var(--pro-muted); transition: background 0.2s, color 0.2s;
 }
-html.look-ms .wk-lang button:hover { color: var(--ms-teal); }
-html.look-ms .wk-lang button[aria-pressed="true"] { background: #1e293b; color: #fff; cursor: default; }
-html.look-ms .wk-lang button:focus-visible { outline: 2px solid var(--ms-teal); outline-offset: 2px; }
+html.look-pro .wk-lang button:hover { color: var(--pro-teal); }
+html.look-pro .wk-lang button[aria-pressed="true"] { background: #1e293b; color: #fff; cursor: default; }
+html.look-pro .wk-lang button:focus-visible { outline: 2px solid var(--pro-teal); outline-offset: 2px; }
