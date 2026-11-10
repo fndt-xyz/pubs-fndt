@@ -20,6 +20,10 @@ html.look-pro {
     --pro-line: #e2e8f0;
     --pro-radius: 14px;
     --pro-shadow: 0 1px 2px rgb(15 23 42 / 0.04), 0 8px 24px rgb(15 23 42 / 0.05);
+    --pro-fs-title: clamp(1.1rem, 2.3vw, 1.25rem);
+    --pro-fs-text: 0.875rem;
+    --pro-fs-xs: 0.75rem;
+    --pro-fs-label: 0.6875rem;
     --font-head: 'Open Sans', sans-serif;
     --font-text: 'Inter', sans-serif;
     color-scheme: light;
@@ -34,7 +38,7 @@ html.look-pro body {
     background: transparent;
     color: var(--pro-ink);
     font-family: var(--font-text);
-    font-size: 16px;
+    font-size: var(--pro-fs-text);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
 }
@@ -55,7 +59,7 @@ html.look-pro .wk-sec > :last-child { margin-bottom: 0; }
 
 html.look-pro .wk-eyebrow {
     display: inline-block;
-    font-size: 11px;
+    font-size: var(--pro-fs-label);
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -65,7 +69,7 @@ html.look-pro .wk-eyebrow {
 
 html.look-pro .card-body .wk-sec h2 {
     font-family: var(--font-head);
-    font-size: clamp(1.3rem, 2.4vw, 1.65rem);
+    font-size: var(--pro-fs-title);
     font-weight: 800;
     line-height: 1.2;
     letter-spacing: -0.03em;
@@ -78,7 +82,7 @@ html.look-pro .card-body .wk-sec p,
 html.look-pro .card-body .wk-sec li {
     max-width: none;
     font-family: var(--font-text);
-    font-size: 1rem;
+    font-size: var(--pro-fs-text);
     line-height: 1.65;
     color: var(--pro-text);
 }
@@ -87,9 +91,8 @@ html.look-pro .wk-sec strong { color: var(--pro-ink); }
 html.look-pro .wk-sec a { color: var(--pro-teal); text-decoration: none; font-weight: 700; }
 html.look-pro .wk-sec a:hover { text-decoration: underline; }
 
-/* opening text: larger, as a lead */
-html.look-pro .card-body .wk-intro p { font-size: 1.05rem; }
-html.look-pro .card-body .wk-intro p:first-child { font-size: 1.15rem; color: var(--pro-ink); }
+/* opening text */
+html.look-pro .card-body .wk-intro p:first-child { color: var(--pro-ink); }
 
 /* lists: teal check bullets */
 html.look-pro .wk-sec ul { list-style: none; padding: 0; margin: 1rem 0; display: grid; gap: 0.7rem; }
@@ -142,7 +145,7 @@ html.look-pro .wk-lang {
     border: 1px solid var(--pro-line); border-radius: 999px; background: #fff;
 }
 html.look-pro .wk-lang button {
-    font: 700 12px/1 var(--font-text); letter-spacing: 0.04em;
+    font: 700 var(--pro-fs-xs)/1 var(--font-text); letter-spacing: 0.04em;
     padding: 6px 10px; border: 0; border-radius: 999px; cursor: pointer;
     background: transparent; color: var(--pro-muted); transition: background 0.2s, color 0.2s;
 }
