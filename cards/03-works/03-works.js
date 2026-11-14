@@ -4,7 +4,8 @@
   they take only the card's <article>, not its <head>.
 
   What it does:
-    1. splits the article into one box per <h4>: "9. forms that do the work" becomes eyebrow "step 09" + heading.
+    1. splits the article into one box per <h4>: "9. forms that do the work" becomes eyebrow "step 09" + heading
+       (or "option 09" when the <h4> has data-eyebrow="option").
        text before the first <h4> becomes the opening box; the last section becomes the dark closing band.
     2. puts an EN | ID button in the opening box. ID loads the sibling card with the same name plus "-id"
        (cards-03-01-workspace.html -> cards-03-01-workspace-id.html) and shows its article instead.
@@ -77,7 +78,9 @@
             start(m ? 'wk-step' : 'wk-note');
             var eyebrow = document.createElement('span');
             eyebrow.className = 'wk-eyebrow';
-            if (m) { seenStep = true; eyebrow.textContent = w.step + ' ' + (m[1].length < 2 ? '0' : '') + m[1]; }
+            // <h4 data-eyebrow="option">2. ...</h4> shows "option 02" instead of "step 02" (the word is used as written, in any language)
+            var word = node.getAttribute('data-eyebrow') || w.step;
+            if (m) { seenStep = true; eyebrow.textContent = word + ' ' + (m[1].length < 2 ? '0' : '') + m[1]; }
             else eyebrow.textContent = seenStep ? w.practice : w.overview;
             var title = m ? m[2] : text;
             var h2 = document.createElement('h2');

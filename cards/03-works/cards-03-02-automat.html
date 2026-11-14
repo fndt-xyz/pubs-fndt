@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cornered, not trapped: four ways out of chat lock-in</title>
+    <!--
+      CARD: only the writing, no navbar, footer or side box.
+      Used two ways:
+        1. a pubs page loads it (contents/03-works/page-03-02-automat.html) and shows only the <article class="card-body"> part.
+        2. any other website shows it in an iframe:
+             <iframe src="https://pubs.fndt.xyz/cards/03-works/cards-03-02-automat.html" class="pubs-card"
+                     title="works: four ways out of chat lock-in" loading="lazy" style="width:100%; border:0; height:600px"></iframe>
+             <script src="https://pubs.fndt.xyz/cards/embed.js"></script>   (optional: the iframe then fits its text, no scrollbar)
+           add ?look=pro to the src (cards-03-02-automat.html?look=pro) for the boxed look: see 03-works.css.
+      Write only inside <article class="card-body">. Keep links absolute (https://...) so they work on any site.
+      Meta's prices and rules below were checked in November 2026; update "the corner" and option 1 when Meta changes them.
+      <h4 data-eyebrow="option">: the boxed look labels that section "option 01" instead of "step 01" (see 03-works.js).
+    -->
+
+    <!-- search engines: the pubs page is the real address of this text, the card is a copy for embedding -->
+    <link rel="canonical" href="https://pubs.fndt.xyz/contents/03-works/page-03-02-automat.html">
+
+    <!-- inside an iframe, a click on a link opens a new tab instead of loading inside the small box -->
+    <base target="_blank">
+
+    <link rel="stylesheet" href="/cards/card.css">
+
+    <!-- LOOK SWITCH: plain by default. Opened with ?look=pro (another website iframes it that way), the card adds class "look-pro"
+         to <html> and loads the fonts, 03-works.css and 03-works.js from this folder. 03-works.js builds the boxes and the
+         EN / ID button (ID text: the same file name plus "-id"). A pubs page never runs this: it takes only the <article>. -->
+    <style>html.look-pro:not(.wk-ready) body { visibility: hidden; }</style>
+    <script>
+        (function () {
+            if (!/[?&]look=pro(&|$)/.test(location.search)) return;
+            var root = document.documentElement;
+            root.classList.add('look-pro');
+            setTimeout(function () { root.classList.add('wk-ready'); }, 4000);   // never stay hidden if a file fails to load
+            ['https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Open+Sans:wght@700;800&display=swap', '03-works.css']
+                .forEach(function (href) {
+                    var link = document.createElement('link');
+                    link.rel = 'stylesheet';
+                    link.href = href;
+                    document.head.appendChild(link);
+                });
+            var script = document.createElement('script');
+            script.src = '03-works.js';
+            document.head.appendChild(script);
+        })();
+    </script>
+</head>
+<body>
+    <article class="card-body">
+        <p>
+            Customers message businesses on WhatsApp, Instagram and Facebook, so that is where shops, clinics, workshops and merchants answer them.
+            Over the years, that convenience turned into dependence. The customer list, the chat history and the daily routine of the front desk all live on one company's platforms,
+            and that company sets the price and the rules for automating them.
+        </p>
+        <p>
+            Being cornered is not the same as being trapped. There are several ways out, each with its own cost, effort and risk.
+            This article walks through four of them, from staying fully inside Meta to running chat on the business's own website, so the business can pick with clear eyes.
+        </p>
+
+        <h4>the corner</h4>
+        <ul class="list-flush">
+            <li><strong>Every reply is metered.</strong> From 1 October 2026, Meta charges for each reply a business sends through the WhatsApp Business Platform (the API), after the first 1,000 a month per number. Until then, replies to a customer who wrote first were free. Template messages, the only way to start a conversation, were already paid.</li>
+            <li><strong>Meta's AI comes first.</strong> Meta Business Agent, Meta's own AI for customer chat, has been billed by tokens since August 2026, and small businesses get it inside some tiers of the WhatsApp Business app's paid subscription.</li>
+            <li><strong>Your own AI costs twice.</strong> Meta's pricing pages say it plainly: a business that uses a third-party AI pays the AI provider for the AI and the messaging provider for delivery. A subscription that already includes Meta's AI, unused, makes it three bills.</li>
+            <li><strong>The rules move.</strong> Since January 2026, general-purpose AI assistants are banned from the WhatsApp API. Customer-service bots are still allowed, but on Meta's terms, and the terms and prices have changed several times in two years.</li>
+        </ul>
+        <p>
+            For a small business with modest chat volume, the bill for fully automating WhatsApp the official way can grow toward what a part-time staff member costs, and the staff member also handles what a bot can't.
+            That is the corner. The four ways out below share one idea that makes them work.
+        </p>
+
+        <h4>the rule behind every way out</h4>
+        <p>
+            The AI is not the brain. It reads a message, works out what the customer wants, and sends the conversation to one of three places: a saved answer, a link (booking page, order form, catalog, map), or a person.
+            It works inside tight instructions: answer only from the business's own list, never invent a price or a promise, and hand over the moment it isn't sure.
+        </p>
+        <p>
+            Because the AI only sorts and translates, any provider will do, including free tiers, and switching providers takes an afternoon, not a migration.
+            The saved answers, prices and links live in the business's own files, not inside anyone's platform. Options 2 to 4 are built this way.
+        </p>
+
+        <figure class="wk-figure" style="margin:1.5rem 0">
+            <svg class="wk-diagram" viewBox="0 0 600 300" width="100%" role="img" aria-label="Messages from every channel come into one command center, and the AI routes each one to a saved answer, a link or a person" xmlns="http://www.w3.org/2000/svg" style="display:block;max-width:640px;height:auto;margin:0 auto"><defs><marker id="wk-c1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="currentColor" fill-opacity=".6"/></marker></defs><rect x="15" y="105" width="125" height="90" rx="10" fill="currentColor" fill-opacity="0.04" stroke="currentColor" stroke-opacity="0.45" stroke-width="1"/><text x="77.5" y="136.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">customers</text><text x="77.5" y="152.0" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">WhatsApp · Instagram</text><text x="77.5" y="167.0" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">Facebook · website</text><rect x="180" y="85" width="175" height="130" rx="10" fill="currentColor" fill-opacity="0.1" stroke="currentColor" stroke-opacity="0.9" stroke-width="2"/><text x="267.5" y="124.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">command center</text><text x="267.5" y="141.0" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">small Linux box, no screen</text><text x="267.5" y="157.0" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">one shared inbox</text><text x="267.5" y="173.0" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">AI of your choice sorts</text><text x="267.5" y="189.0" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">each message</text><rect x="400" y="15" width="185" height="70" rx="10" fill="currentColor" fill-opacity="0.04" stroke="currentColor" stroke-opacity="0.45" stroke-width="1"/><text x="492.5" y="45.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">a saved answer</text><text x="492.5" y="61.0" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">hours, prices, location</text><rect x="400" y="115" width="185" height="70" rx="10" fill="currentColor" fill-opacity="0.04" stroke="currentColor" stroke-opacity="0.45" stroke-width="1"/><text x="492.5" y="145.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">a link</text><text x="492.5" y="161.0" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">booking, order form, catalog</text><rect x="400" y="215" width="185" height="70" rx="10" fill="currentColor" fill-opacity="0.1" stroke="currentColor" stroke-opacity="0.9" stroke-width="2"/><text x="492.5" y="245.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">a person</text><text x="492.5" y="261.0" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">staff pinged to join in</text><path d="M140 143 L178 143" fill="none" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" marker-end="url(#wk-c1)"/><path d="M180 157 L142 157" fill="none" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#wk-c1)"/><text x="160" y="240" text-anchor="middle" font-size="10.5" font-style="italic" fill="currentColor" fill-opacity=".7">replies go back</text><text x="160" y="254" text-anchor="middle" font-size="10.5" font-style="italic" fill="currentColor" fill-opacity=".7">at human pace</text><path d="M355 120 C375 100 380 60 398 50" fill="none" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" marker-end="url(#wk-c1)"/><path d="M355 150 L398 150" fill="none" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" marker-end="url(#wk-c1)"/><path d="M355 180 C375 200 380 240 398 250" fill="none" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" marker-end="url(#wk-c1)"/></svg>
+            <figcaption style="font-size:.85em;opacity:.75;text-align:center;margin-top:.5rem">Every message lands in one inbox. The AI only decides where it goes: a saved answer, a link, or a person.</figcaption>
+        </figure>
+
+        <h4 data-eyebrow="option">1. stay inside Meta, the official way</h4>
+        <p>
+            Most businesses start with the free WhatsApp Business app on one phone: a profile, a catalog, a greeting message, an away message and quick replies, all typed by hand.
+            Real automation means moving to the WhatsApp Business Platform, either directly through Meta's Cloud API or through a provider that resells it with a dashboard on top.
+        </p>
+        <ul class="list-flush">
+            <li><strong>What you get:</strong> the official route. Automation is allowed, broadcasts go out as approved templates, and the number isn't at risk for using a bot.</li>
+            <li><strong>What it costs:</strong> each reply past the free 1,000 a month, each template, the provider's monthly fee, and Meta's AI by the token or a second AI bill for your own.</li>
+            <li><strong>Who it suits:</strong> high-volume businesses, large broadcast lists, and anyone who needs the official status more than the savings.</li>
+        </ul>
+
+        <h4 data-eyebrow="option">2. an open-source command center</h4>
+        <p>
+            One screen for every chat account the business runs. A free, open-source shared inbox such as <a href="https://www.chatwoot.com/">Chatwoot</a> holds the conversations,
+            and a gateway such as <a href="https://github.com/EvolutionAPI/evolution-api">Evolution API</a> links each WhatsApp number to it the same way WhatsApp Web links a laptop.
+            Instagram and Facebook messages come into the same inbox through Meta's own messaging connections. <a href="https://typebot.io/">Typebot</a> handles question-and-answer flows, and the AI sits in between to sort messages.
+        </p>
+        <p>
+            All of it runs headless on a small Linux machine: a mini PC, an office desktop, or an old laptop with a broken screen in a corner of the shop.
+            Staff open the inbox from any browser, on a desk computer or a phone.
+        </p>
+        <ul class="list-flush">
+            <li><strong>Built to help staff, not replace them.</strong> In assist mode, the bot labels each chat, drafts a reply from the saved answers, and waits for a person to send it. One person can then look after several numbers and accounts that used to need several phones.</li>
+            <li><strong>Full auto for easy questions.</strong> Opening hours, location, price list, booking link, order status: the bot answers these on its own and leaves the rest to a person.</li>
+            <li><strong>Human pace, on purpose.</strong> Scripts type with a short delay, leave gaps between messages, keep to working hours, and never blast a list. One box does what one attentive employee does at a desk, which is fair use, not spam.</li>
+            <li><strong>Warm contacts only.</strong> It answers people who wrote first, and follows up with past customers and people who came from the business's social media or website. It never cold-messages bought lists.</li>
+        </ul>
+        <p>
+            Be clear about the risk. The free WhatsApp connection works through WhatsApp Web, which is not Meta's official route, and WhatsApp's terms don't allow unofficial automated clients.
+            Numbers that look like bots can be restricted. Human pace, warm contacts and a dedicated business number keep that risk low, not zero.
+            The same gateway can also connect through the official Cloud API, so a business can move a busy number onto the paid route later without changing the inbox or retraining staff.
+        </p>
+        <p>
+            There is also a paid version of the same idea: hosted command centers such as <a href="https://respond.io/">respond.io</a>, <a href="https://sleekflow.io/">SleekFlow</a>,
+            <a href="https://www.wati.io/">Wati</a> or, in Indonesia, <a href="https://qontak.com/">Qontak</a>. They run on Meta's official API, so Meta's fees apply on top of a monthly subscription.
+            In return there is no server to look after and no ban risk. Own box and own risk, or a monthly fee and Meta's meter: that choice belongs to the business.
+        </p>
+
+        <h4 data-eyebrow="option">3. open platforms nobody can switch off</h4>
+        <p>
+            Meta's rules only apply on Meta's platforms. Open, federated platforms allow bots openly and charge nothing per message.
+        </p>
+        <ul class="list-flush">
+            <li><strong><a href="https://matrix.org/">Matrix</a></strong>: an open chat network. A business can run its own server, bots are welcome, and it doubles as a private team chat for staff.</li>
+            <li><strong><a href="https://signal.org/">Signal</a></strong>: private messaging that many careful customers already use. It has no official bot API, but the open-source <a href="https://github.com/AsamK/signal-cli">signal-cli</a> runs a business number from a server.</li>
+            <li><strong><a href="https://joinmastodon.org/">Mastodon</a></strong> and <strong><a href="https://pixelfed.org/">Pixelfed</a></strong>: open alternatives to X and Instagram. Both have open APIs, so posting and replying can run from scripts, and Mastodon lets an account be marked as a bot.</li>
+        </ul>
+        <p>
+            One headless command center can post content and answer messages across all of them, with the same saved answers and the same AI rule.
+            The catch is reach: most customers are still on WhatsApp and Instagram. So treat these as a second home, not a replacement.
+            Invite loyal customers there, run the staff chat there, and the business keeps a channel that no platform can price up or take away.
+        </p>
+
+        <h4 data-eyebrow="option">4. chat on your own website</h4>
+        <p>
+            A visitor clicks "chat" on the website. Before the first message, they type their name and WhatsApp number, so the business can pick up the conversation later even if they close the tab.
+            The chat runs on an open-source flow tool such as Typebot or a website chat widget, follows the same rule (saved answer, link or person), and can use any AI behind it.
+        </p>
+        <p>
+            Every conversation is emailed to the business's own Gmail, and staff answer from there, or move the customer to WhatsApp.
+            When that customer writes on WhatsApp, they have written first, which is the cheapest conversation on any of the routes above.
+        </p>
+        <ul class="list-flush">
+            <li><strong>What you get:</strong> no platform fee, no ban risk, and the business owns every word of the conversation.</li>
+            <li><strong>What you give up:</strong> it only reaches people who visit the website, so it works alongside the other options, not instead of them.</li>
+        </ul>
+
+        <h4>choosing</h4>
+        <p>
+            Most businesses end up with a mix. Website chat is the front door: free, safe and owned. A command center, open-source or paid, handles WhatsApp, Instagram and Facebook.
+            Open platforms keep a channel no one else controls. And the official Meta route makes sense once volume and broadcasts are big enough to pay for it.
+        </p>
+        <p>
+            Whatever the mix, keep the customer list, the saved answers and the AI's instructions in the business's own files, not inside any one platform.
+            Then moving from one option to another costs a weekend, and no platform can corner the business again.
+        </p>
+    </article>
+
+    <!-- inside an iframe: tell the host page how tall this card is, so cards/embed.js can size the iframe.
+         does nothing when the card is opened on its own, or when a pubs page shows it (scripts don't run there). -->
+    <script>
+        (function () {
+            if (window.parent === window) return;
+            var send = function () {
+                window.parent.postMessage({ type: 'pubs-card-height', height: document.body.offsetHeight }, '*');
+            };
+            window.addEventListener('load', send);
+            if (window.ResizeObserver) new ResizeObserver(send).observe(document.body);
+        })();
+    </script>
+</body>
+</html>
