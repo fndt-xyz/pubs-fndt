@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>terpojok, bukan terjebak: empat jalan keluar dari ketergantungan chat</title>
+    <!--
+      CARD, INDONESIAN: the Indonesian text of cards-03-02-automat.html. Same layout, same diagram, translated.
+      Not shown on pubs pages (pubs shows English only). a website that iframes the English card loads it through the EN / ID button
+      inside that card (03-works.js), or it can be iframed directly: cards-03-02-automat-id.html?look=pro
+      When the English card changes, change this file the same way. Write only inside <article class="card-body">.
+      <h4 data-eyebrow="opsi">: the boxed look labels that section "opsi 01" (see 03-works.js).
+    -->
+
+    <!-- search engines: the pubs page is the real address of this text, the card is a copy for embedding -->
+    <link rel="canonical" href="https://pubs.fndt.xyz/contents/03-works/page-03-02-automat.html">
+
+    <!-- inside an iframe, a click on a link opens a new tab instead of loading inside the small box -->
+    <base target="_blank">
+
+    <link rel="stylesheet" href="/cards/card.css">
+
+    <!-- LOOK SWITCH: plain by default. Opened with ?look=pro (another website iframes it that way), the card adds class "look-pro"
+         to <html> and loads the fonts, 03-works.css and 03-works.js from this folder. 03-works.js builds the boxes and the
+         EN / ID button (ID text: the same file name plus "-id"). A pubs page never runs this: it takes only the <article>. -->
+    <style>html.look-pro:not(.wk-ready) body { visibility: hidden; }</style>
+    <script>
+        (function () {
+            if (!/[?&]look=pro(&|$)/.test(location.search)) return;
+            var root = document.documentElement;
+            root.classList.add('look-pro');
+            setTimeout(function () { root.classList.add('wk-ready'); }, 4000);   // never stay hidden if a file fails to load
+            ['https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Open+Sans:wght@700;800&display=swap', '03-works.css']
+                .forEach(function (href) {
+                    var link = document.createElement('link');
+                    link.rel = 'stylesheet';
+                    link.href = href;
+                    document.head.appendChild(link);
+                });
+            var script = document.createElement('script');
+            script.src = '03-works.js';
+            document.head.appendChild(script);
+        })();
+    </script>
+</head>
+<body>
+    <article class="card-body">
+        <p>
+            Pelanggan mengirim pesan ke bisnis lewat WhatsApp, Instagram, dan Facebook, jadi di sanalah toko, klinik, bengkel, dan merchant menjawab mereka.
+            Seiring waktu, kemudahan itu berubah menjadi ketergantungan. Daftar pelanggan, riwayat chat, dan rutinitas harian front desk semuanya ada di platform milik satu perusahaan,
+            dan perusahaan itulah yang menentukan harga serta aturan untuk mengotomatiskannya.
+        </p>
+        <p>
+            Terpojok tidak sama dengan terjebak. Ada beberapa jalan keluar, masing-masing dengan biaya, usaha, dan risikonya sendiri.
+            Artikel ini membahas empat di antaranya, dari tetap sepenuhnya di dalam Meta sampai menjalankan chat di website bisnis sendiri, supaya bisnis bisa memilih dengan jelas.
+        </p>
+
+        <h4>posisi terpojok</h4>
+        <ul class="list-flush">
+            <li><strong>Setiap balasan dihitung.</strong> Mulai 1 Oktober 2026, Meta mengenakan biaya untuk setiap balasan yang dikirim bisnis lewat WhatsApp Business Platform (API), setelah 1.000 pertama per bulan per nomor. Sebelumnya, balasan kepada pelanggan yang menulis lebih dulu tidak dikenakan biaya. Template message, satu-satunya cara memulai percakapan, memang sudah berbayar.</li>
+            <li><strong>AI Meta didahulukan.</strong> Meta Business Agent, AI milik Meta untuk chat pelanggan, ditagih per token sejak Agustus 2026, dan bisnis kecil mendapatkannya di beberapa tingkat langganan berbayar aplikasi WhatsApp Business.</li>
+            <li><strong>AI sendiri berarti bayar dua kali.</strong> Halaman harga Meta menyebutkannya dengan jelas: bisnis yang memakai AI pihak ketiga membayar penyedia AI untuk AI-nya dan penyedia pesan untuk pengirimannya. Jika langganan yang sudah termasuk AI Meta tidak dipakai, tagihannya menjadi tiga.</li>
+            <li><strong>Aturannya terus berubah.</strong> Sejak Januari 2026, asisten AI serba guna dilarang di WhatsApp API. Bot layanan pelanggan masih diizinkan, tetapi dengan syarat dari Meta, dan syarat serta harganya sudah beberapa kali berubah dalam dua tahun.</li>
+        </ul>
+        <p>
+            Untuk bisnis kecil dengan volume chat sedang, tagihan untuk otomatisasi WhatsApp penuh lewat jalur resmi bisa mendekati biaya seorang staf paruh waktu, sementara staf itu juga bisa menangani hal yang tidak bisa ditangani bot.
+            Itulah posisi terpojoknya. Empat jalan keluar di bawah ini memakai satu prinsip yang sama.
+        </p>
+
+        <h4>prinsip di balik setiap jalan keluar</h4>
+        <p>
+            AI bukan otaknya. AI membaca pesan, memahami apa yang diinginkan pelanggan, lalu mengarahkan percakapan ke salah satu dari tiga tempat: jawaban tersimpan, link (halaman booking, formulir order, katalog, peta), atau staf.
+            AI bekerja dengan instruksi yang ketat: menjawab hanya dari daftar milik bisnis, tidak pernah mengarang harga atau janji, dan segera menyerahkan ke staf begitu ragu.
+        </p>
+        <p>
+            Karena AI hanya memilah dan menerjemahkan, penyedia mana pun bisa dipakai, termasuk free tier, dan berganti penyedia cukup satu sore, bukan migrasi besar.
+            Jawaban tersimpan, harga, dan link disimpan di file milik bisnis sendiri, bukan di dalam platform siapa pun. Opsi 2 sampai 4 dibangun dengan cara ini.
+        </p>
+
+        <figure class="wk-figure" style="margin:1.5rem 0">
+            <svg class="wk-diagram" viewBox="0 0 600 300" width="100%" role="img" aria-label="Pesan dari setiap channel masuk ke satu command center, lalu AI mengarahkan setiap pesan ke jawaban tersimpan, link, atau staf" xmlns="http://www.w3.org/2000/svg" style="display:block;max-width:640px;height:auto;margin:0 auto"><defs><marker id="wk-c1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="currentColor" fill-opacity=".6"/></marker></defs><rect x="15" y="105" width="125" height="90" rx="10" fill="currentColor" fill-opacity="0.04" stroke="currentColor" stroke-opacity="0.45" stroke-width="1"/><text x="77.5" y="136.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">pelanggan</text><text x="77.5" y="152.0" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">WhatsApp · Instagram</text><text x="77.5" y="167.0" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">Facebook · website</text><rect x="180" y="85" width="175" height="130" rx="10" fill="currentColor" fill-opacity="0.1" stroke="currentColor" stroke-opacity="0.9" stroke-width="2"/><text x="267.5" y="124.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">command center</text><text x="267.5" y="141.0" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">Linux box kecil, tanpa layar</text><text x="267.5" y="157.0" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">satu inbox bersama</text><text x="267.5" y="173.0" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">AI pilihan Anda memilah</text><text x="267.5" y="189.0" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">setiap pesan</text><rect x="400" y="15" width="185" height="70" rx="10" fill="currentColor" fill-opacity="0.04" stroke="currentColor" stroke-opacity="0.45" stroke-width="1"/><text x="492.5" y="45.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">jawaban tersimpan</text><text x="492.5" y="61.0" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">jam buka, harga, lokasi</text><rect x="400" y="115" width="185" height="70" rx="10" fill="currentColor" fill-opacity="0.04" stroke="currentColor" stroke-opacity="0.45" stroke-width="1"/><text x="492.5" y="145.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">link</text><text x="492.5" y="161.0" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">booking, formulir order, katalog</text><rect x="400" y="215" width="185" height="70" rx="10" fill="currentColor" fill-opacity="0.1" stroke="currentColor" stroke-opacity="0.9" stroke-width="2"/><text x="492.5" y="245.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">staf</text><text x="492.5" y="261.0" text-anchor="middle" font-size="11" font-weight="400" fill="currentColor" fill-opacity=".75">dipanggil untuk ikut menjawab</text><path d="M140 143 L178 143" fill="none" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" marker-end="url(#wk-c1)"/><path d="M180 157 L142 157" fill="none" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#wk-c1)"/><text x="160" y="240" text-anchor="middle" font-size="10.5" font-style="italic" fill="currentColor" fill-opacity=".7">balasan dikirim</text><text x="160" y="254" text-anchor="middle" font-size="10.5" font-style="italic" fill="currentColor" fill-opacity=".7">dengan kecepatan manusia</text><path d="M355 120 C375 100 380 60 398 50" fill="none" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" marker-end="url(#wk-c1)"/><path d="M355 150 L398 150" fill="none" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" marker-end="url(#wk-c1)"/><path d="M355 180 C375 200 380 240 398 250" fill="none" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" marker-end="url(#wk-c1)"/></svg>
+            <figcaption style="font-size:.85em;opacity:.75;text-align:center;margin-top:.5rem">Setiap pesan masuk ke satu inbox. AI hanya menentukan ke mana pesan itu diarahkan: jawaban tersimpan, link, atau staf.</figcaption>
+        </figure>
+
+        <h4 data-eyebrow="opsi">1. tetap di dalam Meta, lewat jalur resmi</h4>
+        <p>
+            Sebagian besar bisnis memulai dengan aplikasi WhatsApp Business gratis di satu ponsel: profil, katalog, greeting message, away message, dan quick reply, semuanya diketik manual.
+            Otomatisasi yang sesungguhnya berarti pindah ke WhatsApp Business Platform, baik langsung lewat Cloud API milik Meta maupun lewat penyedia yang menjualnya kembali dengan dashboard di atasnya.
+        </p>
+        <ul class="list-flush">
+            <li><strong>Yang didapat:</strong> jalur resmi. Otomatisasi diizinkan, broadcast dikirim sebagai template yang sudah disetujui, dan nomor tidak berisiko karena memakai bot.</li>
+            <li><strong>Biayanya:</strong> setiap balasan setelah 1.000 gratis per bulan, setiap template, biaya bulanan penyedia, serta AI Meta per token atau tagihan AI kedua untuk AI sendiri.</li>
+            <li><strong>Cocok untuk:</strong> bisnis bervolume tinggi, daftar broadcast besar, dan siapa pun yang lebih membutuhkan status resmi daripada penghematan.</li>
+        </ul>
+
+        <h4 data-eyebrow="opsi">2. command center open-source</h4>
+        <p>
+            Satu layar untuk semua akun chat yang dijalankan bisnis. Inbox bersama open-source yang gratis seperti <a href="https://www.chatwoot.com/">Chatwoot</a> menampung percakapan,
+            dan gateway seperti <a href="https://github.com/EvolutionAPI/evolution-api">Evolution API</a> menghubungkan setiap nomor WhatsApp ke inbox itu, sama seperti WhatsApp Web menghubungkan laptop.
+            Pesan Instagram dan Facebook masuk ke inbox yang sama lewat koneksi pesan resmi milik Meta. <a href="https://typebot.io/">Typebot</a> menangani alur tanya jawab, dan AI berada di tengah untuk memilah pesan.
+        </p>
+        <p>
+            Semuanya berjalan headless di mesin Linux kecil: mini PC, komputer kantor, atau laptop lama dengan layar rusak di sudut toko.
+            Staf membuka inbox dari browser mana pun, di komputer meja maupun di ponsel.
+        </p>
+        <ul class="list-flush">
+            <li><strong>Dibuat untuk membantu staf, bukan menggantikannya.</strong> Dalam assist mode, bot memberi label pada setiap chat, menyiapkan draf balasan dari jawaban tersimpan, lalu menunggu staf mengirimnya. Satu orang pun bisa mengurus beberapa nomor dan akun yang dulu membutuhkan beberapa ponsel.</li>
+            <li><strong>Otomatis penuh untuk pertanyaan mudah.</strong> Jam buka, lokasi, daftar harga, link booking, status order: bot menjawab sendiri dan menyerahkan sisanya ke staf.</li>
+            <li><strong>Kecepatan manusia, memang disengaja.</strong> Script mengetik dengan sedikit jeda, memberi jarak antar pesan, hanya aktif di jam kerja, dan tidak pernah mengirim pesan massal. Satu box bekerja seperti satu karyawan yang cermat di mejanya, jadi ini pemakaian yang wajar, bukan spam.</li>
+            <li><strong>Hanya kontak yang sudah kenal.</strong> Bot menjawab orang yang menulis lebih dulu, dan menindaklanjuti pelanggan lama serta orang yang datang dari media sosial atau website bisnis. Bot tidak pernah mengirim pesan ke daftar kontak yang dibeli.</li>
+        </ul>
+        <p>
+            Risikonya perlu jelas. Koneksi WhatsApp gratis ini bekerja lewat WhatsApp Web, yang bukan jalur resmi Meta, dan ketentuan WhatsApp tidak mengizinkan klien otomatis tidak resmi.
+            Nomor yang terlihat seperti bot bisa dibatasi. Kecepatan manusia, kontak yang sudah kenal, dan nomor khusus bisnis membuat risikonya rendah, tetapi tidak nol.
+            Gateway yang sama juga bisa terhubung lewat Cloud API resmi, jadi nomor yang sibuk bisa dipindah ke jalur berbayar nanti tanpa mengganti inbox atau melatih ulang staf.
+        </p>
+        <p>
+            Ada juga versi berbayar dari ide yang sama: command center yang di-hosting seperti <a href="https://respond.io/">respond.io</a>, <a href="https://sleekflow.io/">SleekFlow</a>,
+            <a href="https://www.wati.io/">Wati</a>, atau, di Indonesia, <a href="https://qontak.com/">Qontak</a>. Semuanya berjalan di API resmi Meta, jadi biaya Meta tetap berlaku di atas langganan bulanan.
+            Sebagai gantinya, tidak ada server yang perlu dirawat dan tidak ada risiko diblokir. Box sendiri dengan risiko sendiri, atau biaya bulanan dengan argo Meta: pilihan itu ada di tangan bisnis.
+        </p>
+
+        <h4 data-eyebrow="opsi">3. platform terbuka yang tidak bisa dimatikan siapa pun</h4>
+        <p>
+            Aturan Meta hanya berlaku di platform Meta. Platform terbuka dan terdesentralisasi mengizinkan bot secara terbuka dan tidak memungut biaya per pesan.
+        </p>
+        <ul class="list-flush">
+            <li><strong><a href="https://matrix.org/">Matrix</a></strong>: jaringan chat terbuka. Bisnis bisa menjalankan server sendiri, bot dipersilakan, dan sekaligus bisa menjadi chat internal yang privat untuk staf.</li>
+            <li><strong><a href="https://signal.org/">Signal</a></strong>: aplikasi pesan privat yang sudah dipakai banyak pelanggan yang peduli privasi. Signal tidak punya bot API resmi, tetapi <a href="https://github.com/AsamK/signal-cli">signal-cli</a> yang open-source bisa menjalankan nomor bisnis dari server.</li>
+            <li><strong><a href="https://joinmastodon.org/">Mastodon</a></strong> dan <strong><a href="https://pixelfed.org/">Pixelfed</a></strong>: alternatif terbuka untuk X dan Instagram. Keduanya punya API terbuka, jadi posting dan balasan bisa dijalankan dari script, dan Mastodon memungkinkan akun ditandai sebagai bot.</li>
+        </ul>
+        <p>
+            Satu command center headless bisa memposting konten dan menjawab pesan di semuanya, dengan jawaban tersimpan dan prinsip AI yang sama.
+            Kekurangannya adalah jangkauan: sebagian besar pelanggan masih ada di WhatsApp dan Instagram. Jadi anggap platform ini sebagai rumah kedua, bukan pengganti.
+            Undang pelanggan setia ke sana, jalankan chat staf di sana, dan bisnis punya satu channel yang harganya tidak bisa dinaikkan atau diambil oleh platform mana pun.
+        </p>
+
+        <h4 data-eyebrow="opsi">4. chat di website sendiri</h4>
+        <p>
+            Pengunjung mengklik "chat" di website. Sebelum pesan pertama, mereka mengisi nama dan nomor WhatsApp, supaya bisnis bisa melanjutkan percakapan nanti meskipun tab sudah ditutup.
+            Chat berjalan di alat alur open-source seperti Typebot atau widget chat website, mengikuti prinsip yang sama (jawaban tersimpan, link, atau staf), dan bisa memakai AI apa pun di belakangnya.
+        </p>
+        <p>
+            Setiap percakapan dikirim lewat email ke Gmail milik bisnis, lalu staf menjawab dari sana, atau memindahkan pelanggan ke WhatsApp.
+            Ketika pelanggan itu menulis di WhatsApp, merekalah yang menulis lebih dulu, dan itu percakapan paling murah di jalur mana pun di atas.
+        </p>
+        <ul class="list-flush">
+            <li><strong>Yang didapat:</strong> tanpa biaya platform, tanpa risiko diblokir, dan setiap kata dalam percakapan menjadi milik bisnis.</li>
+            <li><strong>Yang dikorbankan:</strong> hanya menjangkau orang yang mengunjungi website, jadi opsi ini berjalan berdampingan dengan opsi lain, bukan menggantikannya.</li>
+        </ul>
+
+        <h4>memilih</h4>
+        <p>
+            Sebagian besar bisnis akhirnya memakai gabungan. Chat website menjadi pintu depan: gratis, aman, dan milik sendiri. Command center, open-source atau berbayar, menangani WhatsApp, Instagram, dan Facebook.
+            Platform terbuka menjaga satu channel yang tidak dikendalikan pihak lain. Dan jalur resmi Meta masuk akal begitu volume dan broadcast cukup besar untuk menutup biayanya.
+        </p>
+        <p>
+            Apa pun gabungannya, simpan daftar pelanggan, jawaban tersimpan, dan instruksi AI di file milik bisnis sendiri, bukan di dalam satu platform.
+            Dengan begitu, pindah dari satu opsi ke opsi lain cukup satu akhir pekan, dan tidak ada platform yang bisa memojokkan bisnis lagi.
+        </p>
+    </article>
+
+    <!-- inside an iframe: tell the host page how tall this card is, so cards/embed.js can size the iframe.
+         does nothing when the card is opened on its own, or when a pubs page shows it (scripts don't run there). -->
+    <script>
+        (function () {
+            if (window.parent === window) return;
+            var send = function () {
+                window.parent.postMessage({ type: 'pubs-card-height', height: document.body.offsetHeight }, '*');
+            };
+            window.addEventListener('load', send);
+            if (window.ResizeObserver) new ResizeObserver(send).observe(document.body);
+        })();
+    </script>
+</body>
+</html>
