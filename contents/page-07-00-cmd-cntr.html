@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pubs.fndt.xyz | command center</title>
+
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <link rel="stylesheet" href="../global.css">
+    <style>
+        /* diagrams and code boxes for this page only */
+        .cc-figure { margin: 1.5rem 0; }
+        .cc-figure svg { display: block; width: 100%; max-width: 640px; height: auto; margin: 0 auto; }
+        .cc-figure figcaption { font-size: .85em; opacity: .75; text-align: center; margin-top: .5rem; }
+        .cc-code { font: 12px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: #f1f5f9; color: #0f172a;
+                   border-radius: 8px; padding: .8rem 1rem; overflow-x: auto; white-space: pre; text-align: left; margin: 1rem 0; }
+        .cc-note { border-left: 3px solid #94a3b8; padding: .2rem .9rem; margin: 1rem 0; opacity: .9; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div id="navbar-placeholder"></div>
+
+    <main class="view-container">
+        <div class="grid-two-one">
+
+            <div class="left-col">
+                <section class="view-card">
+                    <h1 class="view-title">command center</h1>
+                    <hr class="title-sep">
+
+                    <nav class="breadcrumb">
+                        <div class="crumb-line">
+                            &gt; <a href="/index.html">home</a> &gt;
+                            <a href="/all-pages.html">all-pages</a> &gt;
+                            <span class="current">command center</span>
+                        </div>
+                    </nav>
+
+                    <div class="view-content">
+                        <p>
+                            One desk, many chats. This paper describes a self-hosted command center for customer chat: one quiet machine that holds several chat accounts,
+                            sorts every incoming message, answers the easy ones from a list of saved replies, drafts the harder ones with an AI model of your choice,
+                            and hands the rest to a person. It is built from open-source parts and a thin layer of glue code, and it runs on hardware most offices already have.
+                        </p>
+                        <p>
+                            The main design goal is not to replace staff. It is to let one person look after three to five chat accounts, or dozens on open platforms,
+                            without drowning. The machine does the sorting, the repetition and the night shift; the person keeps the judgment.
+                            When it is allowed to answer on its own, it does so at the pace and stamina of a careful employee, never faster.
+                        </p>
+
+                        <!-- IMAGE: put the JPG here later, e.g.
+                        <img src="https://..." alt="command center overview" style="width:100%;max-width:640px;height:auto;display:block;margin:20px auto;" draggable="false">
+                        -->
+
+                        <h4>1. why build it yourself</h4>
+                        <p>
+                            The most popular messenger in many markets, the green one, belongs to a social-media conglomerate that now meters business replies and prefers its own AI.
+                            <a href="/contents/03-works/page-03-02-automat.html">Cornered, not trapped</a> lays out the four ways around that.
+                            This paper is the technical follow-up to its second option, the open-source command center: how it is put together, what it does, and how to deploy it carefully.
+                        </p>
+                        <p>Three reasons to self-host:</p>
+                        <ul class="list-flush">
+                            <li><strong>Cost:</strong> no per-reply meter on the open route, and the AI can start on a free tier.</li>
+                            <li><strong>Choice:</strong> the AI is a replaceable part. Swap providers by changing one setting, not by migrating a platform.</li>
+                            <li><strong>Custody:</strong> conversations, saved replies and rules stay on your machine, in plain files you can read.</li>
+                        </ul>
+
+                        <h4>2. the shape of the system</h4>
+                        <p>
+                            Five parts, each small and replaceable: gateways that hold the chat accounts, a router that decides what to say, an outbox that decides when to say it,
+                            a command center page for the person in charge, and plain files for memory.
+                        </p>
+
+                        <figure class="cc-figure">
+                            <svg viewBox="0 0 600 330" role="img" aria-label="Chat accounts connect through gateways to a router and an outbox on one machine; a person supervises from the command center" xmlns="http://www.w3.org/2000/svg" font-family="inherit"><defs><marker id="cc-a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="currentColor" fill-opacity=".6"/></marker></defs>
+                                <rect x="10" y="20" width="130" height="40" rx="8" fill="currentColor" fill-opacity=".04" stroke="currentColor" stroke-opacity=".45"/><text x="75" y="44" text-anchor="middle" font-size="11.5" fill="currentColor">the green messenger</text>
+                                <rect x="10" y="70" width="130" height="40" rx="8" fill="currentColor" fill-opacity=".04" stroke="currentColor" stroke-opacity=".45"/><text x="75" y="94" text-anchor="middle" font-size="11.5" fill="currentColor">the photo app</text>
+                                <rect x="10" y="120" width="130" height="40" rx="8" fill="currentColor" fill-opacity=".04" stroke="currentColor" stroke-opacity=".45"/><text x="75" y="144" text-anchor="middle" font-size="11.5" fill="currentColor">Matrix · Signal</text>
+                                <rect x="10" y="170" width="130" height="40" rx="8" fill="currentColor" fill-opacity=".04" stroke="currentColor" stroke-opacity=".45"/><text x="75" y="194" text-anchor="middle" font-size="11.5" fill="currentColor">website chat</text>
+                                <rect x="180" y="20" width="400" height="230" rx="12" fill="none" stroke="currentColor" stroke-opacity=".35" stroke-dasharray="5 4"/>
+                                <text x="380" y="40" text-anchor="middle" font-size="10.5" font-weight="700" letter-spacing=".08em" fill="currentColor" fill-opacity=".6">ONE HEADLESS MACHINE</text>
+                                <rect x="195" y="55" width="110" height="150" rx="10" fill="currentColor" fill-opacity=".04" stroke="currentColor" stroke-opacity=".45"/><text x="250" y="122" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">gateways</text><text x="250" y="138" text-anchor="middle" font-size="10.5" fill="currentColor" fill-opacity=".75">one session</text><text x="250" y="151" text-anchor="middle" font-size="10.5" fill="currentColor" fill-opacity=".75">per account</text>
+                                <rect x="330" y="55" width="110" height="70" rx="10" fill="currentColor" fill-opacity=".1" stroke="currentColor" stroke-opacity=".9" stroke-width="2"/><text x="385" y="86" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">router</text><text x="385" y="102" text-anchor="middle" font-size="10.5" fill="currentColor" fill-opacity=".75">what to say</text>
+                                <rect x="330" y="135" width="110" height="70" rx="10" fill="currentColor" fill-opacity=".1" stroke="currentColor" stroke-opacity=".9" stroke-width="2"/><text x="385" y="166" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">outbox</text><text x="385" y="182" text-anchor="middle" font-size="10.5" fill="currentColor" fill-opacity=".75">when to say it</text>
+                                <rect x="460" y="55" width="105" height="70" rx="10" fill="currentColor" fill-opacity=".04" stroke="currentColor" stroke-opacity=".45"/><text x="512" y="86" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">AI of choice</text><text x="512" y="102" text-anchor="middle" font-size="10.5" fill="currentColor" fill-opacity=".75">text only</text>
+                                <rect x="460" y="135" width="105" height="70" rx="10" fill="currentColor" fill-opacity=".04" stroke="currentColor" stroke-opacity=".45"/><text x="512" y="166" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">plain files</text><text x="512" y="182" text-anchor="middle" font-size="10.5" fill="currentColor" fill-opacity=".75">chats, rules</text>
+                                <path d="M140 40 L193 80M140 90 L193 105M140 140 L193 140M140 190 L193 175" stroke="currentColor" stroke-opacity=".6" stroke-width="1.3" fill="none"/>
+                                <path d="M305 90 L328 90" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" marker-end="url(#cc-a1)"/>
+                                <path d="M385 125 L385 133" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" marker-end="url(#cc-a1)"/>
+                                <path d="M330 170 L307 170" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" marker-end="url(#cc-a1)"/>
+                                <path d="M440 90 L458 90" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" marker-end="url(#cc-a1)"/>
+                                <path d="M440 170 L458 170" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" marker-end="url(#cc-a1)"/>
+                                <rect x="230" y="275" width="300" height="45" rx="10" fill="currentColor" fill-opacity=".1" stroke="currentColor" stroke-opacity=".9" stroke-width="2"/><text x="380" y="295" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">command center page</text><text x="380" y="311" text-anchor="middle" font-size="10.5" fill="currentColor" fill-opacity=".75">the person in charge: LAN or private VPN only</text>
+                                <path d="M380 273 L380 252" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#cc-a1)"/>
+                            </svg>
+                            <figcaption>Every account enters through its own gateway session; one router and one outbox serve them all; one person watches from one page.</figcaption>
+                        </figure>
+
+                        <h4>3. three stages: rules first, AI second, rules last</h4>
+                        <p>
+                            The AI is not the brain. It is a translator and a sorter, boxed in on both sides by plain code.
+                        </p>
+                        <ul class="list-flush">
+                            <li><strong>Stage 1, plain code:</strong> clean the text (lowercase, strip links, collapse "haloooo" to "halo", expand chat shorthand like "pls", "thx" and their local equivalents), then match keywords against the saved replies. A short message with one clear winner gets that saved reply, word for word, without calling any AI.</li>
+                            <li><strong>Stage 2, AI of choice:</strong> anything stage 1 is unsure about goes to the model, with the business rules, the recent conversation and a one-line summary of every saved reply. The model does not chat back freely. It fills a fixed form.</li>
+                            <li><strong>Stage 3, plain code again:</strong> if the model picked a saved reply, the stored text is sent, not the model's version. If it wrote its own reply, the code checks it before anything leaves: no prices, only links on an allow-list, a length limit, no formatting. Anything that fails becomes a polite holding reply and a flag for a person.</li>
+                        </ul>
+
+                        <figure class="cc-figure">
+                            <svg viewBox="0 0 600 210" role="img" aria-label="Stage 1 plain code, stage 2 AI with a fixed form, stage 3 code check, then saved reply, checked reply or a person" xmlns="http://www.w3.org/2000/svg" font-family="inherit"><defs><marker id="cc-a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="currentColor" fill-opacity=".6"/></marker></defs>
+                                <rect x="10" y="80" width="90" height="50" rx="10" fill="currentColor" fill-opacity=".04" stroke="currentColor" stroke-opacity=".45"/><text x="55" y="109" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">message</text>
+                                <rect x="125" y="70" width="120" height="70" rx="10" fill="currentColor" fill-opacity=".1" stroke="currentColor" stroke-opacity=".9" stroke-width="2"/><text x="185" y="98" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">1. plain code</text><text x="185" y="114" text-anchor="middle" font-size="10.5" fill="currentColor" fill-opacity=".75">clean + keywords</text>
+                                <rect x="270" y="70" width="120" height="70" rx="10" fill="currentColor" fill-opacity=".1" stroke="currentColor" stroke-opacity=".9" stroke-width="2"/><text x="330" y="98" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">2. AI</text><text x="330" y="114" text-anchor="middle" font-size="10.5" fill="currentColor" fill-opacity=".75">fills a fixed form</text>
+                                <rect x="415" y="70" width="120" height="70" rx="10" fill="currentColor" fill-opacity=".1" stroke="currentColor" stroke-opacity=".9" stroke-width="2"/><text x="475" y="98" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">3. code check</text><text x="475" y="114" text-anchor="middle" font-size="10.5" fill="currentColor" fill-opacity=".75">prices, links, length</text>
+                                <path d="M100 105 L123 105" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" marker-end="url(#cc-a2)"/>
+                                <path d="M245 105 L268 105" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" marker-end="url(#cc-a2)"/><text x="257" y="64" text-anchor="middle" font-size="9.5" font-style="italic" fill="currentColor" fill-opacity=".7">unsure</text>
+                                <path d="M390 105 L413 105" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" marker-end="url(#cc-a2)"/>
+                                <path d="M185 70 C185 30 300 22 470 22" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" fill="none" marker-end="url(#cc-a2)"/><text x="300" y="16" text-anchor="middle" font-size="9.5" font-style="italic" fill="currentColor" fill-opacity=".7">sure: saved reply, no AI call</text>
+                                <rect x="472" y="8" width="118" height="28" rx="8" fill="currentColor" fill-opacity=".04" stroke="currentColor" stroke-opacity=".45"/><text x="531" y="27" text-anchor="middle" font-size="11" fill="currentColor">send, at human pace</text>
+                                <path d="M535 105 C565 105 565 60 545 38" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" fill="none" marker-end="url(#cc-a2)"/><text x="578" y="80" text-anchor="middle" font-size="9.5" font-style="italic" fill="currentColor" fill-opacity=".7">pass</text>
+                                <rect x="415" y="168" width="175" height="34" rx="8" fill="currentColor" fill-opacity=".04" stroke="currentColor" stroke-opacity=".45" stroke-dasharray="5 4"/><text x="502" y="190" text-anchor="middle" font-size="11" fill="currentColor">holding reply + flag a person</text>
+                                <path d="M475 140 L475 166" stroke="currentColor" stroke-opacity=".6" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#cc-a2)"/><text x="485" y="157" font-size="9.5" font-style="italic" fill="currentColor" fill-opacity=".7">fail</text>
+                            </svg>
+                            <figcaption>Most messages never reach the AI. Nothing the AI writes leaves without passing the code check.</figcaption>
+                        </figure>
+
+                        <p>The fixed form is a JSON schema the model must follow (most current model APIs call this structured output). For example:</p>
+<pre class="cc-code">{
+  "language":    "en",          // reply in the customer's language
+  "topic":       "pricing",
+  "allowed":     true,          // inside the business rules?
+  "canned_id":   "price",       // a saved reply that fits, or ""
+  "urgent":      false,
+  "needs_human": true,          // a person should follow up
+  "reason":      "wants a quote for three branches",
+  "reply":       "..."          // used only if canned_id is empty, and only after the code check
+}</pre>
+                        <p>
+                            The business rules are a short text file: who the business is, what it does, the only links it may share, how to treat price questions (ask about scope instead of quoting),
+                            what is off topic, and when to call a person. Saved replies are a JSON file with an id, keywords, a one-line summary and the text in each language the business uses.
+                            Both files reload on save, so whoever runs the desk edits answers without touching code.
+                        </p>
+
+                        <h4>4. human pace, on purpose</h4>
+                        <p>
+                            Speed is not the goal. A reply that lands two seconds after a question reads as a machine and, on proprietary platforms, looks like one.
+                            The outbox behaves like a careful employee instead:
+                        </p>
+                        <ul class="list-flush">
+                            <li>A minimum wait from the moment a message arrives (for example 60 seconds, 30 for urgent words), plus a random extra. The AI's thinking time happens inside that wait, not on top of it.</li>
+                            <li>Several short messages from one person are collected during the wait and answered once.</li>
+                            <li>The message is marked read, a "typing" indicator runs for a time that fits the reply's length, then the reply goes out.</li>
+                            <li>One reply at a time across all accounts, with a short gap between them.</li>
+                            <li>Opening hours. Outside them, one short "received, we'll reply in the morning", and the full answer after opening, or sooner if the customer writes again.</li>
+                            <li>It only talks to people who wrote first, past customers and people who arrived from the business's own website or profiles. Never bought lists, never broadcasts.</li>
+                        </ul>
+<pre class="cc-code">"delay":  { "urgentMinSeconds": 30, "normalMinSeconds": 60, "randomExtraSeconds": 45, "typingSecondsMax": 12 },
+"hours":  { "open": "07:00", "close": "22:00", "morningReply": "08:00" }</pre>
+
+                        <h4>5. a person stays in charge</h4>
+                        <ul class="list-flush">
+                            <li><strong>Assist first:</strong> start with the machine drafting and a person approving. Let it answer on its own topic by topic, once its drafts are reliably right.</li>
+                            <li><strong>The owner's phone wins:</strong> when the person in charge types a reply from the phone, the gateway sees a message the machine did not send. The machine drops whatever it was preparing for that chat and stays quiet there for a set time.</li>
+                            <li><strong>Asking for a person works:</strong> phrases such as "real person", "talk to someone", "staff", "customer service", and their equivalents in the local language, get an immediate "connecting you with our team" and an alert. Bare greetings that address the admin do not trigger it, because in many chat cultures people greet a business that way.</li>
+                            <li><strong>Alerts by plain email:</strong> a flag (urgent words, a voice note or photo, an unanswered question, a held-back AI reply, a request for a person) sends an email with the customer's name, a tap-to-open chat link and the last messages. No email if the person in charge replied in that chat a few minutes ago, at most two per chat per half hour, and a ceiling per hour, so one busy chat cannot flood the inbox.</li>
+                            <li><strong>Media goes to people:</strong> the AI only sees text. Voice notes, photos and documents get a polite "a team member will check this" and a flag.</li>
+                        </ul>
+                        <p>Email needs nothing exotic: a small SMTP client such as msmtp, with an app password from the sending mail account, and the password kept out of the config file:</p>
+<pre class="cc-code"># /etc/&lt;app&gt;/msmtprc   (readable by root and the service account only)
+account        alerts
+host           smtp.example-mail.com
+port           587
+tls            on
+tls_starttls   on
+auth           on
+from           alerts@example.com
+user           alerts@example.com
+passwordeval   "awk -F= '/^SMTP_PASSWORD=/{print $2}' /etc/&lt;app&gt;/secrets.env"
+account default : alerts</pre>
+                        <p class="cc-note">
+                            Installing the SMTP client only as a command, not as the system's sendmail, keeps the rest of the machine unchanged. Cron and other software do not suddenly start sending mail.
+                        </p>
+
+                        <h4>6. honest, without the b-word</h4>
+                        <p>
+                            The machine never pretends to be a person. That is both decent and practical: trust lost on discovery does not come back.
+                            It does not have to use a word that many people now read as an insult either. When asked, it says something like:
+                            "This is our automatic reply service. A team member reads every chat and will join whenever you need."
+                        </p>
+
+                        <h4>7. memory in plain files</h4>
+                        <p>
+                            For one office, a database server is more machine than the job needs. Each conversation is one JSONL file, one event per line, only ever appended,
+                            so a crash loses at most the last line. Live state (paused chats, flags, the night queue, AI usage per day) is a small JSON file written to a temporary file and renamed into place.
+                            Anyone can read it with <code>cat</code> and <code>grep</code>, back it up with a copy, and hand a masked export to whoever helps tune the rules.
+                            All reads and writes go through one module, so moving to SQLite later means rewriting that one file.
+                        </p>
+<pre class="cc-code">{"t":"2026-01-10T10:15:02Z","dir":"in","text":"opening hours?","stage":1,"canned":"hours"}
+{"t":"2026-01-10T10:16:31Z","dir":"out","by":"auto","text":"We reply from ...","canned":"hours","wait_s":89}</pre>
+
+                        <h4>8. where it runs</h4>
+                        <ul class="list-flush">
+                            <li><strong>A headless box on site:</strong> an old desktop, a mini PC, a laptop with a broken screen in the corner of the office. The service needs about 100 MB of memory and almost no CPU, which is exactly the kind of second life described in <a href="/contents/page-06-00-2nd-hand.html">2nd hand, 2nd chance</a> and <a href="/contents/page-06-01-reuse.html">re-use</a>.</li>
+                            <li><strong>A cloud server:</strong> the same service on a small VPS, when there is no office or the office power is unreliable.</li>
+                            <li><strong>Split front and back:</strong> the command center page as a Next.js front end on Vercel, always reachable, calling a Node.js back end (Express or the built-in HTTP server) that holds the sessions, in the cloud or on site. An on-site back end should be reached through a private tunnel such as Tailscale or Cloudflare Tunnel, never through a port opened to the internet.</li>
+                        </ul>
+                        <p>For the on-site route, careful habits matter more than clever code:</p>
+                        <ul class="list-flush">
+                            <li>A dedicated system account with no login shell and no home folder. The service runs as that account.</li>
+                            <li>Code in <code>/opt/&lt;app&gt;</code> (root-owned, read-only to the service), settings and secrets in <code>/etc/&lt;app&gt;</code>, data in <code>/var/lib/&lt;app&gt;</code>. Only the last is writable by the service.</li>
+                            <li>On SELinux systems, copy files into place rather than moving them from a home folder, and restore their labels.</li>
+                            <li>The command center page answers only on the local network and the VPN, behind a password, even there.</li>
+                            <li>The gateway session folder is the chat account. Whoever copies it can use the number. Lock it down and back it up only encrypted.</li>
+                            <li>Build in stages, each tested before the next: log only, then saved replies, then AI, then alerts, then the always-on service.</li>
+                        </ul>
+<pre class="cc-code"># firewall: the command center port, for the LAN and the VPN range only (example values)
+firewall-cmd --permanent --add-rich-rule='rule family="ipv4" source address="192.168.1.0/24" port port="8090" protocol="tcp" accept'
+firewall-cmd --permanent --add-rich-rule='rule family="ipv4" source address="100.64.0.0/10"  port port="8090" protocol="tcp" accept'
+
+# systemd: a good neighbour on a shared machine
+[Service]
+User=&lt;service-account&gt;
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/var/lib/&lt;app&gt;
+NoNewPrivileges=yes
+MemoryMax=600M
+CPUWeight=50
+Restart=always</pre>
+
+                        <h4>9. how many accounts per desk</h4>
+                        <p>
+                            The design is not tied to one messenger. Open platforms (Matrix, Signal through signal-cli, the fediverse, a chat box on the business's own website) welcome automation,
+                            so one desk can carry dozens of accounts there. Proprietary platforms tolerate it less: an unofficial client can get an account restricted, however human its pace.
+                            For a desk that mixes open and proprietary accounts, three to five per deployment is a sensible ceiling.
+                            The irony is worth noting: the whole point of human pace is to give the person a break, not to out-shout anyone.
+                        </p>
+
+                        <h4>10. paying, when it is time</h4>
+                        <p>
+                            Free tiers are for testing, setting up and starting out, and for businesses that are slow by circumstance or by design.
+                            Once chat brings in real revenue, paying is the honest next step: first for AI and infrastructure from providers whose policies you are comfortable with,
+                            and at some point perhaps even the conglomerate's official business route, when the volume makes it worth it.
+                            The architecture does not change; the gateway does. Keep the business rules, saved replies and customer list in your own files, and switching costs a weekend.
+                        </p>
+
+                        <h4>11. risks and limits</h4>
+                        <ul class="list-flush">
+                            <li>Unofficial clients are against the terms of service of some proprietary messengers. Human pace, warm contacts and a dedicated business number keep the risk low, not zero.</li>
+                            <li>A linked-device session depends on the main phone coming online regularly (for the green messenger, at least once every two weeks), or the link is dropped.</li>
+                            <li>Free AI tiers may use inputs to improve the provider's products. Keep personal data out of free-tier calls, or move to a paid tier before real customer data flows.</li>
+                            <li>Chat logs are personal data. Local data-protection law applies, wherever the machine sits.</li>
+                        </ul>
+                        <p class="cc-note">
+                            This paper is technical guidance, not legal advice. Read the terms of every platform you connect, and decide for yourself what risk fits your business.
+                        </p>
+
+                        <h4>credits</h4>
+                        <p>
+                            None of this is possible without years of patient, mostly unpaid work by open-source communities: the Linux kernel and the distributions built on it,
+                            systemd, firewalld and SELinux, which make a small box safe to leave running; Node.js, which carries the whole service;
+                            Baileys, the open-source library that speaks the green messenger's multi-device protocol; qrcode and pino; msmtp for plain email;
+                            WireGuard, and Tailscale built on it, for private access from anywhere; Express and Next.js for those who prefer a framework or a separate front end,
+                            and Vercel for hosting one; Matrix, Signal and signal-cli for the open side of the desk; and Chatwoot and Typebot, whose ideas on shared inboxes and conversation flows are worth studying.
+                            The AI can be any model with structured output; free tiers from the large providers are enough to start.
+                        </p>
+                        <p>
+                            The glue is small. The foundation is everyone else's work, and that is the reason this paper exists: to show how far a small team can go standing on it.
+                        </p>
+                    </div>
+
+                    <nav class="breadcrumb">
+                        <div class="crumb-line">
+                            &gt; <a href="/index.html">home</a> &gt;
+                            <a href="/all-pages.html">all-pages</a> &gt;
+                            <span class="current">command center</span>
+                        </div>
+                    </nav>
+
+                    <!-- second breadcrumb: where this article sits on the website that shows it.
+                         fill in the real links and names, then remove the two comment lines around it.
+                    <nav class="breadcrumb breadcrumb-ext">
+                        <div class="crumb-line external-link">
+                            &gt; <a href="https://website/" target="_blank" rel="noopener noreferrer">site</a> &gt;
+                            <a href="https://website/category" target="_blank" rel="noopener noreferrer">category</a> &gt;
+                            <a href="https://website/category/page" target="_blank" rel="noopener noreferrer">page</a>
+                        </div>
+                    </nav>
+                    -->
+                </section>
+            </div>
+
+            <div class="right-col">
+                <div id="sidebar-placeholder"></div>
+
+                <div class="right-col-links" style="margin-top: 20px;">
+                    <h2 class="right-col-link-h2">related</h2>
+                    <a href="/contents/03-works/page-03-02-automat.html" class="plain-link">&gt; cornered, not trapped</a>
+                    <a href="/contents/page-06-00-2nd-hand.html" class="plain-link">&gt; 2nd hand, 2nd chance</a>
+                    <a href="/contents/page-06-01-reuse.html" class="plain-link">&gt; re-use</a>
+                    <a href="/contents/page-04-01-authentic-get-go.html" class="plain-link">&gt; get to go</a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script>
+        async function loadComponent(id, file) {
+            const element = document.getElementById(id);
+            if (!element) return;
+
+            if (element.innerHTML.trim() === "") {
+                try {
+                    const response = await fetch(`../${file}`);
+                    if (response.ok) {
+                        const data = await response.text();
+                        element.innerHTML = data;
+                    }
+                } catch (error) {
+                    console.error("Error loading component:", file, error);
+                }
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            loadComponent('navbar-placeholder', 'navbar.html');
+            loadComponent('footer-placeholder', 'footer.html');
+            loadComponent('sidebar-placeholder', 'rght-clmn.html');
+        });
+    </script>
+</body>
+</html>
