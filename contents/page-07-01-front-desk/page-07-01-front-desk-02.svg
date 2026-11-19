@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 470" role="img" aria-label="Inside the front-desk laptop: Firefox work tabs with an add-on, a local bridge service, a light hub, then plain code, the LLM server and the online AI; the main server keeps in sync" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif">
+  <title>inside lt-desk: one browser, one bridge, one light hub</title>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#475569"/></marker>
+    <style>
+      .box{fill:#f8fafc;stroke:#64748b;stroke-width:1.2}
+      .key{fill:#e2e8f0;stroke:#0f172a;stroke-width:2}
+      .desk{fill:#ccfbf1;stroke:#0f766e;stroke-width:2}
+      .off{fill:#f1f5f9;stroke:#cbd5e1;stroke-width:1}
+      .t{font-size:12px;fill:#0f172a;text-anchor:middle}
+      .b{font-weight:700}
+      .s{font-size:10px;fill:#475569;text-anchor:middle}
+      .g{font-size:10px;fill:#94a3b8;text-anchor:middle}
+      .cap{font-size:10px;font-weight:700;letter-spacing:.08em;fill:#64748b}
+      .ar{stroke:#475569;stroke-width:1.5;fill:none}
+      .hu{stroke:#b45309;stroke-width:1.6;fill:none;stroke-dasharray:5 3}
+      .i{font-size:9.5px;font-style:italic;fill:#475569}
+    </style>
+  </defs>
+
+  <rect x="10" y="10" width="700" height="330" rx="14" fill="none" stroke="#0f766e" stroke-width="1.5" stroke-dasharray="7 4"/>
+  <text x="22" y="28" class="cap" style="fill:#0f766e">LT-DESK · ONE LINUX LAPTOP · ONE LOGIN (THE FDP)</text>
+
+  <!-- firefox window -->
+  <rect x="24" y="40" width="300" height="200" rx="10" class="box"/>
+  <text x="174" y="58" class="t b">Firefox · work profile</text>
+  <rect x="38" y="70" width="84" height="40" rx="6" class="desk"/><text x="80" y="88" class="s">chat</text><text x="80" y="100" class="s">web app</text>
+  <rect x="130" y="70" width="84" height="40" rx="6" class="desk"/><text x="172" y="88" class="s">social</text><text x="172" y="100" class="s">comments</text>
+  <rect x="222" y="70" width="88" height="40" rx="6" class="desk"/><text x="266" y="88" class="s">marketplace</text><text x="266" y="100" class="s">seller chat</text>
+  <rect x="38" y="118" width="84" height="30" rx="6" class="off"/><text x="80" y="137" class="g">mail, docs</text>
+  <rect x="130" y="118" width="84" height="30" rx="6" class="off"/><text x="172" y="137" class="g">news, music</text>
+  <rect x="222" y="118" width="88" height="30" rx="6" class="off"/><text x="266" y="137" class="g">anything else</text>
+  <text x="174" y="164" class="g">grey tabs: the add-on has no permission there</text>
+  <rect x="38" y="174" width="272" height="54" rx="8" class="key"/>
+  <text x="174" y="193" class="t b">the add-on</text>
+  <text x="174" y="207" class="s">site adapters (4 selectors each) · MutationObserver</text>
+  <text x="174" y="220" class="s">read new messages · fill reply · press send · notice typing</text>
+  <path d="M80 110 L100 172M172 110 L172 172M266 110 L246 172" class="ar" stroke-dasharray="3 3"/>
+
+  <!-- bridge -->
+  <rect x="372" y="174" width="128" height="54" rx="9" class="desk"/>
+  <text x="436" y="194" class="t b">browser bridge</text>
+  <text x="436" y="208" class="s">systemd user service</text>
+  <text x="436" y="220" class="s">ws://127.0.0.1:8099</text>
+  <path d="M310 201 L370 201" class="ar" marker-end="url(#a)" marker-start="url(#a)"/>
+  <text x="330" y="194" text-anchor="middle" class="i">JSON</text>
+
+  <!-- hub -->
+  <rect x="372" y="40" width="320" height="110" rx="10" class="key"/>
+  <text x="532" y="58" class="t b">the hub, light mode (same code as srv-main)</text>
+  <rect x="384" y="68" width="92" height="70" rx="7" class="box"/><text x="430" y="92" class="t b">1. plain</text><text x="430" y="106" class="t b">code</text><text x="430" y="122" class="s">rules, saved replies</text>
+  <rect x="486" y="68" width="92" height="70" rx="7" class="box"/><text x="532" y="92" class="t b">2. pace</text><text x="532" y="106" class="t b">&amp; who</text><text x="532" y="122" class="s">present / away</text>
+  <rect x="588" y="68" width="92" height="70" rx="7" class="box"/><text x="634" y="92" class="t b">3. check</text><text x="634" y="106" class="t b">&amp; send</text><text x="634" y="122" class="s">links, prices, length</text>
+  <path d="M436 172 L436 152" class="ar" marker-end="url(#a)" marker-start="url(#a)"/>
+
+  <!-- fdp -->
+  <rect x="24" y="266" width="196" height="60" rx="10" class="desk"/>
+  <text x="122" y="288" class="t b">the fdp</text>
+  <text x="122" y="303" class="s">types in a chat = that chat is theirs</text>
+  <text x="122" y="316" class="s">toggle: present · away</text>
+  <path d="M122 266 L122 230" class="hu" marker-end="url(#a)"/>
+  <text x="130" y="252" class="i">human wins</text>
+
+  <rect x="230" y="266" width="112" height="60" rx="10" class="off"/>
+  <text x="286" y="285" class="s" style="fill:#64748b">dashboard module</text>
+  <text x="286" y="299" class="g">installed, off</text>
+  <text x="286" y="313" class="g">background mode only</text>
+
+  <!-- outside -->
+  <rect x="24" y="380" width="200" height="72" rx="10" class="key"/>
+  <text x="124" y="404" class="t b">srv-main</text>
+  <text x="124" y="419" class="s">heartbeat · channel lease</text>
+  <text x="124" y="432" class="s">sync of rules, saved replies, logs</text>
+  <rect x="300" y="380" width="190" height="72" rx="10" class="box"/>
+  <text x="395" y="404" class="t b">srv-llm</text>
+  <text x="395" y="419" class="s">tier 2: local LLM/machine-learning</text>
+  <text x="395" y="432" class="s">on the LAN, never called AI</text>
+  <rect x="510" y="380" width="196" height="72" rx="10" class="box"/>
+  <text x="608" y="404" class="t b">online AI of choice</text>
+  <text x="608" y="419" class="s">tier 3: only when tier 2 is unsure</text>
+  <text x="608" y="432" class="s">text only, fixed form back</text>
+
+  <path d="M124 378 L124 360 L356 360 L356 100 L370 100" class="ar" marker-end="url(#a)" marker-start="url(#a)" stroke-dasharray="6 4"/>
+  <path d="M445 378 L445 352 L520 352 L520 152" class="ar" marker-end="url(#a)"/>
+  <path d="M608 378 L608 152" class="ar" marker-end="url(#a)"/>
+  <text x="527" y="300" class="i">if unsure</text>
+  <text x="615" y="300" class="i">if still unsure</text>
+  <text x="240" y="355" class="i">sync, lease</text>
+</svg>

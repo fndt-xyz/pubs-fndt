@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 330" role="img" aria-label="A working day: the laptop powers on before nine, takes the desk channels back from the main server, works until five, hands over and shuts down; the main server holds the channels overnight, headless" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif">
+  <title>the day: one owner per channel, always</title>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#475569"/></marker>
+    <style>
+      .t{font-size:12px;fill:#0f172a}
+      .b{font-weight:700}
+      .s{font-size:10px;fill:#475569}
+      .c{text-anchor:middle}
+      .tick{stroke:#cbd5e1;stroke-width:1}
+      .ar{stroke:#475569;stroke-width:1.5;fill:none}
+      .i{font-size:9.5px;font-style:italic;fill:#475569}
+    </style>
+  </defs>
+
+  <!-- axis: 06:00 at x=120 ... 24:00 at x=696, 32 px per hour -->
+  <g class="s c">
+    <text x="120" y="30">06</text><text x="184" y="30">08</text><text x="248" y="30">10</text><text x="312" y="30">12</text>
+    <text x="376" y="30">14</text><text x="440" y="30">16</text><text x="504" y="30">18</text><text x="568" y="30">20</text>
+    <text x="632" y="30">22</text><text x="696" y="30">24</text>
+  </g>
+  <path d="M120 38V250M184 38V250M248 38V250M312 38V250M376 38V250M440 38V250M504 38V250M568 38V250M632 38V250M696 38V250" class="tick"/>
+
+  <!-- lane labels -->
+  <text x="12" y="80" class="t b">lt-desk</text><text x="12" y="94" class="s">the fdp laptop</text>
+  <text x="12" y="180" class="t b">srv-main</text><text x="12" y="194" class="s">headless, 24 h</text>
+
+  <!-- lt-desk lane: power 08:40 (x=205) to 17:15 (x=480) -->
+  <rect x="205" y="62" width="275" height="40" rx="7" fill="#ccfbf1" stroke="#0f766e" stroke-width="2"/>
+  <text x="342" y="80" class="t b c">owns the desk channels</text>
+  <text x="342" y="94" class="s c">browser tabs + add-on · fdp present or away</text>
+  <rect x="120" y="62" width="85" height="40" rx="7" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <text x="162" y="86" class="s c">off</text>
+  <rect x="480" y="62" width="216" height="40" rx="7" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <text x="588" y="86" class="s c">off · battery and hinges rest</text>
+
+  <!-- srv-main lane -->
+  <rect x="120" y="162" width="85" height="40" rx="7" fill="#e2e8f0" stroke="#0f172a" stroke-width="2"/>
+  <text x="162" y="180" class="s c b">owns desk</text><text x="162" y="193" class="s c">channels</text>
+  <rect x="205" y="162" width="275" height="40" rx="7" fill="#f8fafc" stroke="#64748b"/>
+  <text x="342" y="180" class="t c">standby for the desk channels</text>
+  <text x="342" y="194" class="s c">runs its own channels · heartbeat every 20 s</text>
+  <rect x="480" y="162" width="216" height="40" rx="7" fill="#e2e8f0" stroke="#0f172a" stroke-width="2"/>
+  <text x="588" y="180" class="t b c">owns the desk channels</text>
+  <text x="588" y="194" class="s c">headless: native connections, no browser</text>
+
+  <!-- events -->
+  <path d="M205 104 L205 160" class="ar" marker-end="url(#a)" marker-start="url(#a)"/>
+  <text x="211" y="120" class="i">08:40 power on (RTC alarm)</text>
+  <text x="211" y="146" class="i">hello → lease back → sync</text>
+  <path d="M480 104 L480 160" class="ar" marker-end="url(#a)"/>
+  <text x="486" y="126" class="i">17:00 fdp leaves → poweroff</text>
+  <text x="486" y="139" class="i">handover + final sync first</text>
+  <path d="M392 106V158M408 106V158M424 106V158M440 106V158M456 106V158" stroke="#64748b" stroke-width="1" stroke-dasharray="2 3"/>
+
+  <!-- notes -->
+  <rect x="20" y="226" width="690" height="88" rx="9" fill="#fff7ed" stroke="#b45309" stroke-width="1"/>
+  <text x="34" y="246" class="t b">rules that keep two machines from answering the same chat</text>
+  <text x="34" y="264" class="s">· one owner per channel, recorded as a lease with a number (epoch) that only goes up; a reply with an old epoch is dropped.</text>
+  <text x="34" y="280" class="s">· clean goodbye at 17:00 → instant handover. No heartbeat for 90 s (battery, crash, Wi-Fi) → srv-main takes the lease anyway.</text>
+  <text x="34" y="296" class="s">· morning: the laptop asks, srv-main finishes any reply it is pacing, then hands the lease back. Knowledge syncs both ways.</text>
+</svg>
