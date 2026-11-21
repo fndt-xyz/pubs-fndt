@@ -8,15 +8,16 @@
     <link rel="icon" type="image/png" href="../favicon.png">
     <link rel="stylesheet" href="../global.css">
     <style>
-        /* diagrams for this page only. On a phone each diagram is shown wider than the screen: the left and
-           middle columns fit, the right column is a sideways drag away. */
+        /* diagrams for this page only. On a phone the message flow fits the screen (tap it to open it full size
+           and zoom); the system map is shown wider than the screen: the left and middle columns fit, the right
+           column is a sideways drag away. */
         .hm-figure { margin: 1.5rem 0; }
         .hm-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
         .hm-scroll img { display: block; width: 100%; max-width: 720px; height: auto; margin: 0 auto; }
         .hm-figure figcaption { font-size: .85em; opacity: .75; text-align: center; margin-top: .5rem; }
         .hm-drag { display: none; }
         @media (max-width: 640px) {
-            .hm-scroll img { width: 150%; max-width: none; margin: 0; }
+            .hm-scroll.hm-wide img { width: 150%; max-width: none; margin: 0; }
             .hm-drag { display: inline; }
         }
     </style>
@@ -43,14 +44,14 @@
 
                     <div class="view-content">
                         <figure class="hm-figure">
-                            <div class="hm-scroll">
+                            <a class="hm-scroll" href="page-07-02-reduce-token/page-07-02-reduce-token-01.svg" target="_blank" rel="noopener" title="Open full size">
                                 <img src="page-07-02-reduce-token/page-07-02-reduce-token-01.svg" alt="A customer message passes a may-we-answer check, then saved answers matched in code, then a language model only when no clear match, then a web search only for current topics, then a code check; it ends as a sent reply, or a holding reply with a team alert" loading="lazy">
-                            </div>
-                            <figcaption>How one chat message is answered: saved answers in plain code first, the AI only when code cannot decide, every reply checked before it is sent.<span class="hm-drag"> Drag sideways for the notes on the right.</span></figcaption>
+                            </a>
+                            <figcaption>How one chat message is answered: saved answers in plain code first, the AI only when code cannot decide, every reply checked before it is sent.<span class="hm-drag"> Tap it to open it full size and zoom in.</span></figcaption>
                         </figure>
 
                         <figure class="hm-figure">
-                            <div class="hm-scroll">
+                            <div class="hm-scroll hm-wide">
                                 <img src="page-07-02-reduce-token/page-07-02-reduce-token-02.svg" alt="The hub, one JavaScript service on an office server, between channel adapters to the chat apps, tuning files, chat files, email alerts and a dashboard reached from a browser on the office network; it calls the language model API and the web search API only when needed" loading="lazy">
                             </div>
                             <figcaption>The parts of the hub: one service on an office server, open-source libraries to the chat apps, plain files for its knowledge and its chats, a dashboard for the person in charge.<span class="hm-drag"> Drag sideways for the right column.</span></figcaption>
