@@ -42,7 +42,7 @@ img {
     width: 100%;
     background-color: #ffffff;
     border-bottom: 1px solid #f8fafc;
-    padding: 1rem 1.5rem;
+    padding: 0.5rem 1.5rem;
     box-sizing: border-box;
 }
 
@@ -145,7 +145,7 @@ a.logo-text {
 
 /* 7. CARDS & TYPOGRAPHY */
 .view-card {
-    padding: 1.5rem 1.1rem 1.1rem;
+    padding: 0.5rem 1.1rem 1.1rem;
     border: 1px solid var(--line);
     border-radius: var(--radius);
     background: white;
@@ -172,6 +172,7 @@ a.logo-text {
     font-weight: 700;
     letter-spacing: -0.05em;
     color: #1e293b;
+    margin-top: 0.2rem;
     margin-bottom: 1px;
     padding-bottom: 0;
 }
@@ -270,7 +271,7 @@ a.lnk-line, .lnk-line a, .view-content a.lnk-line, .view-content .lnk-line a { t
     }
 
     .view-container {
-        padding: 1rem;
+        padding: 0.05rem 0.1rem 0.1rem;
     }
 }
 
