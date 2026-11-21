@@ -8,14 +8,23 @@
     <link rel="icon" type="image/png" href="../favicon.png">
     <link rel="stylesheet" href="../global.css">
     <style>
-        /* diagrams for this page only. On a phone the message flow fits the screen (tap it to open it full size
-           and zoom); the system map is shown wider than the screen: the left and middle columns fit, the right
-           column is a sideways drag away. */
+        /* diagrams for this page only. On a phone the message flow and the improvement loop fit the screen
+           (tap one to open it full size and zoom); the three-column system map is shown wider than the screen,
+           its right column a sideways drag away. */
         .hm-figure { margin: 1.5rem 0; }
         .hm-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
         .hm-scroll img { display: block; width: 100%; max-width: 720px; height: auto; margin: 0 auto; }
         .hm-figure figcaption { font-size: .85em; opacity: .75; text-align: center; margin-top: .5rem; }
         .hm-drag { display: none; }
+        /* each part has an address: page-07-02-reduce-token.html#flow, #parts, #improve */
+        .hm-part { scroll-margin-top: 90px; }          /* clear of the sticky navbar */
+        .hm-anchor { text-decoration: none; opacity: .35; margin-left: .3em; }
+        .hm-anchor:hover { opacity: .8; }
+        /* the three buttons at the top: one row on every screen */
+        .hm-jump { display: flex; gap: .4rem; margin: .2rem 0 1rem; }
+        .hm-jump a { flex: 1 1 0; text-align: center; font-size: .8em; padding: .35rem .3rem; border: 1px solid #cbd5e1;
+                     border-radius: 999px; text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .hm-jump a:hover { background: #f1f5f9; }
         @media (max-width: 640px) {
             .hm-scroll.hm-wide img { width: 150%; max-width: none; margin: 0; }
             .hm-drag { display: inline; }
@@ -43,18 +52,33 @@
                     </nav>
 
                     <div class="view-content">
+                        <nav class="hm-jump hm-part" id="jump" aria-label="parts of this page">
+                            <a href="#flow">01 flow</a>
+                            <a href="#parts">02 parts</a>
+                            <a href="#improve">03 improve</a>
+                        </nav>
+                        <h4 class="hm-part" id="flow">1. how a message is answered<a class="hm-anchor" href="#flow" title="link to this part">#</a><a class="hm-anchor" href="#jump" title="back to the buttons">^</a></h4>
                         <figure class="hm-figure">
                             <a class="hm-scroll" href="page-07-02-reduce-token/page-07-02-reduce-token-01.svg" target="_blank" rel="noopener" title="Open full size">
-                                <img src="page-07-02-reduce-token/page-07-02-reduce-token-01.svg" alt="A customer message passes a may-we-answer check, then saved answers matched in code, then a language model only when no clear match, then a web search only for current topics, then a code check; it ends as a sent reply, or a holding reply with a team alert" loading="lazy">
+                                <img src="page-07-02-reduce-token/page-07-02-reduce-token-01.svg" width="720" height="800" alt="A customer message passes a may-we-answer check, then saved answers matched in code, then a language model only when no clear match, then a web search only for current topics, then a code check; it ends as a sent reply, or a holding reply with a team alert" loading="lazy">
                             </a>
                             <figcaption>How one chat message is answered: saved answers in plain code first, the AI only when code cannot decide, every reply checked before it is sent.<span class="hm-drag"> Tap it to open it full size and zoom in.</span></figcaption>
                         </figure>
 
+                        <h4 class="hm-part" id="parts">2. the parts<a class="hm-anchor" href="#parts" title="link to this part">#</a><a class="hm-anchor" href="#jump" title="back to the buttons">^</a></h4>
                         <figure class="hm-figure">
                             <div class="hm-scroll hm-wide">
-                                <img src="page-07-02-reduce-token/page-07-02-reduce-token-02.svg" alt="The hub, one JavaScript service on an office server, between channel adapters to the chat apps, tuning files, chat files, email alerts and a dashboard reached from a browser on the office network; it calls the language model API and the web search API only when needed" loading="lazy">
+                                <img src="page-07-02-reduce-token/page-07-02-reduce-token-02.svg" width="720" height="668" alt="The hub, one JavaScript service on an office server, between channel adapters to the chat apps, tuning files, chat files, email alerts and a dashboard reached from a browser on the office network; it calls the language model API and the web search API only when needed" loading="lazy">
                             </div>
                             <figcaption>The parts of the hub: one service on an office server, open-source libraries to the chat apps, plain files for its knowledge and its chats, a dashboard for the person in charge.<span class="hm-drag"> Drag sideways for the right column.</span></figcaption>
+                        </figure>
+
+                        <h4 class="hm-part" id="improve">3. improving the answers<a class="hm-anchor" href="#improve" title="link to this part">#</a><a class="hm-anchor" href="#jump" title="back to the buttons">^</a></h4>
+                        <figure class="hm-figure">
+                            <a class="hm-scroll" href="page-07-02-reduce-token/page-07-02-reduce-token-03.svg" target="_blank" rel="noopener" title="Open full size">
+                                <img src="page-07-02-reduce-token/page-07-02-reduce-token-03.svg" width="720" height="990" alt="A loop: the admin exports the business facts, saved answers, channel answers and masked chats; the business simulates customers with an AI of its own choice and writes the fixes in plain words; the admin puts them into the files and reply rules, tries them on a test channel, then live; day to day, good replies are saved and learning suggestions accepted or rejected on the dashboard; below, the four files and the hub's own code, which only the admin tunes" loading="lazy">
+                            </a>
+                            <figcaption>How the business improves the answers: export the four files, test them with an AI of its own choice, write the fixes, and the admin puts them in. The hub's own code stays with the admin.<span class="hm-drag"> Tap it to open it full size and zoom in.</span></figcaption>
                         </figure>
                     </div>
                 </section>
