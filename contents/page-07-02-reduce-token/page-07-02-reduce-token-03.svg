@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 990" role="img" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 1162" role="img" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif">
   <title>Improving the answers: a loop between the business and the admin</title>
   <desc>The admin exports the business facts, the saved answers, the channel's own answers and some masked chats. The business feeds them to an AI of its own choice, has it play customers, and writes down the fixes in plain words. The admin puts the fixes into the files and the reply rules, tries them on a test channel, then on the live one, and the loop starts again. Day to day, a good reply written by a person can be saved from the dashboard, and learning suggestions are accepted or rejected there.</desc>
   <defs>
@@ -21,9 +21,9 @@
   </defs>
 
   <!-- lanes -->
-  <rect x="14" y="14" width="336" height="520" rx="10" class="zone"/>
+  <rect x="14" y="14" width="336" height="584" rx="10" class="zone"/>
   <text x="182" y="36" class="z">THE BUSINESS (owner, management)</text>
-  <rect x="370" y="14" width="336" height="520" rx="10" class="zone"/>
+  <rect x="370" y="14" width="336" height="584" rx="10" class="zone"/>
   <text x="538" y="36" class="z">THE ADMIN (runs the server)</text>
 
   <!-- A1 export -->
@@ -69,50 +69,59 @@
   <text x="538" y="397" class="s">the chats there are the next export</text>
   <path d="M683 364 L696 364 L696 66 L685 66" class="line" marker-end="url(#a)"/>
 
-  <!-- daily -->
-  <rect x="37" y="430" width="646" height="84" rx="8" class="m"/>
+  <!-- daily: one column wide, centred, so a phone can zoom to one box at a time -->
+  <rect x="192" y="430" width="336" height="148" rx="8" class="m"/>
   <text x="360" y="454" class="t">Every day, on the dashboard</text>
-  <text x="360" y="473" class="s">a good reply written by a person: "save" it, and it becomes one of the channel's answers;</text>
-  <text x="360" y="488" class="s">learning suggestions from the AI: accept or reject each one, nothing reaches a customer unseen;</text>
-  <text x="360" y="503" class="s">a draft by the AI: written into the reply box, sent only by a person</text>
+  <text x="360" y="476" class="s">a good reply by a person: press "save",</text>
+  <text x="360" y="492" class="s">and it becomes a channel answer</text>
+  <text x="360" y="512" class="s">AI learning suggestions: accept or reject</text>
+  <text x="360" y="528" class="s">each, none reaches a customer unseen</text>
+  <text x="360" y="548" class="s">an AI draft goes into the reply box, sent</text>
+  <text x="360" y="564" class="s">only by a person</text>
 
   <!-- files legend -->
-  <text x="20" y="566" class="k">The four files the business can read, and what each is for</text>
-  <rect x="20" y="580" width="336" height="112" rx="8" class="n"/>
-  <text x="34" y="602" class="k">Business facts (text)</text>
-  <text x="34" y="622" class="l">who the business is, what it offers, hours,</text>
-  <text x="34" y="638" class="l">places, the only prices that may be given,</text>
-  <text x="34" y="654" class="l">and the rules the AI must keep; the AI may</text>
-  <text x="34" y="670" class="l">say nothing that is not written here</text>
-  <rect x="364" y="580" width="336" height="112" rx="8" class="n"/>
-  <text x="378" y="602" class="k">Saved answers (list)</text>
-  <text x="378" y="622" class="l">approved replies, each with its keywords and</text>
-  <text x="378" y="638" class="l">its text in every language the business uses;</text>
-  <text x="378" y="654" class="l">sent by plain code, no AI; may mark one to alert</text>
-  <text x="378" y="670" class="l">a person, or to always keep its links</text>
-  <rect x="20" y="704" width="336" height="112" rx="8" class="n"/>
-  <text x="34" y="726" class="k">Channel answers (list)</text>
-  <text x="34" y="746" class="l">one channel's own additions, saved from the</text>
-  <text x="34" y="762" class="l">dashboard; same form as the saved answers,</text>
-  <text x="34" y="778" class="l">they win over them on that channel; the place</text>
-  <text x="34" y="794" class="l">to try an answer before it goes to every channel</text>
-  <rect x="364" y="704" width="336" height="112" rx="8" class="n"/>
-  <text x="378" y="726" class="k">Reply rules (settings)</text>
-  <text x="378" y="746" class="l">how and when, not what: delays, hours, the pause</text>
-  <text x="378" y="762" class="l">after a person replies, links, when to stop and</text>
-  <text x="378" y="778" class="l">hand over, web search limits, learning on or off;</text>
-  <text x="378" y="794" class="l">a fast set for testing, a cautious set for live</text>
+  <text x="20" y="618" class="k">The four files the business can read, and what each is for</text>
+  <rect x="20" y="632" width="336" height="112" rx="8" class="n"/>
+  <text x="34" y="654" class="k">Business facts (text)</text>
+  <text x="34" y="674" class="l">who the business is, what it offers, hours,</text>
+  <text x="34" y="690" class="l">places, the only prices that may be given,</text>
+  <text x="34" y="706" class="l">and the rules the AI must keep; the AI may</text>
+  <text x="34" y="722" class="l">say nothing that is not written here</text>
+  <rect x="364" y="632" width="336" height="112" rx="8" class="n"/>
+  <text x="378" y="654" class="k">Saved answers (list)</text>
+  <text x="378" y="674" class="l">approved replies, each with its keywords and</text>
+  <text x="378" y="690" class="l">its text in every language the business uses;</text>
+  <text x="378" y="706" class="l">sent by plain code, no AI; may mark one to alert</text>
+  <text x="378" y="722" class="l">a person, or to always keep its links</text>
+  <rect x="20" y="756" width="336" height="112" rx="8" class="n"/>
+  <text x="34" y="778" class="k">Channel answers (list)</text>
+  <text x="34" y="798" class="l">one channel's own additions, saved from the</text>
+  <text x="34" y="814" class="l">dashboard; same form as the saved answers,</text>
+  <text x="34" y="830" class="l">they win over them on that channel; the place</text>
+  <text x="34" y="846" class="l">to try an answer before it goes to every channel</text>
+  <rect x="364" y="756" width="336" height="112" rx="8" class="n"/>
+  <text x="378" y="778" class="k">Reply rules (settings)</text>
+  <text x="378" y="798" class="l">how and when, not what: delays, hours, the pause</text>
+  <text x="378" y="814" class="l">after a person replies, links, when to stop and</text>
+  <text x="378" y="830" class="l">hand over, web search limits, learning on or off;</text>
+  <text x="378" y="846" class="l">a fast set for testing, a cautious set for live</text>
 
-  <!-- the hub's code: admin only -->
-  <rect x="20" y="828" width="680" height="118" rx="8" class="c"/>
-  <text x="34" y="850" class="k">The hub's own code (the admin only): where the tokens are saved</text>
-  <text x="34" y="870" class="l">the keyword matcher, which answers most messages with no AI; the gate that decides whether the AI</text>
-  <text x="34" y="886" class="l">is called at all (a person just replied, paused, night, the same answer just sent); what the AI is</text>
-  <text x="34" y="902" class="l">shown (one line per saved answer, the last turns only); the web search gate. Its dials sit in the reply</text>
-  <text x="34" y="918" class="l">rules: past turns shown, daily cap per model and key, size cap per answer, AI replies per hour, searches.</text>
-  <text x="34" y="936" class="l" font-style="italic">The business never needs to touch it: better files mean fewer AI calls by themselves.</text>
+  <!-- the hub's code: admin only; one column wide, centred -->
+  <rect x="192" y="880" width="336" height="236" rx="8" class="c"/>
+  <text x="206" y="902" class="k">The hub's own code (admin only):</text>
+  <text x="206" y="919" class="k">where the tokens are saved</text>
+  <text x="206" y="942" class="l">the keyword matcher: most messages are</text>
+  <text x="206" y="958" class="l">answered with no AI at all</text>
+  <text x="206" y="980" class="l">the gate: no AI call when a person just</text>
+  <text x="206" y="996" class="l">replied, paused, night, answer just sent</text>
+  <text x="206" y="1018" class="l">what the AI sees: one line per saved</text>
+  <text x="206" y="1034" class="l">answer, and the last turns only</text>
+  <text x="206" y="1056" class="l">its dials, in the reply rules: past turns,</text>
+  <text x="206" y="1072" class="l">daily caps, answer size, AI replies per</text>
+  <text x="206" y="1088" class="l">hour, web searches per day</text>
+  <text x="206" y="1106" class="l" font-style="italic">better files mean fewer AI calls</text>
 
-  <rect x="20" y="964" width="12" height="12" rx="2" class="c"/><text x="38" y="974" class="l">the admin</text>
-  <rect x="120" y="964" width="12" height="12" rx="2" class="ai"/><text x="138" y="974" class="l">an AI of the business's choice</text>
-  <rect x="344" y="964" width="12" height="12" rx="2" class="m"/><text x="362" y="974" class="l">people at the business</text>
+  <rect x="20" y="1136" width="12" height="12" rx="2" class="c"/><text x="38" y="1146" class="l">the admin</text>
+  <rect x="120" y="1136" width="12" height="12" rx="2" class="ai"/><text x="138" y="1146" class="l">an AI of the business's choice</text>
+  <rect x="344" y="1136" width="12" height="12" rx="2" class="m"/><text x="362" y="1146" class="l">people at the business</text>
 </svg>
