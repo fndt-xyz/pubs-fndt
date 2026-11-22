@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 600" role="img" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif">
+  <title>At the provider: operators, automation, and agents of two businesses meeting in one place</title>
+  <desc>Two businesses, a buyer and a seller, each keep their own systems and accounts. At the provider's premises, the provider's operators run both back offices, and the automation layer does the routine for each. When both businesses are run there, the buyer's agent and the seller's agent can settle an order, an invoice or a delivery between them; each side's person approves before anything is committed.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#898781" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <style>
+      .n { fill:#f1efe8; stroke:#5f5e5a; stroke-width:.6 }
+      .c { fill:#eeedfe; stroke:#534ab7; stroke-width:.6 }
+      .ai { fill:#e1f5ee; stroke:#0f6e56; stroke-width:.6 }
+      .p { fill:#faece7; stroke:#993c1d; stroke-width:.6 }
+      .zone { fill:none; stroke:#b4b2a9; stroke-width:1; stroke-dasharray:5 4 }
+      .z { font-size:11px; font-weight:700; letter-spacing:.08em; fill:#888780 }
+      .t { font-size:14px; font-weight:600; text-anchor:middle; fill:#2c2c2a }
+      .s { font-size:12px; text-anchor:middle; fill:#5f5e5a }
+      .l { font-size:12px; fill:#52514e }
+      .line { fill:none; stroke:#898781; stroke-width:1.5 }
+      .thin { fill:none; stroke:#898781; stroke-width:1.2; stroke-dasharray:4 3 }
+    </style>
+  </defs>
+
+  <!-- business A -->
+  <rect x="14" y="14" width="220" height="150" rx="10" class="zone"/>
+  <text x="28" y="34" class="z">BUSINESS A (buys)</text>
+  <rect x="24" y="44" width="200" height="56" rx="8" class="n"/>
+  <text x="124" y="67" class="t">Its systems</text>
+  <text x="124" y="86" class="s">accounts, stock, purchasing</text>
+  <rect x="24" y="108" width="200" height="46" rx="8" class="p"/>
+  <text x="124" y="128" class="t">Its owner</text>
+  <text x="124" y="145" class="s">approves, decides</text>
+
+  <!-- business B -->
+  <rect x="486" y="14" width="220" height="150" rx="10" class="zone"/>
+  <text x="500" y="34" class="z">BUSINESS B (sells)</text>
+  <rect x="496" y="44" width="200" height="56" rx="8" class="n"/>
+  <text x="596" y="67" class="t">Its systems</text>
+  <text x="596" y="86" class="s">CRM, sales, warehouse</text>
+  <rect x="496" y="108" width="200" height="46" rx="8" class="p"/>
+  <text x="596" y="128" class="t">Its owner</text>
+  <text x="596" y="145" class="s">approves, decides</text>
+
+  <!-- provider premises -->
+  <rect x="14" y="196" width="692" height="330" rx="10" class="zone"/>
+  <text x="28" y="216" class="z">THE PROVIDER'S PREMISES</text>
+
+  <rect x="250" y="232" width="220" height="72" rx="8" class="c"/>
+  <text x="360" y="256" class="t">Operators (stage 2)</text>
+  <text x="360" y="275" class="s">a team, not one person: run,</text>
+  <text x="360" y="290" class="s">then supervise, both offices</text>
+
+  <rect x="250" y="324" width="220" height="72" rx="8" class="ai"/>
+  <text x="360" y="348" class="t">Automation (stage 3)</text>
+  <text x="360" y="367" class="s">rules first, machine learning</text>
+  <text x="360" y="382" class="s">when rules cannot decide</text>
+
+  <rect x="34" y="430" width="200" height="72" rx="8" class="ai"/>
+  <text x="134" y="454" class="t">A's agent</text>
+  <text x="134" y="473" class="s">asks, compares, orders</text>
+  <text x="134" y="488" class="s">within A's limits</text>
+  <rect x="486" y="430" width="200" height="72" rx="8" class="ai"/>
+  <text x="586" y="454" class="t">B's agent</text>
+  <text x="586" y="473" class="s">quotes, confirms, invoices</text>
+  <text x="586" y="488" class="s">within B's limits</text>
+  <line x1="234" y1="466" x2="484" y2="466" class="line" marker-end="url(#a)" marker-start="url(#a)"/>
+  <text x="360" y="458" class="s">order, delivery, invoice, payment</text>
+  <text x="360" y="484" class="s">A2A (agent to agent)</text>
+
+  <!-- links -->
+  <line x1="124" y1="164" x2="124" y2="428" class="thin" marker-end="url(#a)" marker-start="url(#a)"/>
+  <line x1="596" y1="164" x2="596" y2="428" class="thin" marker-end="url(#a)" marker-start="url(#a)"/>
+  <path d="M224 72 L360 72 L360 230" class="line" marker-end="url(#a)"/>
+  <path d="M496 72 L360 72" class="line"/>
+  <line x1="360" y1="304" x2="360" y2="322" class="line" marker-end="url(#a)" marker-start="url(#a)"/>
+  <path d="M250 360 L134 360 L134 428" class="thin" marker-end="url(#a)"/>
+  <path d="M470 360 L586 360 L586 428" class="thin" marker-end="url(#a)"/>
+  <text x="136" y="300" class="l">approval</text>
+  <text x="604" y="300" class="l">approval</text>
+
+  <text x="360" y="552" class="s">each business keeps its own systems, accounts and owner; nothing is committed without a person on each side</text>
+  <text x="360" y="574" class="s" font-style="italic">two businesses run at one provider: their agents can meet in the same room</text>
+</svg>

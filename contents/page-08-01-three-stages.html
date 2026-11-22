@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pubs.fndt.xyz | three stages</title>
+
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <link rel="stylesheet" href="../global.css">
+    <style>
+        /* diagrams, code boxes and notes for this page only */
+        .fd-figure { margin: 1.5rem 0; }
+        .fd-figure img { display: block; width: 100%; max-width: 720px; height: auto; margin: 0 auto; }
+        .fd-figure figcaption { font-size: .85em; opacity: .75; text-align: center; margin-top: .5rem; }
+        .fd-code { font: 12px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: #f1f5f9; color: #0f172a;
+                   border-radius: 8px; padding: .8rem 1rem; overflow-x: auto; white-space: pre; text-align: left; margin: 1rem 0; }
+        .fd-note { border-left: 3px solid #94a3b8; padding: .2rem .9rem; margin: 1rem 0; opacity: .9; }
+        .fd-table { width: 100%; border-collapse: collapse; font-size: .92em; margin: 1rem 0; }
+        .fd-table th, .fd-table td { border-bottom: 1px solid #e2e8f0; padding: .45rem .5rem; text-align: left; vertical-align: top; }
+        .fd-table th { font-weight: 700; }
+        .fd-wrap { overflow-x: auto; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div id="navbar-placeholder"></div>
+
+    <main class="view-container">
+        <div class="grid-two-one">
+
+            <div class="left-col">
+                <section class="view-card">
+                    <h1 class="view-title">three stages</h1>
+                    <hr class="title-sep">
+
+                    <nav class="breadcrumb">
+                        <div class="crumb-line">
+                            &gt; <a href="/index.html">home</a> &gt;
+                            <a href="/all-pages.html">all-pages</a> &gt;
+                            <span class="current">three stages</span>
+                        </div>
+                    </nav>
+
+                    <div class="view-content">
+                        <figure class="fd-figure">
+                            <a href="page-08-01-three-stages/page-08-01-three-stages-01.svg" target="_blank" rel="noopener">
+                                <img src="page-08-01-three-stages/page-08-01-three-stages-01.svg" width="720" height="430" alt="The business's systems (accounts, sales, stock, people, projects) run three ways: assist, by its own staff; operate, by the provider's people from the provider's office; automate, by machine learning with people in the loop; up a stage or back down, and an exit at every stage">
+                            </a>
+                        </figure>
+                        <p>
+                            Most technology projects in small and medium businesses do not fail on technology. The software works, the server boots, the integration passes its test.
+                            They fail on people: the one admin who understood the accounts leaves, the owner never trusted the screen, the warehouse kept a paper book next to the new stock system "just in case",
+                            the subscription was priced for a market where an office worker earns ten times more. This paper describes three stages of bringing technology into the whole of a business
+                            (accounts, sales and CRM, marketing, purchasing, warehouse, payroll and HR, projects, documents, customer service), defined less by what is installed than by <em>who does the work</em>:
+                            <strong>assist</strong>, the business's own people; <strong>operate</strong>, the provider's people; <strong>automate</strong>, machine learning, with people kept in the loop.
+                        </p>
+                        <p>
+                            Read that way, the three stages are one long automation project under the human-in-the-loop principle. Stage 1 gets the work into a system. Stage 2 gets it done by people who
+                            do the same work for many businesses, side by side, and write every procedure down. Stage 3 hands the written-down routine to machines, and keeps those same people for approvals and exceptions.
+                            At the far end, when the buyer and the seller are both run this way, their agents can settle an order between them, and a person on each side only signs.
+                        </p>
+                        <p>
+                            The middle stage is the point of this paper. The common shortcut today skips it: buy a cloud "command center", let most of the office go, and leave one person to run the whole back office
+                            through a dozen dashboards. The automation is real, but the remaining work does not disappear; it concentrates on that one person. Stage 2 moves that person out of isolation and into a team,
+                            and it is what lets the same people stay employed, and better employed, when stage 3 and agent-to-agent trade arrive.
+                        </p>
+                        <p>
+                            It is written for emerging markets, where most of these businesses live: shops and distributors, workshops and small factories, restaurants and caterers, schools and training centres,
+                            travel and property agents, clinics and studios, logistics and repair services, family firms of five to fifty people. The stack is mostly open source, with paid cloud services where they earn their price.
+                            The audience is technical; feed the page to an AI of your choice and it should be able to draft a stage plan for a real business. The last section is written for exactly that.
+                        </p>
+
+                        <h4>0. words used in this paper</h4>
+                        <ul class="list-flush">
+                            <li><strong>the business:</strong> the small or medium business being served. Its owner, its management, its staff.</li>
+                            <li><strong>the provider:</strong> whoever brings the technology in and, from stage 2, does the work: an IT and operations company, small or large.</li>
+                            <li><strong>the systems:</strong> the software the business runs on, one per area or one ERP for most of them.</li>
+                            <li><strong>operator:</strong> a person employed by the provider who does a business's back-office work in its systems, from the provider's office.</li>
+                            <li><strong>machine learning/AI:</strong> statistical models, from a receipt reader to a large language model. Useful, not a mind; it proposes, people dispose.</li>
+                            <li><strong>human in the loop:</strong> a person approves, corrects or takes over wherever a machine is unsure, and can stop it at any time.</li>
+                        </ul>
+
+                        <h4>1. the ground the stages stand on</h4>
+                        <ul class="list-flush">
+                            <li><strong>People churn faster than software.</strong> Office staff move on for a slightly better wage, and the knowledge of how the business really runs leaves with them.</li>
+                            <li><strong>The work lives in heads, chats and spreadsheets.</strong> Before anything can be automated it has to be written down; most businesses have never done that.</li>
+                            <li><strong>Prices are set elsewhere.</strong> Software and AI are priced per seat or per token in dollars; wages are not.</li>
+                            <li><strong>Infrastructure is uneven.</strong> Power cuts, one internet line, carrier-grade NAT, a phone hotspot as backup.</li>
+                            <li><strong>Trust is personal.</strong> An owner trusts a person they can talk to, not a dashboard.</li>
+                            <li><strong>Rules are arriving.</strong> Tax e-invoicing, personal-data and labour laws are going digital; the business must keep up whether it wants to or not.</li>
+                        </ul>
+                        <p class="fd-note">
+                            So the question is never only "which software". It is "who will do this work every day, how is it written down, and what happens when that person leaves". The stages answer exactly that.
+                        </p>
+
+                        <h4>2. the lone operator: what the shortcut leaves behind</h4>
+                        <p>
+                            A typical path for a small business today: five people in the office, a cloud suite promising to automate the back office, four positions cut, one kept "to manage the system".
+                            On paper the cost fell by most of four salaries. In practice the work that the software does not finish (the exceptions, the corrections, the approvals, the customer who calls anyway)
+                            now lands on one desk. Assistive AI inside each dashboard shortens individual tasks; it does not change who has to watch every queue.
+                        </p>
+                        <div class="fd-wrap">
+                        <table class="fd-table">
+                            <tr><th>property</th><th>one operator per business</th><th>a team of operators at a provider</th></tr>
+                            <tr><td>cover for leave, illness, resignation</td><td>none; the back office stops</td><td>a colleague who knows the runbook takes over</td></tr>
+                            <tr><td>alerts and queues</td><td>every one, from every system, to one person</td><td>shared queues, split by area and shift</td></tr>
+                            <tr><td>interfaces</td><td>a dozen dashboards, switched all day</td><td>each operator specialises in a few systems, learned well</td></tr>
+                            <tr><td>knowledge</td><td>in one head; leaves with that person</td><td>written down, reviewed, used across many businesses</td></tr>
+                            <tr><td>mistakes</td><td>found late, by the owner or the tax office</td><td>caught by a second pair of eyes</td></tr>
+                            <tr><td>working life</td><td>isolated, on call, no one to ask</td><td>colleagues, a career path, regular hours</td></tr>
+                        </table>
+                        </div>
+                        <p>
+                            In systems terms, the lone operator is a single point of failure with no redundancy, running at full utilisation with no headroom, and exposed to alert fatigue.
+                            Nobody would design a server that way. The same remedy applies to people: pool them. A small business rarely needs a full-time bookkeeper, payroll clerk and stock controller;
+                            it needs a fraction of each. Ten businesses that each need a third of a bookkeeper are three or four bookkeepers who cover each other, not ten people each doing three jobs alone.
+                        </p>
+                        <p class="fd-note">
+                            This is why stage 2 is needed now, before full automation, not after it. It turns the work that automation leaves behind into shared, written-down, reviewable work,
+                            done by people who have colleagues. Stage 3 then automates that work without removing the people: their role moves from doing the routine to supervising it.
+                        </p>
+
+                        <h4>3. the systems: the whole business, not one desk</h4>
+                        <p>One example stack per area. Each has commercial equivalents; the point is that every area has a system where the work, and later its automation, can live.</p>
+                        <div class="fd-wrap">
+                        <table class="fd-table">
+                            <tr><th>area</th><th>open-source examples</th><th>what stage 3 can take over</th></tr>
+                            <tr><td>accounting, tax</td><td>Odoo Community, ERPNext, Akaunting</td><td>read supplier invoices into the books, suggest bank matches, prepare tax reports</td></tr>
+                            <tr><td>sales, CRM</td><td>ERPNext, Odoo CRM, SuiteCRM, Twenty</td><td>log enquiries, score and route leads, draft follow-ups and quotes</td></tr>
+                            <tr><td>marketing</td><td>Mautic, listmonk</td><td>segment customers, draft campaigns, report what worked</td></tr>
+                            <tr><td>purchasing, warehouse</td><td>Odoo Inventory, ERPNext Stock</td><td>suggest reorders, flag stock gaps, match deliveries to orders</td></tr>
+                            <tr><td>payroll, HR</td><td>Frappe HR, Odoo HR, OrangeHRM</td><td>check timesheets, flag payroll anomalies, answer staff questions</td></tr>
+                            <tr><td>projects</td><td>OpenProject, Taiga, Plane</td><td>status summaries, overdue alerts, time and cost roll-ups</td></tr>
+                            <tr><td>documents</td><td>Nextcloud, Paperless-ngx</td><td>file, tag and find documents by their content</td></tr>
+                            <tr><td>customer service</td><td>a self-hosted chat hub</td><td>answer the routine, hand the rest to a person (<a href="/contents/page-07-02-reduce-token.html">reduce token usage</a>)</td></tr>
+                        </table>
+                        </div>
+
+                        <h4>4. three stages, one ladder</h4>
+                        <figure class="fd-figure">
+                            <a href="page-08-01-three-stages/page-08-01-three-stages-02.svg" target="_blank" rel="noopener">
+                                <img src="page-08-01-three-stages/page-08-01-three-stages-02.svg" width="720" height="620" alt="Three columns, assist, operate and automate, each listing where the systems run, who does the work day to day, what the provider does, which businesses it fits, what the business pays, and its exit" loading="lazy">
+                            </a>
+                            <figcaption>The same systems, three ways of doing the work. Tap the image to open it full size.</figcaption>
+                        </figure>
+                        <p>
+                            The stages are not a sales funnel. A business does not have to climb, and it can sit at different stages for different areas: invoices read by a machine, payroll run by the provider's people,
+                            sales kept by its own staff. What makes it a ladder is that each stage reuses the one below it: the systems chosen in stage 1 are the ones the operators work in at stage 2,
+                            and the procedures the operators write down at stage 2 are what stage 3 automates. Nothing is thrown away when a business moves.
+                        </p>
+
+                        <h4>5. stage 1, assist: the business does the work</h4>
+                        <p>The systems run on the premises or in the business's own cloud accounts, and the business's own staff do the work in them. The provider chooses the systems with the business, installs them, imports the data and trains the staff, mostly remotely.</p>
+                        <ul class="list-flush">
+                            <li><strong>Hardware:</strong> a small server or mini PC, often second hand (see <a href="/contents/page-06-00-2nd-hand.html">2nd hand, 2nd chance</a>), on a UPS, behind an office router the business controls (see <a href="/contents/page-07-01-front-desk.html">front desk</a>).</li>
+                            <li><strong>Software:</strong> a long-support Linux, the community edition of the systems above, PostgreSQL or MariaDB underneath.</li>
+                            <li><strong>Backups:</strong> nightly, encrypted, off the machine and off the premises. A backup is real only after a test restore.</li>
+                            <li><strong>Remote help:</strong> RustDesk with a self-hosted relay for guided sessions; a VPN for the provider's maintenance.</li>
+                        </ul>
+<pre class="fd-code"># nightly backup of a stage 1 server (restic, two targets, a monthly test restore)
+export RESTIC_PASSWORD_FILE=/etc/backup/restic.pass
+pg_dump -Fc erp &gt; /var/backups/erp.dump
+restic -r /mnt/backup-disk/repo backup /var/backups /srv/files --tag nightly
+restic -r s3:https://bucket.example/office backup /var/backups /srv/files --tag nightly
+restic -r /mnt/backup-disk/repo forget --keep-daily 14 --keep-weekly 8 --keep-monthly 12 --prune
+restic -r /mnt/backup-disk/repo restore latest --target /tmp/restore-test</pre>
+                        <ul class="list-flush">
+                            <li><strong>Teach on their screen.</strong> The trainer moves the mouse while the employee watches, then they swap. The employee accepts every connection and can end it.</li>
+                            <li><strong>Record every task.</strong> Short screen recordings ("a supplier invoice", "a stock count", "month-end close", "a new hire") outlive the employee who first learned them.</li>
+                            <li><strong>One named owner inside.</strong> Someone on the payroll who knows where the server is, who to call, and how to read the backup report.</li>
+                            <li><strong>A first month with a plan:</strong> choose and check, install with users, roles and backups, import and teach, then go live with the provider on standby.</li>
+                        </ul>
+                        <p class="fd-note">Fits a business that already has office staff, must keep data on site, or cannot rely on its internet. Its weak point is people leaving; the recordings and the named owner are the answer, and stage 2 is the cure.</p>
+
+                        <h4>6. stage 2, operate: the provider's people do the work</h4>
+                        <p>
+                            Because the systems are used through a browser, the work in them can be done from anywhere. At stage 2 it is done from the provider's office, by operators the provider employs:
+                            bookkeeping and payments, payroll runs, purchase orders and stock reconciliation, CRM upkeep and follow-ups, campaign sends, project status reports.
+                            It is remote work, but the remote workers belong to the provider, not to the business: the provider hires them, trains them, covers their leave, secures their machines and stands behind their work.
+                            The business keeps its core people on site, doing what only they can do: the craft, the sale, the relationship, the decisions.
+                        </p>
+                        <p>
+                            The person a business would otherwise keep alone at a dashboard is exactly the person stage 2 needs. A provider can hire that operator, sometimes from the same business,
+                            and seat them with colleagues: the same skills, now shared across many businesses, with cover, review and normal hours.
+                        </p>
+                        <ul class="list-flush">
+                            <li><strong>People the business can talk to.</strong> Named operators, a phone number, an office the owner can visit. Not a ticket queue, not an anonymous platform.</li>
+                            <li><strong>The systems stay the business's.</strong> Every account, licence, domain and bank mandate in the business's name, the provider's operators as users with roles. Two-step login, per-business accounts, logged access.</li>
+                            <li><strong>Tasks and boundaries in writing:</strong> what the operators may do alone (enter, reconcile, draft), and what always goes back to the owner (pay, hire, sign, price).</li>
+                            <li><strong>Every procedure written down.</strong> An operator doing the same month-end for twenty businesses writes the runbook once and improves it every month. That runbook is the most valuable thing stage 2 produces: it is the specification for stage 3.</li>
+                            <li><strong>Work is pooled, not piled.</strong> Each business has a named lead operator and at least one second who knows its runbook; queues are shared by area, not by business. Load per operator is measured and kept below full, so a peak or a leave day is absorbed.</li>
+                            <li><strong>Leaving is designed in.</strong> With the accounts in its name and the runbooks shared, the business can take the work back in-house or to another provider.</li>
+                        </ul>
+                        <p><strong>An operator's day, across several businesses:</strong> 07:30 bank feeds imported and matched; 09:00 supplier invoices entered and queued for approval; 11:00 stock moves reconciled with deliveries; 13:00 CRM enquiries logged and assigned; 15:00 overdue invoices chased, payroll inputs checked; 17:00 a short report to each owner, exceptions listed first.</p>
+                        <p class="fd-note">Fits a business that struggles to hire and keep office staff, has several sites, or wants one predictable monthly cost instead of salaries, recruiting and cover. It needs reliable internet. It is also where human-in-the-loop starts: the operators are the loop.</p>
+
+                        <h4>7. stage 3, automate: machines do the routine, people stay in the loop</h4>
+                        <p>
+                            The routine written down at stage 2 is handed to automation, in the order that saves the most and risks the least. The rule is the one behind any good automation, and behind the
+                            chat hub in <a href="/contents/page-07-02-reduce-token.html">reduce token usage</a>: <strong>plain rules first, machine learning only when rules cannot decide, every result checked, a person a click away</strong>.
+                        </p>
+                        <ul class="list-flush">
+                            <li><strong>Rules first:</strong> workflows and triggers in the systems themselves (recurring entries, approval chains, reorder points, reminders) and scripts or tools such as n8n between them. Cheap, exact, auditable.</li>
+                            <li><strong>Then models:</strong> a receipt and invoice reader (OCR plus a language model filling a fixed form), a classifier for bank lines and enquiries, a language model to draft replies, summaries and reports.</li>
+                            <li><strong>Then the loop:</strong> every model output carries a confidence; above the line it is applied and sampled for audit, below it goes to an approval queue that the stage 2 operators already work in.</li>
+                        </ul>
+                        <p><strong>Where the models run:</strong></p>
+                        <div class="fd-wrap">
+                        <table class="fd-table">
+                            <tr><th>level</th><th>where</th><th>good at</th><th>watch out for</th></tr>
+                            <tr><td><strong>a. model API</strong></td><td>a provider's cloud model, pay per use</td><td>nothing to buy, the strongest models</td><td>personal and financial data leaves: mask it first; cost grows with use</td></tr>
+                            <tr><td><strong>b. local code + API</strong></td><td>a small machine runs the rules; the API only for what rules cannot decide</td><td>most work never reaches the model; low cost; local control</td><td>someone keeps the machine healthy</td></tr>
+                            <tr><td><strong>c. own model server</strong></td><td>open-weight models (Llama, Qwen, Gemma) on llama.cpp, Ollama or vLLM</td><td>data never leaves; no per-use fees</td><td>upfront hardware; smaller models need tighter forms and more rules</td></tr>
+                        </table>
+                        </div>
+                        <p><strong>Human in the loop, made concrete:</strong></p>
+                        <ul class="list-flush">
+                            <li><strong>Machines propose, people dispose.</strong> Nothing that moves money, changes a price, hires, fires or promises is done without a person's approval.</li>
+                            <li><strong>Exceptions go to named people,</strong> the same operators as stage 2, with the reason attached, not a bare alert.</li>
+                            <li><strong>Sampling audits:</strong> a share of what was applied automatically is reviewed every week; the share rises when a model or a rule changes.</li>
+                            <li><strong>Honest automation:</strong> customers and suppliers are not told a machine is a person.</li>
+                            <li><strong>The role shifts, the people stay.</strong> As a task is automated, the operator who wrote its runbook becomes its supervisor: tuning the rules, reviewing the low-confidence queue, auditing samples, stepping in when a supplier or customer needs a person. The same team then covers more businesses at a calmer pace, instead of being cut.</li>
+                            <li><strong>The exit is a switch.</strong> Turn an automation off and the operators of stage 2 carry on with the same runbook. A good stage 3 degrades to stage 2, never to chaos.</li>
+                        </ul>
+                        <p class="fd-note">Fits work that repeats every day and is already written down. It works best on top of a stage 2 that runs well; automating a mess automates the mess.</p>
+
+                        <h4>8. at the provider: where A2A begins</h4>
+                        <figure class="fd-figure">
+                            <a href="page-08-01-three-stages/page-08-01-three-stages-03.svg" target="_blank" rel="noopener">
+                                <img src="page-08-01-three-stages/page-08-01-three-stages-03.svg" width="720" height="600" alt="Two businesses, a buyer and a seller, keep their own systems and owners; at the provider's premises the operators run both back offices, automation does the routine, and the buyer's and seller's agents settle an order, delivery, invoice and payment between them, each owner approving" loading="lazy">
+                            </a>
+                            <figcaption>When the buyer and the seller are both run at the same provider, their agents can meet in one place; each owner still signs. Tap the image to open it full size.</figcaption>
+                        </figure>
+                        <p>
+                            Today, a purchase between two small businesses is a chain of people retyping: a quote in a chat, an order in a spreadsheet, an invoice in a PDF, a payment slip in a photo.
+                            Once both businesses run their back office through stage 2 and 3, each has an agent that knows its stock, prices, limits and approval rules. The protocols for agents to talk
+                            to each other are being written now (agent-to-agent, A2A, among others). When both agents run at the same provider, the first version needs no new protocol at all:
+                            the order, the delivery note, the invoice and the payment can be settled agent to agent inside one secured room, each business's data still in its own systems,
+                            and each owner approving what their agent commits.
+                        </p>
+                        <p>
+                            In that setting the operators are not displaced; they are the ones who make agent-to-agent trade trustworthy. They set each agent's limits, watch the exchanges,
+                            check the agents' work every day, and step in on the disputes, the unusual orders and the first trade with a new partner. The work becomes oversight rather than retyping. The chat version of the same idea is section 4 of <a href="/contents/page-07-02-reduce-token.html#stages">reduce token usage</a>.
+                        </p>
+
+                        <h4>9. moving between stages</h4>
+                        <ul class="list-flush">
+                            <li><strong>Up, when the signal is there:</strong> stage 1 to 2 when hiring and keeping office staff gets hard or a second site opens; stage 2 to 3 when a runbook has been stable for months.</li>
+                            <li><strong>Down, without drama:</strong> operators hand back to new in-house staff with the runbooks; an automation is switched off for a new law or a bad month. The systems and the data stay.</li>
+                            <li><strong>Mixed, by area:</strong> invoices at stage 3, payroll at stage 2, sales at stage 1, and that is fine for years.</li>
+                            <li><strong>What makes moving cheap:</strong> systems chosen once, accounts in the business's name, standard export formats, runbooks written as the work is done, open source underneath wherever it is good enough.</li>
+                        </ul>
+
+                        <h4>10. risks and limits</h4>
+                        <ul class="list-flush">
+                            <li><strong>Stages do not fix a bad system choice.</strong> The wrong software run well is still the wrong software.</li>
+                            <li><strong>Concentration.</strong> Many businesses run at one provider is efficient and a single point of failure. Accounts in each business's name, exports and runbooks are the insurance.</li>
+                            <li><strong>Remote work needs trust both ways.</strong> Roles, logs and written boundaries protect the business and the provider alike.</li>
+                            <li><strong>Model costs and models move.</strong> Free tiers shrink, prices change, models are retired. Rules first, and levels b and c, protect against that.</li>
+                            <li><strong>Automation can still be used to cut people.</strong> The stages describe a path; they do not guarantee how a provider treats its operators. A provider worth choosing says how it staffs, covers and retrains as automation grows.</li>
+                            <li><strong>The law applies at every stage:</strong> tax records, personal data and employment data each have rules on where they live and who may touch them.</li>
+                        </ul>
+
+                        <h4>11. principles that hold at every stage</h4>
+                        <p>
+                            Across the three stages, the direction of help turns around. At stage 1 the machine assists people. At stage 2 people assist each other, in a team.
+                            At stage 3 people assist the machine: they set its limits, correct it, and take what it cannot decide. These principles keep that turn humane, in every area of the business,
+                            from a supplier invoice to a payroll run to an order between two agents.
+                        </p>
+                        <ol class="list-flush">
+                            <li><strong>A person always wins.</strong> When a person acts on an item (edits an invoice, changes an order, answers a customer), the machine stops on that item and never overrides it.</li>
+                            <li><strong>When unsure, hold and hand over.</strong> A held payment, a draft left for approval, a short holding reply: each is better than a confident wrong action. Every hold has a named person and a reason.</li>
+                            <li><strong>One queue, not twelve dashboards.</strong> Exceptions from every system arrive in one place, sorted by urgency, with the reason attached. The routine stays out of sight.</li>
+                            <li><strong>Every correction teaches, with a name on it.</strong> A fixed bank match, an edited reply, a changed reorder point becomes a rule or a saved example, credited to the person who made it. Operator, then trainer, then supervisor is a career, not a countdown.</li>
+                            <li><strong>Measure people's load, not headcount cut.</strong> Hours saved, items per person, out-of-hours interruptions, queue age. "Positions removed" is not a goal.</li>
+                            <li><strong>Machines work nights; people do not.</strong> Automation may run around the clock; urgent exceptions go to a rota, never to one person on permanent call.</li>
+                            <li><strong>Cheapest tool first.</strong> Rules, then saved knowledge, then a small model, then a large one, then outside lookups; the cost of each visible per business.</li>
+                            <li><strong>Honest about who does the work.</strong> A machine is never presented as a person and never denies being automated when asked; a person is always reachable. Disclosure follows the law where the business operates. Some closed platforms penalise accounts for certain words rather than for behaviour; there, neutral wording such as "the system" or "automated reply" is honest enough, and agent-to-agent work waits for open platforms.</li>
+                            <li><strong>The business can always leave.</strong> Accounts, data, rules and runbooks stay in its name; switching automation off falls back to people, not to nothing.</li>
+                        </ol>
+
+                        <h4>12. a stage plan (for people, and for the AI you hand this page to)</h4>
+                        <p>To draft a plan for a real business, collect these answers first, then map each area to a stage:</p>
+<pre class="fd-code">business:       trade, size, sites, opening hours, languages, who decides what
+areas:          accounts/tax, sales/CRM, marketing, purchasing/warehouse, payroll/HR,
+                projects, documents, customer service: for each, how it is done today
+people:         office staff per area (count, turnover per year), the named owner inside
+volume:         invoices, orders, stock moves, payslips, messages per month; repeat tasks
+data:           personal, financial and tax data held; legal limits on where it may live
+infrastructure: internet (outages per month), power (UPS?), current hardware
+money:          one-off budget, monthly budget, the currency of each
+for each area, decide:
+  stage 1, 2 or 3, and why
+  the system (open source or paid plan), where it runs, who does the work day to day
+  accounts in whose name, roles, two-step login, backups, export, the exit
+  stage 2: tasks and boundaries in writing, a lead and a second operator, the runbook
+           to start, target load per operator, who covers leave
+  stage 3: rules first; which model level (a, b, c); what is masked; the confidence
+           line; who approves; the weekly audit sample; the off switch; the new role
+           of each operator whose task is automated
+output:         a one-page plan per area, a first-month plan, a monthly cost</pre>
+
+                        <h4>credits</h4>
+                        <p>Built on the work of the open-source projects named above, and on many small businesses that tried technology before it was ready for them.</p>
+                    </div>
+                </section>
+            </div>
+
+            <div class="right-col">
+                <div id="sidebar-placeholder"></div>
+
+                <div class="right-col-links" style="margin-top: 20px;">
+                    <h2 class="right-col-link-h2">related</h2>
+                    <a href="/contents/page-07-02-reduce-token.html" class="plain-link">&gt; reduce token usage</a>
+                    <a href="/contents/page-07-00-cmd-cntr.html" class="plain-link">&gt; command center</a>
+                    <a href="/contents/page-07-01-front-desk.html" class="plain-link">&gt; front desk</a>
+                    <a href="/contents/page-06-00-2nd-hand.html" class="plain-link">&gt; 2nd hand, 2nd chance</a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script>
+        async function loadComponent(id, file) {
+            const element = document.getElementById(id);
+            if (!element) return;
+
+            if (element.innerHTML.trim() === "") {
+                try {
+                    const response = await fetch(`../${file}`);
+                    if (response.ok) {
+                        const data = await response.text();
+                        element.innerHTML = data;
+                    }
+                } catch (error) {
+                    console.error("Error loading component:", file, error);
+                }
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            loadComponent('navbar-placeholder', 'navbar.html');
+            loadComponent('footer-placeholder', 'footer.html');
+            loadComponent('sidebar-placeholder', 'rght-clmn.html');
+        });
+    </script>
+</body>
+</html>
