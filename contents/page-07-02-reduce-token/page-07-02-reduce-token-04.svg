@@ -1,0 +1,530 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 720 800"
+   role="img"
+   font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif"
+   version="1.1"
+   id="svg44"
+   sodipodi:docname="page-07-02-reduce-token-04.svg"
+   inkscape:version="1.4.3 (1:1.4.3+202512261035+0d15f75042)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview44"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.95989746"
+     inkscape:cx="386.49962"
+     inkscape:cy="446.40185"
+     inkscape:window-width="1341"
+     inkscape:window-height="745"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg44" />
+  <title
+     id="title1">Three ways to run the same hub: by the business, by the provider, then A2A (agent to agent)</title>
+  <desc
+     id="desc1">Stage 1: the business owns the server and pays the AI; its own staff watch the dashboard, and the provider installs and trains remotely. Stage 2: the provider runs the hub and its people watch the dashboard and the AI; the business staff are called in only for what only they can decide. Stage 3, A2A (agent to agent): client go talk to their bot, talk to merchant bot, talk to merchant; they never ever, talking back together.</desc>
+  <defs
+     id="defs1">
+    <marker
+       id="a"
+       viewBox="0 0 10 10"
+       refX="8"
+       refY="5"
+       markerWidth="6"
+       markerHeight="6"
+       orient="auto-start-reverse">
+      <path
+         d="M2 1L8 5L2 9"
+         fill="none"
+         stroke="#898781"
+         stroke-width="1.5"
+         stroke-linecap="round"
+         stroke-linejoin="round"
+         id="path1" />
+    </marker>
+    <style
+       id="style1">
+      .n { fill:#f1efe8; stroke:#5f5e5a; stroke-width:.6 }
+      .c { fill:#eeedfe; stroke:#534ab7; stroke-width:.6 }
+      .ai { fill:#e1f5ee; stroke:#0f6e56; stroke-width:.6 }
+      .m { fill:#fdf3dc; stroke:#a5730c; stroke-width:.6 }
+      .pv { fill:#e6f1fb; stroke:#185fa5; stroke-width:.6 }
+      .band { fill:none; stroke:#b4b2a9; stroke-width:1; stroke-dasharray:5 4 }
+      .h { font-size:13px; font-weight:700; fill:#2c2c2a }
+      .hs { font-size:12px; fill:#5f5e5a }
+      .t { font-size:13.5px; font-weight:600; text-anchor:middle; fill:#2c2c2a }
+      .s { font-size:11.5px; text-anchor:middle; fill:#5f5e5a }
+      .l { font-size:11.5px; fill:#52514e }
+      .q { font-size:13px; font-style:italic; text-anchor:middle; fill:#2c2c2a }
+      .line { fill:none; stroke:#898781; stroke-width:1.5 }
+      .thin { fill:none; stroke:#898781; stroke-width:1.2; stroke-dasharray:4 3 }
+    </style>
+  </defs>
+  <!-- stage 1 -->
+  <rect
+     x="14"
+     y="14"
+     width="692"
+     height="232"
+     rx="10"
+     class="band"
+     id="rect1" />
+  <text
+     x="30"
+     y="38"
+     class="h"
+     id="text1">Stage 1 · the business runs it</text>
+  <text
+     x="30"
+     y="55"
+     class="hs"
+     id="text2">its own server or mini PC, its own AI account, its own people on the dashboard</text>
+  <rect
+     x="30"
+     y="74"
+     width="150"
+     height="56"
+     rx="8"
+     class="n"
+     id="rect2" />
+  <text
+     x="105"
+     y="98"
+     class="t"
+     id="text3">Customers</text>
+  <text
+     x="105"
+     y="116"
+     class="s"
+     id="text4">chat apps</text>
+  <rect
+     x="250"
+     y="74"
+     width="200"
+     height="56"
+     rx="8"
+     class="c"
+     id="rect4" />
+  <text
+     x="350"
+     y="98"
+     class="t"
+     id="text5">The hub</text>
+  <text
+     x="350"
+     y="116"
+     class="s"
+     id="text6">on the business's hardware</text>
+  <rect
+     x="520"
+     y="74"
+     width="170"
+     height="56"
+     rx="8"
+     class="ai"
+     id="rect6" />
+  <text
+     x="605"
+     y="98"
+     class="t"
+     id="text7">AI API</text>
+  <text
+     x="605"
+     y="116"
+     class="s"
+     id="text8">paid by the business</text>
+  <line
+     x1="180"
+     y1="102"
+     x2="248"
+     y2="102"
+     class="line"
+     marker-end="url(#a)"
+     marker-start="url(#a)"
+     id="line8" />
+  <line
+     x1="450"
+     y1="102"
+     x2="518"
+     y2="102"
+     class="thin"
+     marker-end="url(#a)"
+     marker-start="url(#a)"
+     id="line9" />
+  <line
+     x1="350"
+     y1="130"
+     x2="350"
+     y2="164"
+     class="line"
+     marker-end="url(#a)"
+     marker-start="url(#a)"
+     id="line10" />
+  <rect
+     x="250"
+     y="166"
+     width="200"
+     height="60"
+     rx="8"
+     class="m"
+     id="rect10" />
+  <text
+     x="350"
+     y="190"
+     class="t"
+     id="text10">The business's staff</text>
+  <text
+     x="350"
+     y="208"
+     class="s"
+     id="text11">watch the dashboard, reply</text>
+  <rect
+     x="520"
+     y="166"
+     width="170"
+     height="60"
+     rx="8"
+     class="pv"
+     id="rect11" />
+  <text
+     x="605"
+     y="190"
+     class="t"
+     id="text12">The provider</text>
+  <text
+     x="605"
+     y="208"
+     class="s"
+     id="text13">installs, trains remotely</text>
+  <line
+     x1="518"
+     y1="196"
+     x2="452"
+     y2="196"
+     class="thin"
+     marker-end="url(#a)"
+     id="line13" />
+  <!-- stage 2 -->
+  <rect
+     x="14"
+     y="262"
+     width="692"
+     height="232"
+     rx="10"
+     class="band"
+     id="rect13" />
+  <text
+     x="30"
+     y="286"
+     class="h"
+     id="text14">Stage 2 · the provider runs it</text>
+  <text
+     x="30"
+     y="303"
+     class="hs"
+     id="text15">the same hub, operated remotely; the provider's people keep an eye on the AI</text>
+  <rect
+     x="30"
+     y="322"
+     width="150"
+     height="56"
+     rx="8"
+     class="n"
+     id="rect15" />
+  <text
+     x="105"
+     y="346"
+     class="t"
+     id="text16">Customers</text>
+  <text
+     x="105"
+     y="364"
+     class="s"
+     id="text17">chat apps</text>
+  <rect
+     x="250"
+     y="322"
+     width="200"
+     height="56"
+     rx="8"
+     class="c"
+     id="rect17" />
+  <text
+     x="350"
+     y="346"
+     class="t"
+     id="text18">The hub</text>
+  <text
+     x="350"
+     y="364"
+     class="s"
+     id="text19">run by the provider</text>
+  <rect
+     x="520"
+     y="322"
+     width="170"
+     height="56"
+     rx="8"
+     class="ai"
+     id="rect19" />
+  <text
+     x="605"
+     y="346"
+     class="t"
+     id="text20">AI API</text>
+  <text
+     x="605"
+     y="364"
+     class="s"
+     id="text21">in the monthly fee</text>
+  <line
+     x1="180"
+     y1="350"
+     x2="248"
+     y2="350"
+     class="line"
+     marker-end="url(#a)"
+     marker-start="url(#a)"
+     id="line21" />
+  <line
+     x1="450"
+     y1="350"
+     x2="518"
+     y2="350"
+     class="thin"
+     marker-end="url(#a)"
+     marker-start="url(#a)"
+     id="line22" />
+  <line
+     x1="350"
+     y1="378"
+     x2="350"
+     y2="412"
+     class="line"
+     marker-end="url(#a)"
+     marker-start="url(#a)"
+     id="line23" />
+  <rect
+     x="250"
+     y="414"
+     width="200"
+     height="60"
+     rx="8"
+     class="pv"
+     id="rect23" />
+  <text
+     x="350"
+     y="438"
+     class="t"
+     id="text23">The provider's people</text>
+  <text
+     x="350"
+     y="456"
+     class="s"
+     id="text24">watch the dashboard and the AI</text>
+  <rect
+     x="520"
+     y="414"
+     width="170"
+     height="60"
+     rx="8"
+     class="m"
+     id="rect24" />
+  <text
+     x="605"
+     y="438"
+     class="t"
+     id="text25">The business's staff</text>
+  <text
+     x="605"
+     y="456"
+     class="s"
+     id="text26">only what only they decide</text>
+  <line
+     x1="452"
+     y1="444"
+     x2="518"
+     y2="444"
+     class="thin"
+     marker-end="url(#a)"
+     id="line26" />
+  <text
+     x="458"
+     y="436"
+     class="l"
+     id="text27">flags</text>
+  <!-- stage 3 -->
+  <rect
+     x="14"
+     y="510"
+     width="692"
+     height="270"
+     rx="10"
+     class="band"
+     id="rect27" />
+  <text
+     x="30"
+     y="534"
+     class="h"
+     id="text28">Stage 3 · Automation &amp; AI (A2A, agent to agent)</text>
+  <text
+     x="30"
+     y="551"
+     class="hs"
+     id="text29">both sides have an agent; people are called in only when something is flagged</text>
+  <rect
+     x="30"
+     y="572"
+     width="150"
+     height="56"
+     rx="8"
+     class="n"
+     id="rect29" />
+  <text
+     x="105"
+     y="596"
+     class="t"
+     id="text30">client</text>
+  <text
+     x="105"
+     y="614"
+     class="s"
+     id="text31">asks once, in plain words</text>
+  <rect
+     x="210"
+     y="572"
+     width="140"
+     height="56"
+     rx="8"
+     class="ai"
+     id="rect31" />
+  <text
+     x="280"
+     y="596"
+     class="t"
+     id="text32">their bot</text>
+  <text
+     x="280"
+     y="614"
+     class="s"
+     id="text33">the client's agent</text>
+  <rect
+     x="380"
+     y="572"
+     width="140"
+     height="56"
+     rx="8"
+     class="c"
+     id="rect33" />
+  <text
+     x="450"
+     y="596"
+     class="t"
+     id="text34">merchant bot</text>
+  <text
+     x="450"
+     y="614"
+     class="s"
+     id="text35">the hub, as agent</text>
+  <rect
+     x="550"
+     y="572"
+     width="140"
+     height="56"
+     rx="8"
+     class="m"
+     id="rect35" />
+  <text
+     x="620"
+     y="596"
+     class="t"
+     id="text36">merchant</text>
+  <text
+     x="620"
+     y="614"
+     class="s"
+     id="text37">approves, delivers</text>
+  <line
+     x1="180"
+     y1="600"
+     x2="208"
+     y2="600"
+     class="line"
+     marker-end="url(#a)"
+     marker-start="url(#a)"
+     id="line37" />
+  <line
+     x1="350"
+     y1="600"
+     x2="378"
+     y2="600"
+     class="line"
+     marker-end="url(#a)"
+     marker-start="url(#a)"
+     id="line38" />
+  <line
+     x1="520"
+     y1="600"
+     x2="548"
+     y2="600"
+     class="line"
+     marker-end="url(#a)"
+     marker-start="url(#a)"
+     id="line39" />
+  <path
+     d="M105 628 L105 662 L620 662 L620 628"
+     class="thin"
+     id="path39" />
+  <line
+     x1="350"
+     y1="654"
+     x2="380"
+     y2="670"
+     stroke="#993c1d"
+     stroke-width="1.6"
+     id="line40" />
+  <line
+     x1="380"
+     y1="654"
+     x2="350"
+     y2="670"
+     stroke="#993c1d"
+     stroke-width="1.6"
+     id="line41" />
+  <text
+     x="362"
+     y="688"
+     class="s"
+     id="text41">no direct line</text>
+  <text
+     x="360"
+     y="722"
+     class="q"
+     id="text42">client go talk to their bot, talk to merchant bot, talk to merchant.</text>
+  <text
+     x="360"
+     y="744"
+     class="q"
+     id="text43">they never ever, talking back together</text>
+  <text
+     x="360"
+     y="768"
+     class="s"
+     id="text44">each side keeps a person able to step in; nothing is bought or confirmed without one</text>
+  <rect
+     x="20"
+     y="786"
+     width="0"
+     height="0"
+     id="rect44" />
+</svg>
