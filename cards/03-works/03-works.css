@@ -124,6 +124,8 @@ html.look-pro .wk-band {
 }
 html.look-pro .card-body .wk-band h2 { color: #fff; }
 html.look-pro .card-body .wk-band p { color: #cbd5e1; }
+html.look-pro .card-body .wk-band li { color: #cbd5e1; }
+html.look-pro .wk-band strong, html.look-pro .wk-band code { color: #fff; }
 html.look-pro .wk-band .wk-eyebrow { color: var(--pro-teal-2); }
 html.look-pro .wk-band::after {
     content: ""; position: absolute; right: -90px; top: -90px; width: 280px; height: 280px; border-radius: 50%;
