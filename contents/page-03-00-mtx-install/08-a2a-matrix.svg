@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 760 440"
+   width="760"
+   height="440"
+   role="img"
+   aria-labelledby="t d"
+   version="1.1"
+   id="svg26"
+   sodipodi:docname="08-a2a-matrix.svg"
+   inkscape:version="1.4.3 (1:1.4.3+202512261035+0d15f75042)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview26"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.61704545"
+     inkscape:cx="532.37569"
+     inkscape:cy="114.25414"
+     inkscape:window-width="1341"
+     inkscape:window-height="745"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg26" />
+  <title
+     id="t">Automation &amp; AI (A2A, agent to agent) on Matrix</title>
+  <desc
+     id="d">Buyer side and merchant side each run their own AI-enhanced bot with their own dashboard. The two bots talk in a Matrix room. Client and merchant have no direct line, and a person on each side can step in.</desc>
+  <style
+     id="style1">
+    .h { font: 700 15px system-ui, -apple-system, &quot;Segoe UI&quot;, sans-serif; fill: #1e293b; }
+    .s { font: 400 12.5px system-ui, -apple-system, &quot;Segoe UI&quot;, sans-serif; fill: #475569; }
+    .g { font: 700 11px system-ui, -apple-system, &quot;Segoe UI&quot;, sans-serif; fill: #64748b; letter-spacing: .04em; }
+    .b { font: 700 14px system-ui, -apple-system, &quot;Segoe UI&quot;, sans-serif; fill: #1e293b; }
+    .m { font: 400 11.5px system-ui, -apple-system, &quot;Segoe UI&quot;, sans-serif; fill: #64748b; }
+    .x { font: 700 11px system-ui, -apple-system, &quot;Segoe UI&quot;, sans-serif; fill: #0f766e; }
+    .i { font: italic 400 13.5px system-ui, -apple-system, &quot;Segoe UI&quot;, sans-serif; fill: #1e293b; }
+    .f { font: 400 11.5px system-ui, -apple-system, &quot;Segoe UI&quot;, sans-serif; fill: #475569; }
+    .ln { stroke: #94a3b8; stroke-width: 1.4; fill: none; }
+    .dl { stroke: #94a3b8; stroke-width: 1.2; fill: none; stroke-dasharray: 4 4; }
+  </style>
+  <defs
+     id="defs2">
+    <marker
+       id="ma"
+       viewBox="0 0 10 10"
+       refX="9"
+       refY="5"
+       markerWidth="6"
+       markerHeight="6"
+       orient="auto-start-reverse">
+      <path
+         d="M0 0 10 5 0 10z"
+         fill="#94a3b8"
+         id="path1" />
+    </marker>
+    <marker
+       id="mt"
+       viewBox="0 0 10 10"
+       refX="9"
+       refY="5"
+       markerWidth="6"
+       markerHeight="6"
+       orient="auto-start-reverse">
+      <path
+         d="M0 0 10 5 0 10z"
+         fill="#0d9488"
+         id="path2" />
+    </marker>
+  </defs>
+  <!-- frame and heading, kept as in the stages page -->
+  <rect
+     x="6"
+     y="6"
+     width="748"
+     height="428"
+     rx="12"
+     fill="#fff"
+     stroke="#cbd5e1"
+     stroke-width="1.2"
+     stroke-dasharray="6 4"
+     id="rect2" />
+  <text
+     x="24"
+     y="32"
+     class="h"
+     id="text2">Automation &amp; AI (A2A, agent to agent)</text>
+  <text
+     x="24"
+     y="50"
+     class="s"
+     id="text3">both sides have an agent; people are called in only when something is flagged</text>
+  <!-- the two sides -->
+  <rect
+     x="14"
+     y="64"
+     width="350"
+     height="172"
+     rx="10"
+     fill="#fafaf9"
+     stroke="#e7e5e4"
+     id="rect3" />
+  <text
+     x="26"
+     y="80"
+     class="g"
+     id="text4">BUYER SIDE · own bot, own AI, own dashboard</text>
+  <rect
+     x="396"
+     y="64"
+     width="350"
+     height="172"
+     rx="10"
+     fill="#fafaf9"
+     stroke="#e7e5e4"
+     id="rect4" />
+  <text
+     x="408"
+     y="80"
+     class="g"
+     id="text5">MERCHANT SIDE · own bot, own AI, own dashboard</text>
+  <!-- top row -->
+  <rect
+     x="24"
+     y="90"
+     width="144"
+     height="56"
+     rx="9"
+     fill="#f1efe8"
+     stroke="#a8a294"
+     id="rect5" />
+  <text
+     x="96"
+     y="113"
+     text-anchor="middle"
+     class="b"
+     id="text6">client</text>
+  <text
+     x="96"
+     y="131"
+     text-anchor="middle"
+     class="m"
+     style="font-size:11px"
+     id="text7">asks once, in plain words</text>
+  <rect
+     x="196"
+     y="90"
+     width="144"
+     height="56"
+     rx="9"
+     fill="#e1f5ee"
+     stroke="#5dcaa5"
+     id="rect7" />
+  <text
+     x="268"
+     y="113"
+     text-anchor="middle"
+     class="b"
+     id="text8">their bot</text>
+  <text
+     x="268"
+     y="131"
+     text-anchor="middle"
+     class="m"
+     id="text9">the client's agent</text>
+  <rect
+     x="420"
+     y="90"
+     width="144"
+     height="56"
+     rx="9"
+     fill="#eeedfe"
+     stroke="#a5a1f0"
+     id="rect9" />
+  <text
+     x="492"
+     y="113"
+     text-anchor="middle"
+     class="b"
+     id="text10">merchant bot</text>
+  <text
+     x="492"
+     y="131"
+     text-anchor="middle"
+     class="m"
+     id="text11">the merchant's agent</text>
+  <rect
+     x="592"
+     y="90"
+     width="144"
+     height="56"
+     rx="9"
+     fill="#fdf3dc"
+     stroke="#e7c06a"
+     id="rect11" />
+  <text
+     x="664"
+     y="113"
+     text-anchor="middle"
+     class="b"
+     id="text12">merchant</text>
+  <text
+     x="664"
+     y="131"
+     text-anchor="middle"
+     class="m"
+     id="text13">approves, delivers</text>
+  <!-- arrows: each side to its own bot, and bot to bot in a Matrix room -->
+  <path
+     d="M170 118h24"
+     class="ln"
+     marker-start="url(#ma)"
+     marker-end="url(#ma)"
+     id="path13" />
+  <path
+     d="M566 118h24"
+     class="ln"
+     marker-start="url(#ma)"
+     marker-end="url(#ma)"
+     id="path14" />
+  <path
+     d="M342 124h76"
+     stroke="#0d9488"
+     stroke-width="2"
+     fill="none"
+     marker-start="url(#mt)"
+     marker-end="url(#mt)"
+     id="path15" />
+  <rect
+     x="352"
+     y="97"
+     width="56"
+     height="18"
+     rx="9"
+     fill="#fff"
+     stroke="#99f6e4"
+     id="rect15" />
+  <text
+     x="380"
+     y="110"
+     text-anchor="middle"
+     class="x"
+     id="text15">Matrix</text>
+  <!-- dashboards under each bot -->
+  <rect
+     x="196"
+     y="170"
+     width="144"
+     height="52"
+     rx="9"
+     fill="#fff"
+     stroke="#5dcaa5"
+     stroke-dasharray="3 3"
+     id="rect16" />
+  <text
+     x="268"
+     y="191"
+     text-anchor="middle"
+     class="b"
+     style="font-size:12.5px"
+     id="text16">buyer's dashboard</text>
+  <text
+     x="268"
+     y="208"
+     text-anchor="middle"
+     class="m"
+     id="text17">own AI · rules · approve</text>
+  <path
+     d="M268 148v20"
+     class="ln"
+     marker-start="url(#ma)"
+     marker-end="url(#ma)"
+     id="path17" />
+  <rect
+     x="420"
+     y="170"
+     width="144"
+     height="52"
+     rx="9"
+     fill="#fff"
+     stroke="#a5a1f0"
+     stroke-dasharray="3 3"
+     id="rect17" />
+  <text
+     x="492"
+     y="191"
+     text-anchor="middle"
+     class="b"
+     style="font-size:12.5px"
+     id="text18">merchant's dashboard</text>
+  <text
+     x="492"
+     y="208"
+     text-anchor="middle"
+     class="m"
+     id="text19">own AI · rules · approve</text>
+  <path
+     d="M492 148v20"
+     class="ln"
+     marker-start="url(#ma)"
+     marker-end="url(#ma)"
+     id="path19" />
+  <!-- the person on each side can step in through the dashboard -->
+  <path
+     d="M110 148 C110 190 150 196 194 196"
+     class="dl"
+     id="path20" />
+  <text
+     x="112"
+     y="216"
+     class="m"
+     id="text20">steps in</text>
+  <path
+     d="M650 148 C650 190 610 196 566 196"
+     class="dl"
+     id="path21" />
+  <text
+     x="604"
+     y="216"
+     class="m"
+     id="text21">steps in</text>
+  <!-- what makes it possible -->
+  <rect
+     x="150"
+     y="250"
+     width="460"
+     height="30"
+     rx="15"
+     fill="#f0fdfa"
+     stroke="#99f6e4"
+     id="rect21" />
+  <text
+     x="380"
+     y="270"
+     text-anchor="middle"
+     class="x"
+     id="text22">Matrix welcomes bots on both sides: free to test, develop and run A2A</text>
+  <!-- no direct line between client and merchant -->
+  <path
+     d="M50 148v150h660v-150"
+     class="dl"
+     id="path22" />
+  <path
+     d="M370 288l20 20M390 288l-20 20"
+     stroke="#c0392b"
+     stroke-width="2"
+     stroke-linecap="round"
+     id="path23" />
+  <text
+     x="380"
+     y="324"
+     text-anchor="middle"
+     class="f"
+     id="text23"
+     style="font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-size:11.5px;line-height:normal;font-family:system-ui, '-apple-system', 'Segoe UI', sans-serif">emergency only direct line</text>
+  <!-- kept word for word -->
+  <text
+     x="380"
+     y="356"
+     text-anchor="middle"
+     class="i"
+     id="text24">client go talk to their bot, talk to merchant bot, talk to merchant.</text>
+  <text
+     x="380"
+     y="380"
+     text-anchor="middle"
+     class="i"
+     id="text25">they never ever, talking back together</text>
+  <text
+     x="380"
+     y="414"
+     text-anchor="middle"
+     class="f"
+     id="text26">each side keeps a person able to step in; nothing is bought or confirmed without one</text>
+</svg>

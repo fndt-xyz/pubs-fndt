@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chat with a business on Element X</title>
+    <!--
+      CARD: only the writing, no navbar, footer or side box.
+      Used two ways:
+        1. a pubs page loads it (contents/page-03-00-mtx-install.html) and shows only the <article class="card-body"> part.
+        2. any other website shows it in an iframe:
+             <iframe src="https://pubs.fndt.xyz/cards/03-works/cards-03-00-mtx-install.html" class="pubs-card"
+                     title="mtx install: chat with a business on Element X" loading="lazy" style="width:100%; border:0; height:600px"></iframe>
+             <script src="https://pubs.fndt.xyz/cards/embed.js"></script>   (optional: the iframe then fits its text, no scrollbar)
+           add ?look=pro to the src (cards-03-00-mtx-install.html?look=pro) for the boxed look: see 03-works.css.
+      Write only inside <article class="card-body">. Keep links absolute (https://...) so they work on any site.
+      English only: there is no -id file, so the boxed look shows no EN / ID button.
+      @business:matrix.org is a placeholder address. A site that iframes this card for a real business tells its readers the real one.
+      SCREENSHOTS: seven phone screenshots, 600 x 1200, WebP, in contents/page-03-00-mtx-install/
+        01-play-store.webp ... 07-first-reply.webp, plus the diagram 08-a2a-matrix.svg near the top. Paths start with "/" so they load from pubs.fndt.xyz on a pubs page and inside an iframe.
+    -->
+
+    <!-- search engines: the pubs page is the real address of this text, the card is a copy for embedding -->
+    <link rel="canonical" href="https://pubs.fndt.xyz/contents/page-03-00-mtx-install.html">
+
+    <!-- inside an iframe, a click on a link opens a new tab instead of loading inside the small box -->
+    <base target="_blank">
+
+    <link rel="stylesheet" href="/cards/card.css">
+
+    <!-- LOOK SWITCH: plain by default. Opened with ?look=pro (another website iframes it that way), the card adds class "look-pro"
+         to <html> and loads the fonts, 03-works.css and 03-works.js from this folder. 03-works.js builds the boxes and the
+         EN / ID button (ID text: the same file name plus "-id"). A pubs page never runs this: it takes only the <article>. -->
+    <style>html.look-pro:not(.wk-ready) body { visibility: hidden; }</style>
+    <script>
+        (function () {
+            if (!/[?&]look=pro(&|$)/.test(location.search)) return;
+            var root = document.documentElement;
+            root.classList.add('look-pro');
+            setTimeout(function () { root.classList.add('wk-ready'); }, 4000);   // never stay hidden if a file fails to load
+            ['https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Open+Sans:wght@700;800&display=swap', '03-works.css']
+                .forEach(function (href) {
+                    var link = document.createElement('link');
+                    link.rel = 'stylesheet';
+                    link.href = href;
+                    document.head.appendChild(link);
+                });
+            var script = document.createElement('script');
+            script.src = '03-works.js';
+            document.head.appendChild(script);
+        })();
+    </script>
+</head>
+<body>
+    <article class="card-body">
+        <p>
+            <a href="https://element.io/">Element X</a> is a free chat app on <a href="https://matrix.org/">Matrix</a>, an open chat network that no single company owns.
+            Any business can run a chat address there, and customers reach it without a phone number or an ad-funded platform.
+        </p>
+        <p>
+            Four steps, about five minutes. The business address used below, <code>@business:matrix.org</code>, is an example: use the address the business gives you.
+        </p>
+
+        <h4>why Matrix: agent to agent on both sides</h4>
+        <p>
+            Matrix is an open protocol that welcomes bots, and a bot joins a room the same way a person does. That makes it the place to test, develop and run A2A (agent to agent) for free, today.
+        </p>
+        <p>
+            And not only for the merchant. The buyer can run a chatbot too, enhanced by an AI of its choice and managed from its own dashboard.
+            The client asks their bot once, in plain words. Their bot talks to the merchant bot in a Matrix room, and the merchant bot brings in the merchant.
+            Human chat keeps working on the same network the whole time, so a person on either side can step in at any moment.
+        </p>
+        <figure class="wk-figure" style="margin:1.5rem 0;text-align:center">
+            <!-- on a phone the diagram is small: a tap opens it full size in a new tab -->
+            <a href="/contents/page-03-00-mtx-install/08-a2a-matrix.svg"><img src="/contents/page-03-00-mtx-install/08-a2a-matrix.svg" width="760" height="440" loading="lazy"
+                 alt="Buyer side and merchant side each run their own AI bot with their own dashboard; the two bots talk in a Matrix room, with no direct line between client and merchant"
+                 style="display:block;margin:0 auto;width:100%;max-width:760px;height:auto;border-radius:12px"></a>
+            <figcaption style="font-size:.85em;opacity:.75;text-align:center;margin-top:.5rem">A2A (agent to agent), where a person on each side only steps in when needed.</figcaption>
+        </figure>
+
+        <h4>1. install Element X</h4>
+        <p>
+            Search for <strong>Element X - Secure Chat &amp; Call</strong> in Google Play (Android) or the App Store (iPhone) and install it.
+            Pick <strong>Element X</strong>, not "Element Classic".
+        </p>
+        <p>
+            <a href="https://play.google.com/store/apps/details?id=io.element.android.x">Google Play</a> &middot;
+            <a href="https://apps.apple.com/app/element-x-secure-chat/id1631335820">App Store</a>
+        </p>
+        <figure class="wk-figure" style="margin:1.5rem 0;text-align:center">
+            <img src="/contents/page-03-00-mtx-install/01-play-store.webp" width="600" height="1200" loading="lazy"
+                 alt="Element X in Google Play, with the Install button" style="display:block;margin:0 auto;width:100%;max-width:260px;height:auto;border-radius:12px">
+        </figure>
+
+        <h4>2. create a free account with Google</h4>
+        <ul class="list-flush">
+            <li>Open Element X and tap <strong>Create account</strong>. The account provider is already set to <strong>matrix.org</strong>: tap <strong>Continue</strong>.</li>
+        </ul>
+        <figure class="wk-figure" style="margin:1.5rem 0;text-align:center">
+            <img src="/contents/page-03-00-mtx-install/02-create-account.webp" width="600" height="1200" loading="lazy"
+                 alt="Element X welcome screen, with the Create account button" style="display:block;margin:0 auto;width:100%;max-width:260px;height:auto;border-radius:12px">
+        </figure>
+        <ul class="list-flush">
+            <li>On <strong>Create an account</strong>, tap <strong>Continue with Google</strong> and pick a Google account. No new password to remember.</li>
+        </ul>
+        <figure class="wk-figure" style="margin:1.5rem 0;text-align:center">
+            <img src="/contents/page-03-00-mtx-install/03-google-signup.webp" width="600" height="1200" loading="lazy"
+                 alt="matrix.org Create an account page, with the Continue with Google button" style="display:block;margin:0 auto;width:100%;max-width:260px;height:auto;border-radius:12px">
+        </figure>
+        <ul class="list-flush">
+            <li>Choose a <strong>Username</strong>. It becomes your chat address, for example <code>@yourname:matrix.org</code>.</li>
+            <li>Tick <strong>I agree to the Terms and Conditions</strong> and tap <strong>Create Account</strong>. On <strong>Continue to Element X?</strong> tap <strong>Continue</strong> to go back to the app.</li>
+        </ul>
+        <figure class="wk-figure" style="margin:1.5rem 0;text-align:center">
+            <img src="/contents/page-03-00-mtx-install/04-choose-username.webp" width="600" height="1200" loading="lazy"
+                 alt="Sign-up page after Google: Username field and Create Account button" style="display:block;margin:0 auto;width:100%;max-width:260px;height:auto;border-radius:12px">
+        </figure>
+        <p>
+            If the app offers <strong>Set up recovery</strong>, do it and keep the recovery key somewhere safe, such as a password manager.
+            It is the only way to read old chats after signing in on another phone.
+        </p>
+
+        <h4>3. find the business</h4>
+        <p>
+            On <strong>Chats</strong>, tap the green <strong>+</strong> at the bottom right and type the business address exactly, including the <strong>@</strong> and the <strong>colon</strong>:
+            <code>@business:matrix.org</code>
+        </p>
+        <figure class="wk-figure" style="margin:1.5rem 0;text-align:center">
+            <img src="/contents/page-03-00-mtx-install/05-new-chat.webp" width="600" height="1200" loading="lazy"
+                 alt="Element X Chats screen, with the green plus button at the bottom right" style="display:block;margin:0 auto;width:100%;max-width:260px;height:auto;border-radius:12px">
+        </figure>
+        <p>
+            Tap the business in the results, then tap <strong>Send invite</strong>.
+        </p>
+        <figure class="wk-figure" style="margin:1.5rem 0;text-align:center">
+            <img src="/contents/page-03-00-mtx-install/06-send-invite.webp" width="600" height="1200" loading="lazy"
+                 alt="Search result for the business address, with the Send invite button" style="display:block;margin:0 auto;width:100%;max-width:260px;height:auto;border-radius:12px">
+        </figure>
+
+        <h4>4. say hello</h4>
+        <p>
+            Send <strong>hello</strong>. The first message can take about 15 seconds, because the business's chat service has to accept your invite first.
+            After that, an automatic reply usually arrives within seconds, and a person at the business reads every chat.
+        </p>
+        <figure class="wk-figure" style="margin:1.5rem 0;text-align:center">
+            <img src="/contents/page-03-00-mtx-install/07-first-reply.webp" width="600" height="1200" loading="lazy"
+                 alt="Chat with the business and its first reply" style="display:block;margin:0 auto;width:100%;max-width:260px;height:auto;border-radius:12px">
+        </figure>
+
+        <h4>good to know</h4>
+        <ul class="list-flush">
+            <li><strong>Same account everywhere:</strong> sign in on a computer at <a href="https://app.element.io/">app.element.io</a> with the same Google account.</li>
+            <li><strong>No phone number shared:</strong> the business sees only your chat address and the name you chose.</li>
+            <li><strong>Encrypted:</strong> private chats on Element X are end-to-end encrypted.</li>
+        </ul>
+    </article>
+
+    <!-- inside an iframe: tell the host page how tall this card is, so cards/embed.js can size the iframe.
+         does nothing when the card is opened on its own, or when a pubs page shows it (scripts don't run there). -->
+    <script>
+        (function () {
+            if (window.parent === window) return;
+            var send = function () {
+                window.parent.postMessage({ type: 'pubs-card-height', height: document.body.offsetHeight }, '*');
+            };
+            window.addEventListener('load', send);
+            if (window.ResizeObserver) new ResizeObserver(send).observe(document.body);
+        })();
+    </script>
+</body>
+</html>
